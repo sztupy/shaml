@@ -1,5 +1,5 @@
-bin
-Bin
+shaml/**/bin
+shaml/**/Bin
 obj
 TestResults
 TestResult.xml

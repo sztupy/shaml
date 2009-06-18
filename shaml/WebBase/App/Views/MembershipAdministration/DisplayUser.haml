@@ -1,0 +1,137 @@
+﻿- var user = ViewData["User"] as MembershipUserAndRolesViewData;
+%h2.MvcMembership
+  User Details For
+  = user.User.UserName
+%h3.MvcMembership
+  = Html.ActionLink<MembershipAdministrationController>( x => x.Index( null, null ), "<< Return to Membership Administration" )
+- using( Html.BeginForm( "SaveExistingUser", "MembershipAdministration" ) )
+  %fieldset.MvcMembership
+    %legend
+      User's Details
+    %div
+      %label
+        User Name
+      %div
+        = user.User.UserName
+      = Html.Hidden( "UserName", user.User.UserName )
+    %div
+      %label
+        Provider User Key
+      %div
+        = user.User.ProviderUserKey
+    %div
+      %label{ for="Email" }
+        Email Address
+      = Html.TextBox( "Email", user.User.Email )
+    %div
+      %label{ for="Comment" }
+        Comment
+      = Html.TextBox( "Comment", user.User.Comment )
+    %div
+      %label{ for="IsApproved" }
+        Is Approved
+      %div
+        = Html.CheckBox("IsApproved", user.User.IsApproved)
+    %hr
+    %div
+      %label
+        Created
+      %div
+        = user.User.CreationDate.ToString( "M/d/yyyy h:mm:ss tt" )
+    %div
+      %label
+        Last Login
+      %div
+        = user.User.CreationDate != user.User.LastLoginDate ? user.User.LastLoginDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Logged In"
+    %div
+      %label
+        Last Activity
+      %div
+        = user.User.CreationDate != user.User.LastActivityDate ? user.User.LastActivityDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Active"
+        = user.User.IsOnline ? "Online" : "Offline"
+    %div
+      %label
+        Last Lockout
+      %div
+        = ( user.User.LastLockoutDate == DateTime.MinValue ? user.User.LastLockoutDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Locked Out" )
+      - if( user.User.IsLockedOut )
+        %div
+        = Html.ActionLink<MembershipAdministrationController>( x => x.UnlockUser( new Guid(user.User.ProviderUserKey.ToString()) ), "(Unlock User)" )
+    %div
+      = Html.SubmitButton( "submitUpdateUserDetails", "Update User Details" )
+- if (user.RolesEnabled)
+  %fieldset.MvcMembership
+    %legend
+      User's Roles
+    - if( user.AllRoles.Count > 0 )
+      - foreach( string role in user.AllRoles )
+        %div
+          - if( user.UsersRoles.Contains(role) )
+            (
+            = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( new Guid(user.User.ProviderUserKey.ToString()), role ), "-" )
+            )
+          - else
+            (
+            = Html.ActionLink<MembershipAdministrationController>( x => x.AddUserToRole( new Guid(user.User.ProviderUserKey.ToString()), role ), "+" )
+            )
+          = Html.ActionLink<MembershipAdministrationController>( x=>x.Role(role), role )
+    - else
+      %div
+        No roles have been added to the system yet.
+- using( Html.BeginForm( "ResetPassword", "MembershipAdministration" ) )
+  %fieldset.MvcMembership
+    %legend
+      Reset User's Password
+      = Html.Hidden( "UserName", user.User.UserName )
+    %div
+      %label
+        Last Password Change
+      %div
+        = user.User.CreationDate != user.User.LastPasswordChangedDate ? user.User.LastPasswordChangedDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Changed Password"
+    %div
+      %label
+        Password Question
+      - if( !string.IsNullOrEmpty( user.User.PasswordQuestion) )
+        %div
+          = user.User.PasswordQuestion
+      - else
+        %div
+          %em
+            No password question set.
+    %div
+      %label{ for="PasswordAnswer" }
+        Password Answer
+      = Html.TextBox("PasswordAnswer")
+    %div
+      = Html.SubmitButton( "submitResetPassword", "Reset Password" )
+- using( Html.BeginForm( "ChangePassword", "MembershipAdministration" ) )
+  %fieldset.MvcMembership
+    %legend
+      Change User's Password
+    = Html.Hidden( "UserName", user.User.UserName )
+    %div
+      %label
+        Last Password Change
+      %div
+        = user.User.CreationDate != user.User.LastPasswordChangedDate ? user.User.LastPasswordChangedDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Changed Password"
+    %div
+      %label{ for="OldPassword" }
+        Old Password
+      = Html.Password( "OldPassword" )
+    %div
+      %label{ for="NewPassword" }
+        New Password
+      = Html.Password( "NewPassword" )
+    %div
+      %label{ for="NewPasswordConfirm" }
+        Confirm New Password
+      = Html.Password( "NewPasswordConfirm" )
+    %div
+      = Html.SubmitButton( "submitChangePassword", "Change Password" )
+
+%fieldset.MvcMembership
+  %legend
+    Permanently Delete User
+  %p
+    = Html.ActionLink( "Delete User", "DeleteUser", new{ id = new Guid(user.User.ProviderUserKey.ToString()) } )
+    (This action cannot be undone.)

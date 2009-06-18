@@ -1,0 +1,20 @@
+﻿%script
+  \$(document).ready(function() { openid.init('openid_identifier'); });
+%div
+  %h2
+    Login via OpenID
+  - var vderrors = ViewData["errors"] as IList<string>;
+  - if (vderrors != null)
+    %ul.error
+      - foreach (string error in vderrors)
+        %li= Html.Encode(error)
+  - using(Html.BeginForm( "Authenticate", "OpenId", FormMethod.Post, new {id = "openid_form" } ))
+    %fieldset.MvcMembership
+      %legend
+        Login
+      %div#openid_choice
+        %div#openid_btns
+        %div#openid_input_area
+          = Html.TextBox( "openid_identifier" )
+          = Html.SubmitButton( "openid_submit", "Login" )        
+      %div

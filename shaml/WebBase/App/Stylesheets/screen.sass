@@ -1,0 +1,137 @@
+@import blueprint.sass
+@import blueprint/modules/scaffolding.sass
+@import compass/reset.sass
+@import compass/layout.sass
+@import compass/utilities.sass
+
++blueprint
+// Remove the scaffolding when you're ready to start doing visual design.
+// Or leave it in if you're happy with how blueprint looks out-of-the-box
+
+// scheme ID: 0061TtIgFMPNi
+
+!bgcolor = #F6D1B3
+!maincolor = #FFFFFF
+!mainborder = 1px solid #610202
+!bordercolor = #610202
+!footerbgcolor = #823838
+!footercolor = #EEEEEE
+!footerborder = 1px solid #612D02
+!headercolor = #823838
+!headerborder = 1px solid #610202
+!tableheader = #ACEDAC
+
+thead th
+  :background = !tableheader
+
+body
+  :background-color = !bgcolor
+
+#mainContent
+  +container
+  :background-color = !maincolor
+  :border
+    :left = !mainborder
+    :right = !mainborder
+    
+#topContainer
+  +column(24,true)
+  :background-color = !headercolor
+  :border-bottom = !headerborder
+  :padding-bottom 0  
+  h1
+    :font
+      :family Georgia, serif
+      :size 3em
+    :color = !maincolor  
+    :text-align center
+    :padding-top 0.5em
+    :padding-bottom 0      
+
+#columnsContainer
+  +column(24,true)
+
+#leftColumn
+  +column(6)
+  p
+    :padding-left 5px
+    :padding-top 1em
+  h2
+    :border-bottom 1px solid #FBFBFB
+    :padding-left 5px
+    :padding-bottom 0
+  ul
+    :padding-left 5px
+
+#rightColumn
+  +column(18,true)
+
+#footer
+  :background-color = !footerbgcolor
+  :border-top = !footerborder
+  :color = !footercolor
+  :height 75px
+  :text-align center
+  a
+    :color = !footercolor + 32
+    &:hover
+      :color = !footercolor
+
++sticky-footer( 75px, "#mainContent", "#endMain", "#footer")
+
+li.footer
+  :float left
+  :width 250px
+  :height 75px
+  :list-style-type none
+  :border
+    :right
+      :color = !bordercolor
+      :width 1px
+      :style dashed
+
+// OPENID selecto stylesheets
+
+#openid_form
+  :width 490px
+  legend
+    :font-weight bold
+	
+#openid_choice
+  :display none
+
+#openid_input_area
+  :clear both
+  :padding 10px
+
+#openid_btns
+  :clear both
+  br
+    :clear both
+
+#openid_highlight
+  :padding 3px
+  :background-color #FFFCC9
+  :float left
+
+.openid_large_btn
+  :width 100px
+  :height 60px
+  :border 1px solid #DDD
+  :margin 3px
+  :float left
+  a&:focus
+    :outline none
+    :-moz-outline-style none
+
+.openid_small_btn
+  :width 24px
+  :height 24px
+  :border 1px solid #DDD
+  :margin 3px
+  :float left
+
+.openid_selected
+  :border 4px solid #DDD
+
+

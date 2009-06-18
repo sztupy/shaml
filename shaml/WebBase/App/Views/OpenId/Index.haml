@@ -1,0 +1,11 @@
+﻿%div
+  %h2 List of OpenID identities for this account:
+  %ul
+    - foreach (string id in ViewData.Model)
+      %li
+        = id
+        - using(Html.BeginForm( "RemoveOpenIdAccount", "OpenId" ))
+          = Html.Hidden("openIdIdentifier", id)
+          = Html.SubmitButton( "submit", "Delete" )
+  = Html.ActionLink("Assign new ID","Login")
+  = Html.ActionLink("Logout","Logout")

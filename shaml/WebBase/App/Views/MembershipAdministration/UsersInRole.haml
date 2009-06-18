@@ -1,0 +1,22 @@
+﻿%h2.MvcMembership
+  Users In "
+  = ( ViewData["Role"] as MembershipRoleViewData ).Name
+  " Role
+%h3.MvcMembership
+  = Html.ActionLink<MembershipAdministrationController>( x => x.Index( null, null ), "<< Return to Membership Administration" )
+%fieldset.MvcMembership
+  %legend
+    Users In "
+    = ( ViewData["Role"] as MembershipRoleViewData ).Name
+    " Role
+  - if( ( ViewData["Role"] as MembershipRoleViewData ).Users.Count > 0 )
+    %ol
+      - foreach( MembershipUser user in ( ViewData["Role"] as MembershipRoleViewData ).Users )
+        %li
+          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( new Guid(user.ProviderUserKey.ToString()) ), user.UserName )
+          (
+          = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( new Guid(user.ProviderUserKey.ToString()), ( ViewData["Role"] as MembershipRoleViewData ).Name ), "Remove" )
+          )
+  - else
+    %div
+      No users have been added to this role yet.

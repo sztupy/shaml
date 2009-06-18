@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFFDC7DB-C752-442C-80C2-7E0B500A3488}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shaml.Core</RootNamespace>
+    <AssemblyName>Shaml.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\libraries\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\libraries\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=0.1.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NauckIT.PostgreSQLProvider, Version=1.3.6.136, Culture=neutral, PublicKeyToken=e179b4c7dfb3984c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\NauckIT.PostgreSQLProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="NHaml, Version=1.5.0.0, Culture=neutral, PublicKeyToken=d603208bac452365, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\NHaml.dll</HintPath>
+    </Reference>
+    <Reference Include="NHaml.Web.Mvc, Version=1.5.0.0, Culture=neutral, PublicKeyToken=d603208bac452365, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\NHaml.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.0.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Validator, Version=1.2.0.1001, Culture=neutral, PublicKeyToken=70154e18752585bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\NHibernate.Validator.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CommonValidatorAdapter\ValidationResult.cs" />
+    <Compile Include="Data\CommonValidatorAdapter\Validator.cs" />
+    <Compile Include="Data\CommonValidator\IValidatable.cs" />
+    <Compile Include="Data\CommonValidator\IValidationResult.cs" />
+    <Compile Include="Data\CommonValidator\IValidator.cs" />
+    <Compile Include="Data\CommonValidator\MvcValidationAdapter.cs" />
+    <Compile Include="Data\CommonValidator\ValidatableModelBinder.cs" />
+    <Compile Include="Utility\DesignByContract.cs" />
+    <Compile Include="Data\DomainModel\BaseObject.cs" />
+    <Compile Include="Data\DomainModel\Entity.cs" />
+    <Compile Include="Data\DomainModel\IEntityWithTypedId.cs" />
+    <Compile Include="Data\DomainModel\IHasAssignedId.cs" />
+    <Compile Include="Data\DomainModel\ValidatableObject.cs" />
+    <Compile Include="Data\DomainModel\ValueObject.cs" />
+    <Compile Include="Utility\Enums.cs" />
+    <Compile Include="Web\GenericLoggerAttribute.cs" />
+    <Compile Include="Utility\HasUniqueDomainSignatureValidator.cs" />
+    <Compile Include="Utility\Inflector.cs" />
+    <Compile Include="Data\NHibernate\DbContext.cs" />
+    <Compile Include="Data\NHibernate\EntityDuplicateChecker.cs" />
+    <Compile Include="Data\NHibernate\FluentNHibernate\GeneratorHelper.cs" />
+    <Compile Include="Data\NHibernate\FluentNHibernate\IAutoPersistenceModelGenerator.cs" />
+    <Compile Include="Data\NHibernate\FluentNHibernate\IMapGenerator.cs" />
+    <Compile Include="Data\NHibernate\NHibernateRepository.cs" />
+    <Compile Include="Data\NHibernate\NHibernateSession.cs" />
+    <Compile Include="Data\NHibernate\Repository.cs" />
+    <Compile Include="Data\NHibernate\TransactionAttribute.cs" />
+    <Compile Include="Data\NHibernate\WebSessionStorage.cs" />
+    <Compile Include="Web\OpenIDMembershipProvider.cs" />
+    <Compile Include="Data\PersistenceSupport\IDbContext.cs" />
+    <Compile Include="Data\PersistenceSupport\IEntityDuplicateChecker.cs" />
+    <Compile Include="Data\PersistenceSupport\IRepository.cs" />
+    <Compile Include="Data\PersistenceSupport\NHibernate\INHibernateRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

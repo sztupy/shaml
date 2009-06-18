@@ -1,0 +1,10 @@
+﻿- if (Html.ViewContext.HttpContext.Request.IsAuthenticated)
+  Welcome
+  %b= Html.Encode(HttpContext.Current.User.Identity.Name)
+  ! [
+  = Html.ActionLink("Log Off", "LogOff", "Account")
+  ]
+- else
+  [
+  = Html.ActionLink("Log On", "LogOn", "Account")
+  ]

@@ -1,0 +1,14 @@
+﻿!!! XML
+/
+  This page is a required for relying party discovery per OpenID 2.0.
+  It allows Providers to call back to the relying party site to confirm the
+  identity that it is claiming in the realm and return_to URLs.
+  This page should be pointed to by the 'realm' home page, which in this sample
+  is default.aspx.
+%xrds:XRDS{ xmlns:openid="http://openid.net/xmlns/1.0" xmlns:xrds="xri://$xrds" xmlns="xri://$xrd*($v*2.0)" }
+  %XRD
+    %Service{ priority="1" }
+      %Type http://specs.openid.net/auth/2.0/return_to
+      %URI= new Uri(Html.ViewContext.HttpContext.Request.Url, Html.ViewContext.HttpContext.Response.ApplyAppPathModifier("~/OpenId/Authenticate"))
+      %URI= new Uri(Html.ViewContext.HttpContext.Request.Url, Html.ViewContext.HttpContext.Response.ApplyAppPathModifier("~/OpenId/Authenticate/UrlRouting.axd"))      
+

@@ -1,0 +1,31 @@
+﻿%h2
+  Log On
+%p
+  Please enter your username and password.
+  = Html.ActionLink("Register", "Register")
+  if you don't have an account or use
+  = Html.ActionLink("OpenId", "Login", "OpenId")
+  if you have one.
+
+= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.")
+- using (Html.BeginForm())
+  %div
+    %fieldset
+      %legend
+        Account Information
+      %p
+        %label{ for="username" }
+          Username:
+        = Html.TextBox("username") 
+        = Html.ValidationMessage("username")
+      %p
+        %label{ for="password" }
+          Password:
+        = Html.Password("password")
+        = Html.ValidationMessage("password")
+      %p
+        = Html.CheckBox("rememberMe")
+        %label.inline{ for="rememberMe" }
+          Remember me?
+      %p
+        %input{ type="submit" value="Log On" }

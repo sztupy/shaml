@@ -1,0 +1,42 @@
+﻿- var users = (ViewData["Users"] as List<MembershipUser>);
+%h2.MvcMembership
+  Membership Administration
+%fieldset.MvcMembership
+  %legend
+    Users
+  - if( users != null && users.Count > 0 )
+    %p
+      All of the application's users are listed below.
+      = Html.ActionLink( "Click here to create a new user.", "CreateUser" )
+    %ol
+      - foreach( var user in users )
+        %li
+          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( new Guid(user.ProviderUserKey.ToString()) ), user.UserName )
+  - else
+    %p
+      No users have been entered into the system yet.
+      = Html.ActionLink( "Create a new user.", "CreateUser" )
+%fieldset.MvcMembership
+  %legend
+    Roles
+  - if( (ViewData["Roles"] as List<String>).Count > 0 )
+    %ul
+      - foreach( string role in (ViewData["Roles"] as List<String>) )
+        %li
+          = Html.ActionLink<MembershipAdministrationController>( x=> x.Role(role), role )
+          (
+          = Html.ActionLink<MembershipAdministrationController>( x=> x.DeleteRole(role), "Delete" )
+          )
+  - else
+    %div
+      No roles have been added to the system yet.
+- using( Html.BeginForm( "CreateRole", "MembershipAdministration" ) )
+  %fieldset.MvcMembership
+    %legend
+      Create Role
+    %div
+      %label{ for="role" }
+        Role
+      = Html.TextBox( "role" )
+    %div
+      = Html.SubmitButton( "submitAddRole", "Add Role" )

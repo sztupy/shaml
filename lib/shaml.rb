@@ -1,14 +1,22 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.1"
+SHAML_VERSION="0.1.5"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
+
+def getappname
+  appname = Dir.glob("*.sln").first
+  if appname.nil? 
+    puts 'S#aml ERROR: solution file not found. Change directory to a s#aml-architecture project'
+    exit
+  end
+  appname.gsub(".sln","")
+end
 
 def camelcase(phrase)
   phrase.gsub(/^[a-z]|[ _]+[a-z]/) { |a| a.upcase }.gsub(/[ _]/, '')
 end
-
 
 def unzip_file(file, destination)
   Zip::ZipFile.open(file) { |zip_file|
@@ -74,9 +82,14 @@ if ARGV.count == 0 then
   puts "  controller Controller   : Create a standalone controller"
   puts "  model Model [desc]      : Create a standalone model"
   puts
+  puts " compile                  : Compiles the solution under mono"
+  puts
+  puts " server                   : Runs xsp2"
+  puts
   puts "Examples: "
   puts "  shaml generate app Blog"
   puts "  shaml generate resource Post"
+  puts "  shaml compile"
   puts
   puts "The optional [desc] parameter describes the base schema"
   puts "of the model. Here is an example how it looks like:"
@@ -107,11 +120,7 @@ else
         FileUtils.rm_rf ".shaml_extract_temp"
       when "resource"
         desc = ARGV.shift || nil
-        appname = Dir.glob("*.sln").first.gsub(".sln","");
-        if appname.nil? 
-          puts 'S#aml ERROR: solution file not found'
-          exit
-        end
+        appname = getappname
         copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join(appname,"App","Models","WebSample.cs"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join(appname,"App","Controllers","WebSamplesController.cs"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSample","_WebSampleForm.haml"),appname,name,desc)
@@ -124,20 +133,12 @@ else
         copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join(appname+".Tests","Tests","Web","Controllers","WebSamplesControllerTests.cs"),appname,name,desc)        
       when "model"
         desc = ARGV.shift || nil
-        appname = Dir.glob("*.sln").first.gsub(".sln","");
-        if appname.nil? 
-          puts 'S#aml ERROR: solution file not found'
-          exit
-        end        
+        appname = getappname      
         copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join(appname,"App","Models","WebSample.cs"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join(appname+".Tests","Tests","Core","WebSampleTests.cs"),appname,name,desc)        
       when "controller"
         desc = ARGV.shift || nil
-        appname = Dir.glob("*.sln").first.gsub(".sln","");
-        if appname.nil? 
-          puts 'S#aml ERROR: solution file not found'
-          exit
-        end        
+        appname = getappname   
         copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join(appname,"App","Controllers","WebSamplesController.cs"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSample","_WebSampleForm.haml"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSample","Create.haml"),appname,name,desc)
@@ -151,6 +152,24 @@ else
       end        
     else
       puts 'S#aml ERROR: no name specified'
+    end
+  when "compile"
+    puts "Compiling using gmcs"
+    appname = getappname
+    FileUtils.mkdir_p(File.join(appname,"bin"))
+    FileUtils.mkdir_p(File.join(appname+".Tests","bin"))
+    system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/../-r:../\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
+    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/../-r:../\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
+  when "server"
+    puts "Starting xsp2"    
+    appname = getappname
+    Dir.chdir(appname) do
+      puts "Changed directory to #{Dir.pwd}"
+      ENV["MONO_PATH"] = File.join(Dir.pwd,"bin")
+      puts "Set MONO_PATH to #{ENV["MONO_PATH"]}"
+      puts "Starting xsp2"
+      system("xsp2")
+      puts "Done..."      
     end
   else
     puts 'S#aml ERROR: unknown command'

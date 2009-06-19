@@ -168,7 +168,7 @@ else
     FileUtils.cp_r("libraries",File.join(appname+".Tests","bin"))    
     puts "Compiling using gmcs"    
     system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
-    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
+    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web     -r:#{File.join(appname,"bin",appname+".dll")} -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
   when "server"
     puts "Starting xsp2"    
     appname = getappname

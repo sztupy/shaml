@@ -156,13 +156,19 @@ else
   when "compile"
     appname = getappname
     puts "Copying libraries"
-    FileUtils.rm_r(File.join(appname,"bin"))
-    FileUtils.rm_r(File.join(appname+".Tests","bin"))    
+    begin
+      FileUtils.rm_r(File.join(appname,"bin"))
+    rescue Exception => e
+    end
+    begin    
+      FileUtils.rm_r(File.join(appname+".Tests","bin"))    
+    rescue Exception => e
+    end    
     FileUtils.cp_r("libraries",File.join(appname,"bin"))
     FileUtils.cp_r("libraries",File.join(appname+".Tests","bin"))    
     puts "Compiling using gmcs"    
-    system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/../-r:../\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
-    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/../-r:../\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
+    system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
+    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
   when "server"
     puts "Starting xsp2"    
     appname = getappname

@@ -28,13 +28,12 @@ namespace Shaml.Core.NHibernateValidator
     /// </summary>
     public class HasUniqueDomainSignatureValidator : NHibernate.Validator.Engine.IValidator
     {
-        public bool IsValid(object value) {
+        public bool IsValid(object value, IConstraintValidatorContext constraintValidatorContext) {
             IEntityWithTypedId<int> entityToValidate = value as IEntityWithTypedId<int>;
             Check.Require(entityToValidate != null,
                 "This validator must be used at the class level of an " +
                 "IdomainWithTypedId<int>. The type you provided was " + value.GetType().ToString());
 
-            // Shaml Architecture: Service is always EntityDuplicateChecker
             IEntityDuplicateChecker duplicateChecker = new Shaml.Data.NHibernate.EntityDuplicateChecker();
             return ! duplicateChecker.DoesDuplicateExistWithTypedIdOf<int>(entityToValidate);
         }
@@ -65,7 +64,7 @@ namespace Shaml.Core.NHibernateValidator
     /// </summary>
     public class HasUniqueDomainSignatureWithStringIdValidator : NHibernate.Validator.Engine.IValidator
     {
-        public bool IsValid(object value) {
+        public bool IsValid(object value, IConstraintValidatorContext constraintValidatorContext) {
             IEntityWithTypedId<string> entityToValidate = value as IEntityWithTypedId<string>;
             Check.Require(entityToValidate != null,
                 "This validator must be used at the class level of an " +
@@ -73,7 +72,6 @@ namespace Shaml.Core.NHibernateValidator
                 "Other validators exist for various Id types. Please open an issue with S#arp Architecture " +
                 "if you need a new Id type supported; you can make your own in the meantime.");
 
-            // Shaml Architecture: Service is always EntityDuplicateChecker
             IEntityDuplicateChecker duplicateChecker = new Shaml.Data.NHibernate.EntityDuplicateChecker();
             return ! duplicateChecker.DoesDuplicateExistWithTypedIdOf<string>(entityToValidate);
         }
@@ -104,7 +102,7 @@ namespace Shaml.Core.NHibernateValidator
     /// </summary>
     public class HasUniqueDomainSignatureWithGuidIdValidator : NHibernate.Validator.Engine.IValidator
     {
-        public bool IsValid(object value) {
+        public bool IsValid(object value, IConstraintValidatorContext constraintValidatorContext) {
             IEntityWithTypedId<Guid> entityToValidate = value as IEntityWithTypedId<Guid>;
             Check.Require(entityToValidate != null,
                 "This validator must be used at the class level of an " +
@@ -112,7 +110,6 @@ namespace Shaml.Core.NHibernateValidator
                 "Other validators exist for various Id types. Please open an issue with S#arp Architecture " +
                 "if you need a new Id type supported; you can make your own in the meantime.");
 
-            // Shaml Architecture: Service is always EntityDuplicateChecker
             IEntityDuplicateChecker duplicateChecker = new Shaml.Data.NHibernate.EntityDuplicateChecker();
             return !duplicateChecker.DoesDuplicateExistWithTypedIdOf<Guid>(entityToValidate);
         }

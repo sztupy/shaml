@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.1.6"
+SHAML_VERSION="0.2.0"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
 
@@ -169,6 +169,10 @@ else
     puts "Compiling using gmcs"    
     system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
     system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web     -r:#{File.join(appname,"bin",appname+".dll")} -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
+    puts "Compiling stylesheets"        
+    Dir.chdir(appname) do    
+      system("compass --update")
+    end
   when "server"
     puts "Starting xsp2"    
     appname = getappname

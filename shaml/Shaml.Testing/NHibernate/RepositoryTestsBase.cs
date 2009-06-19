@@ -1,11 +1,6 @@
-﻿using FluentNHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
+﻿using Shaml.Data.NHibernate;
 using NUnit.Framework;
-using Shaml.Core;
-using System.Configuration;
-using Shaml.Data.NHibernate;
-using System.Data;
+using Shaml.Testing.NHibernate;
 
 namespace Shaml.Testing.NUnit.NHibernate
 {

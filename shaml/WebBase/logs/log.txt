@@ -1,0 +1,621 @@
+2009-06-19 23:54:07,222 [4] NHibernate.Cfg.Environment..cctor(:0) - NHibernate 2.1.0.2001 (2.1.0.2001)
+
+2009-06-19 23:54:07,423 [4] NHibernate.Cfg.Environment.LoadGlobalPropertiesFromAppConfig(:0) - hibernate-configuration section not found in application configuration file
+
+2009-06-19 23:54:07,424 [4] NHibernate.Cfg.Environment.BuildBytecodeProvider(:0) - Bytecode provider name : lcg
+
+2009-06-19 23:54:07,426 [4] NHibernate.Cfg.Environment..cctor(:0) - Using reflection optimizer
+
+2009-06-19 23:54:07,599 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - connection.connection_string=Server=127.0.0.1;Database=database;User ID=user;Password=secret;
+
+2009-06-19 23:54:07,600 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - dialect=NHibernate.Dialect.PostgreSQL82Dialect
+
+2009-06-19 23:54:07,600 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - connection.provider=NHibernate.Connection.DriverConnectionProvider
+
+2009-06-19 23:54:07,600 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - connection.driver_class=NHibernate.Driver.NpgsqlDriver
+
+2009-06-19 23:54:07,601 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - show_sql=false
+
+2009-06-19 23:54:07,601 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - connection.release_mode=auto
+
+2009-06-19 23:54:07,601 [4] NHibernate.Cfg.Configuration.AddProperties(:0) - adonet.batch_size=500
+
+2009-06-19 23:54:07,602 [4] NHibernate.Cfg.Configuration.DoConfigure(:0) - properties: System.Collections.Generic.Dictionary`2[System.String,System.String]
+
+2009-06-19 23:54:07,625 [4] NHibernate.Cfg.Configuration.AddAssembly(:0) - No mapped documents found in assembly: WebBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+2009-06-19 23:57:38,547 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:57:38,630 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:57:38,632 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:57:39,115 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:57:47,374 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:47,379 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:47,380 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:47,649 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:50,299 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:57:50,301 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:57:50,302 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:57:50,562 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:57:51,939 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:51,940 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:51,941 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:51,945 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:57:54,279 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /Account/Register Method: GET IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:57:54,282 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /Account/Register Method: GET IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:57:54,283 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /Account/Register Method: GET IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:57:54,540 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /Account/Register Method: GET IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:58:02,569 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /Account/Register Method: POST IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:58:03,314 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /Account/Register Method: POST IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:58:03,315 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /Account/Register Method: POST IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:58:03,318 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /Account/Register Method: POST IP: 127.0.0.1 Controller: Account Action: Register Route: controller=Account;action=Register;id=;
+
+2009-06-19 23:58:03,324 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:03,325 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:03,326 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:03,330 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:05,873 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:05,885 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:05,886 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:06,130 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:07,174 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:07,175 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:07,176 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:07,182 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:16,121 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:16,350 [4] DotNetOpenAuth.Loggers.Log4NetLogger.Info(:0) - DotNetOpenAuth, Version=3.2.0.9169, Culture=neutral, PublicKeyToken=null (private)
+
+2009-06-19 23:58:16,354 [4] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Scanning incoming request for messages: http://localhost:49492/OpenId/Authenticate
+
+2009-06-19 23:58:16,358 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Incoming HTTP request: http://localhost:49492/OpenId/Authenticate
+
+2009-06-19 23:58:16,425 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - HTTP GET https://www.google.com/accounts/o8/id
+
+2009-06-19 23:58:16,814 [4] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - An XRDS response was received from GET at user-supplied identifier.
+
+2009-06-19 23:58:16,858 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Total services discovered in XRDS: 1
+
+2009-06-19 23:58:16,860 [4] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - [{
+	ClaimedIdentifier: http://specs.openid.net/auth/2.0/identifier_select
+	ProviderLocalIdentifier: http://specs.openid.net/auth/2.0/identifier_select
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/server
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+},]
+
+2009-06-19 23:58:16,871 [4] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Skipping HTML discovery because XRDS contained service endpoints.
+
+2009-06-19 23:58:16,874 [4] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Performing discovery on user-supplied identifier: https://www.google.com/accounts/o8/id
+
+2009-06-19 23:58:16,895 [4] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Filtering and sorting of endpoints did not affect the list.
+
+2009-06-19 23:58:16,895 [4] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Creating authentication request for user supplied Identifier: https://www.google.com/accounts/o8/id
+
+2009-06-19 23:58:16,928 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Preparing to send AssociateUnencryptedRequest (2.0) message.
+
+2009-06-19 23:58:16,931 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ExtensionsBindingElement did not apply to message.
+
+2009-06-19 23:58:16,932 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.BackwardCompatibilityBindingElement did not apply to message.
+
+2009-06-19 23:58:16,933 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToNonceBindingElement did not apply to message.
+
+2009-06-19 23:58:16,933 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToSignatureBindingElement did not apply to message.
+
+2009-06-19 23:58:16,934 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardReplayProtectionBindingElement did not apply to message.
+
+2009-06-19 23:58:16,935 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardExpirationBindingElement did not apply to message.
+
+2009-06-19 23:58:16,935 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.SigningBindingElement did not apply to message.
+
+2009-06-19 23:58:16,994 [4] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Prepared outgoing AssociateUnencryptedRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.assoc_type: HMAC-SHA256
+	openid.session_type: no-encryption
+	openid.mode: associate
+	openid.ns: http://specs.openid.net/auth/2.0
+
+
+2009-06-19 23:58:17,000 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Sending AssociateUnencryptedRequest request.
+
+2009-06-19 23:58:17,568 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - HTTP POST https://www.google.com/accounts/o8/ud
+
+2009-06-19 23:58:17,620 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Received AssociateUnencryptedResponse response.
+
+2009-06-19 23:58:17,623 [4] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Processing incoming AssociateUnencryptedResponse (2.0) message:
+	mac_key: N//PxbBG7wAircZZSduSKJZtxRJ4XAwSebaJWENwICA=
+	assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	assoc_type: HMAC-SHA256
+	session_type: no-encryption
+	expires_in: 46800
+	ns: http://specs.openid.net/auth/2.0
+
+
+2009-06-19 23:58:17,625 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToSignatureBindingElement did not apply to message.
+
+2009-06-19 23:58:17,626 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.BackwardCompatibilityBindingElement did not apply to message.
+
+2009-06-19 23:58:17,627 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.SigningBindingElement did not apply to message.
+
+2009-06-19 23:58:17,628 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardExpirationBindingElement did not apply to message.
+
+2009-06-19 23:58:17,628 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardReplayProtectionBindingElement did not apply to message.
+
+2009-06-19 23:58:17,629 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToNonceBindingElement did not apply to message.
+
+2009-06-19 23:58:17,631 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ExtensionsBindingElement did not apply to message.
+
+2009-06-19 23:58:17,632 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - After binding element processing, the received AssociateUnencryptedResponse (2.0) message is: 
+	mac_key: N//PxbBG7wAircZZSduSKJZtxRJ4XAwSebaJWENwICA=
+	assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	assoc_type: HMAC-SHA256
+	session_type: no-encryption
+	expires_in: 46800
+	ns: http://specs.openid.net/auth/2.0
+
+
+2009-06-19 23:58:17,733 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Preparing to send CheckIdRequest (2.0) message.
+
+2009-06-19 23:58:17,749 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ExtensionsBindingElement applied to message.
+
+2009-06-19 23:58:17,750 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.BackwardCompatibilityBindingElement did not apply to message.
+
+2009-06-19 23:58:17,750 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToNonceBindingElement did not apply to message.
+
+2009-06-19 23:58:17,754 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - ReturnTo signed data: 
+	dnoi.return_to_sig_handle: {633810454977529297}{7NbNhw==}
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+
+
+2009-06-19 23:58:17,759 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToSignatureBindingElement applied to message.
+
+2009-06-19 23:58:17,760 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardReplayProtectionBindingElement did not apply to message.
+
+2009-06-19 23:58:17,760 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardExpirationBindingElement did not apply to message.
+
+2009-06-19 23:58:17,761 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.SigningBindingElement did not apply to message.
+
+2009-06-19 23:58:17,762 [4] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Prepared outgoing CheckIdRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.claimed_id: http://specs.openid.net/auth/2.0/identifier_select
+	openid.identity: http://specs.openid.net/auth/2.0/identifier_select
+	openid.assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	openid.return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810454977529297%7d%7b7NbNhw%3d%3d%7d&dnoi.return_to_sig=vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%2bYDFLH6AIoWxVdaVb1EADfmLyg%3d%3d
+	openid.realm: http://localhost:49492/
+	openid.mode: checkid_setup
+	openid.ns: http://specs.openid.net/auth/2.0
+	openid.ns.sreg: http://openid.net/extensions/sreg/1.1
+	openid.sreg.required: 
+	openid.sreg.optional: nickname,email
+
+
+2009-06-19 23:58:17,762 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Sending message: CheckIdRequest
+
+2009-06-19 23:58:17,765 [4] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Redirecting to https://www.google.com/accounts/o8/ud?openid.claimed_id=http%3a%2f%2fspecs.openid.net%2fauth%2f2.0%2fidentifier_select&openid.identity=http%3a%2f%2fspecs.openid.net%2fauth%2f2.0%2fidentifier_select&openid.assoc_handle=AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb&openid.return_to=http%3a%2f%2flocalhost%3a49492%2fOpenId%2fAuthenticate%3fdnoi.userSuppliedIdentifier%3dhttps%253a%252f%252fwww.google.com%252faccounts%252fo8%252fid%26dnoi.return_to_sig_handle%3d%257b633810454977529297%257d%257b7NbNhw%253d%253d%257d%26dnoi.return_to_sig%3dvzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%252bYDFLH6AIoWxVdaVb1EADfmLyg%253d%253d&openid.realm=http%3a%2f%2flocalhost%3a49492%2f&openid.mode=checkid_setup&openid.ns=http%3a%2f%2fspecs.openid.net%2fauth%2f2.0&openid.ns.sreg=http%3a%2f%2fopenid.net%2fextensions%2fsreg%2f1.1&openid.sreg.required=&openid.sreg.optional=nickname%2cemail
+
+2009-06-19 23:58:17,767 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:17,768 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:17,808 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:29,527 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:29,531 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Scanning incoming request for messages: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810454977529297%7d%7b7NbNhw%3d%3d%7d&dnoi.return_to_sig=vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%2bYDFLH6AIoWxVdaVb1EADfmLyg%3d%3d&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=id_res&openid.op_endpoint=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fud&openid.response_nonce=2009-06-19T21%3A58%3A43ZuVmlWvR5NRAV7Q&openid.return_to=http%3A%2F%2Flocalhost%3A49492%2FOpenId%2FAuthenticate%3Fdnoi.userSuppliedIdentifier%3Dhttps%253a%252f%252fwww.google.com%252faccounts%252fo8%252fid%26dnoi.return_to_sig_handle%3D%257b633810454977529297%257d%257b7NbNhw%253d%253d%257d%26dnoi.return_to_sig%3DvzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%252bYDFLH6AIoWxVdaVb1EADfmLyg%253d%253d&openid.assoc_handle=AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb&openid.signed=op_endpoint%2Cclaimed_id%2Cidentity%2Creturn_to%2Cresponse_nonce%2Cassoc_handle&openid.sig=LrAzHKjk4Kt3SDUCg0kb3cKfB81bxmRG1%2BDYbAEBwJg%3D&openid.identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE&openid.claimed_id=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+
+2009-06-19 23:58:29,531 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Incoming HTTP request: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810454977529297%7d%7b7NbNhw%3d%3d%7d&dnoi.return_to_sig=vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%2bYDFLH6AIoWxVdaVb1EADfmLyg%3d%3d&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=id_res&openid.op_endpoint=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fud&openid.response_nonce=2009-06-19T21%3A58%3A43ZuVmlWvR5NRAV7Q&openid.return_to=http%3A%2F%2Flocalhost%3A49492%2FOpenId%2FAuthenticate%3Fdnoi.userSuppliedIdentifier%3Dhttps%253a%252f%252fwww.google.com%252faccounts%252fo8%252fid%26dnoi.return_to_sig_handle%3D%257b633810454977529297%257d%257b7NbNhw%253d%253d%257d%26dnoi.return_to_sig%3DvzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%252bYDFLH6AIoWxVdaVb1EADfmLyg%253d%253d&openid.assoc_handle=AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb&openid.signed=op_endpoint%2Cclaimed_id%2Cidentity%2Creturn_to%2Cresponse_nonce%2Cassoc_handle&openid.sig=LrAzHKjk4Kt3SDUCg0kb3cKfB81bxmRG1%2BDYbAEBwJg%3D&openid.identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE&openid.claimed_id=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+
+2009-06-19 23:58:29,592 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Incoming request received: PositiveAssertionResponse
+
+2009-06-19 23:58:29,593 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Processing incoming PositiveAssertionResponse (2.0) message:
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.sig: LrAzHKjk4Kt3SDUCg0kb3cKfB81bxmRG1+DYbAEBwJg=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle
+	openid.assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810454977529297%7d%7b7NbNhw%3d%3d%7d&dnoi.return_to_sig=vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%2bYDFLH6AIoWxVdaVb1EADfmLyg%3d%3d
+	openid.response_nonce: 2009-06-19T21:58:43ZuVmlWvR5NRAV7Q
+	openid.mode: id_res
+	openid.ns: http://specs.openid.net/auth/2.0
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	dnoi.return_to_sig_handle: {633810454977529297}{7NbNhw==}
+	dnoi.return_to_sig: vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK+YDFLH6AIoWxVdaVb1EADfmLyg==
+
+
+2009-06-19 23:58:29,595 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - ReturnTo signed data: 
+	dnoi.return_to_sig_handle: {633810454977529297}{7NbNhw==}
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+
+
+2009-06-19 23:58:29,596 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToSignatureBindingElement applied to message.
+
+2009-06-19 23:58:29,596 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.BackwardCompatibilityBindingElement did not apply to message.
+
+2009-06-19 23:58:29,597 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Verifying incoming PositiveAssertionResponse message signature of: LrAzHKjk4Kt3SDUCg0kb3cKfB81bxmRG1+DYbAEBwJg=
+
+2009-06-19 23:58:29,635 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Signing these message parts: 
+	op_endpoint: https://www.google.com/accounts/o8/ud
+	claimed_id: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	identity: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810454977529297%7d%7b7NbNhw%3d%3d%7d&dnoi.return_to_sig=vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%2bYDFLH6AIoWxVdaVb1EADfmLyg%3d%3d
+	response_nonce: 2009-06-19T21:58:43ZuVmlWvR5NRAV7Q
+	assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+
+Base64 representation of signed data: b3BfZW5kcG9pbnQ6aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hY2NvdW50cy9vOC91ZApjbGFpbWVkX2lkOmh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWNjb3VudHMvbzgvaWQ/aWQ9QUl0T2F3a3hfV3Q3c3A1WXp4RlItRXI1N1lSN0FEMWs2al9CYnpFCmlkZW50aXR5Omh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWNjb3VudHMvbzgvaWQ/aWQ9QUl0T2F3a3hfV3Q3c3A1WXp4RlItRXI1N1lSN0FEMWs2al9CYnpFCnJldHVybl90bzpodHRwOi8vbG9jYWxob3N0OjQ5NDkyL09wZW5JZC9BdXRoZW50aWNhdGU/ZG5vaS51c2VyU3VwcGxpZWRJZGVudGlmaWVyPWh0dHBzJTNhJTJmJTJmd3d3Lmdvb2dsZS5jb20lMmZhY2NvdW50cyUyZm84JTJmaWQmZG5vaS5yZXR1cm5fdG9fc2lnX2hhbmRsZT0lN2I2MzM4MTA0NTQ5Nzc1MjkyOTclN2QlN2I3TmJOaHclM2QlM2QlN2QmZG5vaS5yZXR1cm5fdG9fc2lnPXZ6ZXZqUzBXTTJOMEFDRWFibTN6eFZ3bm5OeUNTR1R2N1ZCRzNyZTB1bFA2R3RMZkpNdGZXMzc4cHBGSyUyYllERkxINkFJb1d4VmRhVmIxRUFEZm1MeWclM2QlM2QKcmVzcG9uc2Vfbm9uY2U6MjAwOS0wNi0xOVQyMTo1ODo0M1p1Vm1sV3ZSNU5SQVY3UQphc3NvY19oYW5kbGU6QU9Rb2JVY0RjelYydm82Q3RWMEVuQWV6V1Y3VUpxV21ObEsxbm81LUh6eDNDOTBHQUhZQUtER2hhSHByUjQ4bGxoMHptNWZiCg==
+Signature: LrAzHKjk4Kt3SDUCg0kb3cKfB81bxmRG1+DYbAEBwJg=
+
+2009-06-19 23:58:29,636 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.SigningBindingElement applied to message.
+
+2009-06-19 23:58:29,637 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardExpirationBindingElement applied to message.
+
+2009-06-19 23:58:29,655 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardReplayProtectionBindingElement applied to message.
+
+2009-06-19 23:58:29,655 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToNonceBindingElement did not apply to message.
+
+2009-06-19 23:58:29,666 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ExtensionsBindingElement applied to message.
+
+2009-06-19 23:58:29,666 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - After binding element processing, the received PositiveAssertionResponse (2.0) message is: 
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.sig: LrAzHKjk4Kt3SDUCg0kb3cKfB81bxmRG1+DYbAEBwJg=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle
+	openid.assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810454977529297%7d%7b7NbNhw%3d%3d%7d&dnoi.return_to_sig=vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK%2bYDFLH6AIoWxVdaVb1EADfmLyg%3d%3d
+	openid.response_nonce: 2009-06-19T21:58:43ZuVmlWvR5NRAV7Q
+	openid.mode: id_res
+	openid.ns: http://specs.openid.net/auth/2.0
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	dnoi.return_to_sig_handle: {633810454977529297}{7NbNhw==}
+	dnoi.return_to_sig: vzevjS0WM2N0ACEabm3zxVwnnNyCSGTv7VBG3re0ulP6GtLfJMtfW378ppFK+YDFLH6AIoWxVdaVb1EADfmLyg==
+
+
+2009-06-19 23:58:29,668 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Verifying assertion matches identifier discovery results...
+
+2009-06-19 23:58:29,669 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - HTTP GET https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+
+2009-06-19 23:58:29,831 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - An XRDS response was received from GET at user-supplied identifier.
+
+2009-06-19 23:58:29,865 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Total services discovered in XRDS: 4
+
+2009-06-19 23:58:29,866 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - [{
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+}, {
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud?source=googlemail.com
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+}, {
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud?source=gmail.com
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+}, {
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud?source=mail
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+},]
+
+2009-06-19 23:58:29,866 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Skipping HTML discovery because XRDS contained service endpoints.
+
+2009-06-19 23:58:29,908 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:29,908 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:29,909 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:29,913 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:29,919 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:29,919 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:29,924 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId Method: GET IP: 127.0.0.1 Controller: OpenId Action: Index Route: controller=OpenId;action=Index;id=;
+
+2009-06-19 23:58:31,911 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /Account/LogOff Method: GET IP: 127.0.0.1 Controller: Account Action: LogOff Route: controller=Account;action=LogOff;id=;
+
+2009-06-19 23:58:31,912 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /Account/LogOff Method: GET IP: 127.0.0.1 Controller: Account Action: LogOff Route: controller=Account;action=LogOff;id=;
+
+2009-06-19 23:58:31,913 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /Account/LogOff Method: GET IP: 127.0.0.1 Controller: Account Action: LogOff Route: controller=Account;action=LogOff;id=;
+
+2009-06-19 23:58:31,916 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /Account/LogOff Method: GET IP: 127.0.0.1 Controller: Account Action: LogOff Route: controller=Account;action=LogOff;id=;
+
+2009-06-19 23:58:31,924 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:31,925 [4] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:31,926 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:31,930 [4] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:33,461 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:58:33,462 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:58:33,463 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:58:33,468 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /Account/LogOn Method: GET IP: 127.0.0.1 Controller: Account Action: LogOn Route: controller=Account;action=LogOn;id=;
+
+2009-06-19 23:58:34,961 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:34,963 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:34,963 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:34,972 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Login Method: GET IP: 127.0.0.1 Controller: OpenId Action: Login Route: controller=OpenId;action=Login;id=;
+
+2009-06-19 23:58:36,037 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:36,040 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Scanning incoming request for messages: http://localhost:49492/OpenId/Authenticate
+
+2009-06-19 23:58:36,041 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Incoming HTTP request: http://localhost:49492/OpenId/Authenticate
+
+2009-06-19 23:58:36,041 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - HTTP GET https://www.google.com/accounts/o8/id
+
+2009-06-19 23:58:36,200 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - An XRDS response was received from GET at user-supplied identifier.
+
+2009-06-19 23:58:36,203 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Total services discovered in XRDS: 1
+
+2009-06-19 23:58:36,203 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - [{
+	ClaimedIdentifier: http://specs.openid.net/auth/2.0/identifier_select
+	ProviderLocalIdentifier: http://specs.openid.net/auth/2.0/identifier_select
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/server
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+},]
+
+2009-06-19 23:58:36,204 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Skipping HTML discovery because XRDS contained service endpoints.
+
+2009-06-19 23:58:36,204 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Performing discovery on user-supplied identifier: https://www.google.com/accounts/o8/id
+
+2009-06-19 23:58:36,204 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Filtering and sorting of endpoints did not affect the list.
+
+2009-06-19 23:58:36,204 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Creating authentication request for user supplied Identifier: https://www.google.com/accounts/o8/id
+
+2009-06-19 23:58:36,205 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Preparing to send CheckIdRequest (2.0) message.
+
+2009-06-19 23:58:36,205 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ExtensionsBindingElement applied to message.
+
+2009-06-19 23:58:36,206 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.BackwardCompatibilityBindingElement did not apply to message.
+
+2009-06-19 23:58:36,206 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToNonceBindingElement did not apply to message.
+
+2009-06-19 23:58:36,206 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - ReturnTo signed data: 
+	dnoi.return_to_sig_handle: {633810455162060547}{vL37/A==}
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+
+
+2009-06-19 23:58:36,207 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToSignatureBindingElement applied to message.
+
+2009-06-19 23:58:36,207 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardReplayProtectionBindingElement did not apply to message.
+
+2009-06-19 23:58:36,207 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardExpirationBindingElement did not apply to message.
+
+2009-06-19 23:58:36,208 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.SigningBindingElement did not apply to message.
+
+2009-06-19 23:58:36,208 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Prepared outgoing CheckIdRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.claimed_id: http://specs.openid.net/auth/2.0/identifier_select
+	openid.identity: http://specs.openid.net/auth/2.0/identifier_select
+	openid.assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	openid.return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810455162060547%7d%7bvL37%2fA%3d%3d%7d&dnoi.return_to_sig=wqc6nIbp7bVYjn26gFuio%2b0cRQnPRpgueF%2fhcBJGuOc7I92uFCWU2zv%2bCBJCt2ni%2fKuSv12aS8V7FXtNHkuWBQ%3d%3d
+	openid.realm: http://localhost:49492/
+	openid.mode: checkid_setup
+	openid.ns: http://specs.openid.net/auth/2.0
+	openid.ns.sreg: http://openid.net/extensions/sreg/1.1
+	openid.sreg.required: 
+	openid.sreg.optional: nickname,email
+
+
+2009-06-19 23:58:36,208 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Sending message: CheckIdRequest
+
+2009-06-19 23:58:36,208 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Redirecting to https://www.google.com/accounts/o8/ud?openid.claimed_id=http%3a%2f%2fspecs.openid.net%2fauth%2f2.0%2fidentifier_select&openid.identity=http%3a%2f%2fspecs.openid.net%2fauth%2f2.0%2fidentifier_select&openid.assoc_handle=AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb&openid.return_to=http%3a%2f%2flocalhost%3a49492%2fOpenId%2fAuthenticate%3fdnoi.userSuppliedIdentifier%3dhttps%253a%252f%252fwww.google.com%252faccounts%252fo8%252fid%26dnoi.return_to_sig_handle%3d%257b633810455162060547%257d%257bvL37%252fA%253d%253d%257d%26dnoi.return_to_sig%3dwqc6nIbp7bVYjn26gFuio%252b0cRQnPRpgueF%252fhcBJGuOc7I92uFCWU2zv%252bCBJCt2ni%252fKuSv12aS8V7FXtNHkuWBQ%253d%253d&openid.realm=http%3a%2f%2flocalhost%3a49492%2f&openid.mode=checkid_setup&openid.ns=http%3a%2f%2fspecs.openid.net%2fauth%2f2.0&openid.ns.sreg=http%3a%2f%2fopenid.net%2fextensions%2fsreg%2f1.1&openid.sreg.required=&openid.sreg.optional=nickname%2cemail
+
+2009-06-19 23:58:36,209 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:36,210 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:36,216 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Authenticate Method: POST IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:40,458 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:40,462 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Scanning incoming request for messages: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810455162060547%7d%7bvL37%2fA%3d%3d%7d&dnoi.return_to_sig=wqc6nIbp7bVYjn26gFuio%2b0cRQnPRpgueF%2fhcBJGuOc7I92uFCWU2zv%2bCBJCt2ni%2fKuSv12aS8V7FXtNHkuWBQ%3d%3d&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=id_res&openid.op_endpoint=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fud&openid.response_nonce=2009-06-19T21%3A58%3A54Z3bnKMKPmQaFwPw&openid.return_to=http%3A%2F%2Flocalhost%3A49492%2FOpenId%2FAuthenticate%3Fdnoi.userSuppliedIdentifier%3Dhttps%253a%252f%252fwww.google.com%252faccounts%252fo8%252fid%26dnoi.return_to_sig_handle%3D%257b633810455162060547%257d%257bvL37%252fA%253d%253d%257d%26dnoi.return_to_sig%3Dwqc6nIbp7bVYjn26gFuio%252b0cRQnPRpgueF%252fhcBJGuOc7I92uFCWU2zv%252bCBJCt2ni%252fKuSv12aS8V7FXtNHkuWBQ%253d%253d&openid.assoc_handle=AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb&openid.signed=op_endpoint%2Cclaimed_id%2Cidentity%2Creturn_to%2Cresponse_nonce%2Cassoc_handle&openid.sig=Uw2RzP87hcov3NijRUZoq%2BvzGhHzUDQBXveJQEMuzp0%3D&openid.identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE&openid.claimed_id=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+
+2009-06-19 23:58:40,462 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Incoming HTTP request: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810455162060547%7d%7bvL37%2fA%3d%3d%7d&dnoi.return_to_sig=wqc6nIbp7bVYjn26gFuio%2b0cRQnPRpgueF%2fhcBJGuOc7I92uFCWU2zv%2bCBJCt2ni%2fKuSv12aS8V7FXtNHkuWBQ%3d%3d&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=id_res&openid.op_endpoint=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fud&openid.response_nonce=2009-06-19T21%3A58%3A54Z3bnKMKPmQaFwPw&openid.return_to=http%3A%2F%2Flocalhost%3A49492%2FOpenId%2FAuthenticate%3Fdnoi.userSuppliedIdentifier%3Dhttps%253a%252f%252fwww.google.com%252faccounts%252fo8%252fid%26dnoi.return_to_sig_handle%3D%257b633810455162060547%257d%257bvL37%252fA%253d%253d%257d%26dnoi.return_to_sig%3Dwqc6nIbp7bVYjn26gFuio%252b0cRQnPRpgueF%252fhcBJGuOc7I92uFCWU2zv%252bCBJCt2ni%252fKuSv12aS8V7FXtNHkuWBQ%253d%253d&openid.assoc_handle=AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb&openid.signed=op_endpoint%2Cclaimed_id%2Cidentity%2Creturn_to%2Cresponse_nonce%2Cassoc_handle&openid.sig=Uw2RzP87hcov3NijRUZoq%2BvzGhHzUDQBXveJQEMuzp0%3D&openid.identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE&openid.claimed_id=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+
+2009-06-19 23:58:40,463 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Incoming request received: PositiveAssertionResponse
+
+2009-06-19 23:58:40,463 [9] DotNetOpenAuth.Loggers.Log4NetLogger.InfoFormat(:0) - Processing incoming PositiveAssertionResponse (2.0) message:
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.sig: Uw2RzP87hcov3NijRUZoq+vzGhHzUDQBXveJQEMuzp0=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle
+	openid.assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810455162060547%7d%7bvL37%2fA%3d%3d%7d&dnoi.return_to_sig=wqc6nIbp7bVYjn26gFuio%2b0cRQnPRpgueF%2fhcBJGuOc7I92uFCWU2zv%2bCBJCt2ni%2fKuSv12aS8V7FXtNHkuWBQ%3d%3d
+	openid.response_nonce: 2009-06-19T21:58:54Z3bnKMKPmQaFwPw
+	openid.mode: id_res
+	openid.ns: http://specs.openid.net/auth/2.0
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	dnoi.return_to_sig_handle: {633810455162060547}{vL37/A==}
+	dnoi.return_to_sig: wqc6nIbp7bVYjn26gFuio+0cRQnPRpgueF/hcBJGuOc7I92uFCWU2zv+CBJCt2ni/KuSv12aS8V7FXtNHkuWBQ==
+
+
+2009-06-19 23:58:40,464 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - ReturnTo signed data: 
+	dnoi.return_to_sig_handle: {633810455162060547}{vL37/A==}
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+
+
+2009-06-19 23:58:40,464 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToSignatureBindingElement applied to message.
+
+2009-06-19 23:58:40,465 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.BackwardCompatibilityBindingElement did not apply to message.
+
+2009-06-19 23:58:40,465 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Verifying incoming PositiveAssertionResponse message signature of: Uw2RzP87hcov3NijRUZoq+vzGhHzUDQBXveJQEMuzp0=
+
+2009-06-19 23:58:40,466 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Signing these message parts: 
+	op_endpoint: https://www.google.com/accounts/o8/ud
+	claimed_id: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	identity: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810455162060547%7d%7bvL37%2fA%3d%3d%7d&dnoi.return_to_sig=wqc6nIbp7bVYjn26gFuio%2b0cRQnPRpgueF%2fhcBJGuOc7I92uFCWU2zv%2bCBJCt2ni%2fKuSv12aS8V7FXtNHkuWBQ%3d%3d
+	response_nonce: 2009-06-19T21:58:54Z3bnKMKPmQaFwPw
+	assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+
+Base64 representation of signed data: b3BfZW5kcG9pbnQ6aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hY2NvdW50cy9vOC91ZApjbGFpbWVkX2lkOmh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWNjb3VudHMvbzgvaWQ/aWQ9QUl0T2F3a3hfV3Q3c3A1WXp4RlItRXI1N1lSN0FEMWs2al9CYnpFCmlkZW50aXR5Omh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWNjb3VudHMvbzgvaWQ/aWQ9QUl0T2F3a3hfV3Q3c3A1WXp4RlItRXI1N1lSN0FEMWs2al9CYnpFCnJldHVybl90bzpodHRwOi8vbG9jYWxob3N0OjQ5NDkyL09wZW5JZC9BdXRoZW50aWNhdGU/ZG5vaS51c2VyU3VwcGxpZWRJZGVudGlmaWVyPWh0dHBzJTNhJTJmJTJmd3d3Lmdvb2dsZS5jb20lMmZhY2NvdW50cyUyZm84JTJmaWQmZG5vaS5yZXR1cm5fdG9fc2lnX2hhbmRsZT0lN2I2MzM4MTA0NTUxNjIwNjA1NDclN2QlN2J2TDM3JTJmQSUzZCUzZCU3ZCZkbm9pLnJldHVybl90b19zaWc9d3FjNm5JYnA3YlZZam4yNmdGdWlvJTJiMGNSUW5QUnBndWVGJTJmaGNCSkd1T2M3STkydUZDV1UyenYlMmJDQkpDdDJuaSUyZkt1U3YxMmFTOFY3Rlh0TkhrdVdCUSUzZCUzZApyZXNwb25zZV9ub25jZToyMDA5LTA2LTE5VDIxOjU4OjU0WjNibktNS1BtUWFGd1B3CmFzc29jX2hhbmRsZTpBT1FvYlVjRGN6VjJ2bzZDdFYwRW5BZXpXVjdVSnFXbU5sSzFubzUtSHp4M0M5MEdBSFlBS0RHaGFIcHJSNDhsbGgwem01ZmIK
+Signature: Uw2RzP87hcov3NijRUZoq+vzGhHzUDQBXveJQEMuzp0=
+
+2009-06-19 23:58:40,466 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.SigningBindingElement applied to message.
+
+2009-06-19 23:58:40,466 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardExpirationBindingElement applied to message.
+
+2009-06-19 23:58:40,468 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.Messaging.Bindings.StandardReplayProtectionBindingElement applied to message.
+
+2009-06-19 23:58:40,468 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ReturnToNonceBindingElement did not apply to message.
+
+2009-06-19 23:58:40,469 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Binding element DotNetOpenAuth.OpenId.ChannelElements.ExtensionsBindingElement applied to message.
+
+2009-06-19 23:58:40,469 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - After binding element processing, the received PositiveAssertionResponse (2.0) message is: 
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	openid.sig: Uw2RzP87hcov3NijRUZoq+vzGhHzUDQBXveJQEMuzp0=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle
+	openid.assoc_handle: AOQobUcDczV2vo6CtV0EnAezWV7UJqWmNlK1no5-Hzx3C90GAHYAKDGhaHprR48llh0zm5fb
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.return_to: http://localhost:49492/OpenId/Authenticate?dnoi.userSuppliedIdentifier=https%3a%2f%2fwww.google.com%2faccounts%2fo8%2fid&dnoi.return_to_sig_handle=%7b633810455162060547%7d%7bvL37%2fA%3d%3d%7d&dnoi.return_to_sig=wqc6nIbp7bVYjn26gFuio%2b0cRQnPRpgueF%2fhcBJGuOc7I92uFCWU2zv%2bCBJCt2ni%2fKuSv12aS8V7FXtNHkuWBQ%3d%3d
+	openid.response_nonce: 2009-06-19T21:58:54Z3bnKMKPmQaFwPw
+	openid.mode: id_res
+	openid.ns: http://specs.openid.net/auth/2.0
+	dnoi.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	dnoi.return_to_sig_handle: {633810455162060547}{vL37/A==}
+	dnoi.return_to_sig: wqc6nIbp7bVYjn26gFuio+0cRQnPRpgueF/hcBJGuOc7I92uFCWU2zv+CBJCt2ni/KuSv12aS8V7FXtNHkuWBQ==
+
+
+2009-06-19 23:58:40,470 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Verifying assertion matches identifier discovery results...
+
+2009-06-19 23:58:40,470 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - HTTP GET https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+
+2009-06-19 23:58:40,685 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - An XRDS response was received from GET at user-supplied identifier.
+
+2009-06-19 23:58:40,686 [9] DotNetOpenAuth.Loggers.Log4NetLogger.DebugFormat(:0) - Total services discovered in XRDS: 4
+
+2009-06-19 23:58:40,687 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - [{
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+}, {
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud?source=googlemail.com
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+}, {
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud?source=gmail.com
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+}, {
+	ClaimedIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderLocalIdentifier: https://www.google.com/accounts/o8/id?id=AItOawkx_Wt7sp5YzxFR-Er57YR7AD1k6j_BbzE
+	ProviderEndpoint: https://www.google.com/accounts/o8/ud?source=mail
+	OpenID version: 2.0
+	Service Type URIs:
+		http://specs.openid.net/auth/2.0/signon
+		http://openid.net/srv/ax/1.0
+		http://specs.openid.net/extensions/ui/1.0/mode/popup
+		http://specs.openid.net/extensions/ui/1.0/icon
+},]
+
+2009-06-19 23:58:40,687 [9] DotNetOpenAuth.Loggers.Log4NetLogger.Debug(:0) - Skipping HTML discovery because XRDS contained service endpoints.
+
+2009-06-19 23:58:40,691 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:40,691 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:40,692 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: /OpenId/Authenticate Method: GET IP: 127.0.0.1 Controller: OpenId Action: Authenticate Route: controller=OpenId;action=Authenticate;id=;
+
+2009-06-19 23:58:40,696 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:50) - Action Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:40,698 [9] Shaml.Core.GenericLoggerAttribute.OnActionExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:44) - Action Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:40,699 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuting(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:64) - Result Executing: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+
+2009-06-19 23:58:40,703 [9] Shaml.Core.GenericLoggerAttribute.OnResultExecuted(E:\Programs\shaml\shaml\Shaml.Core\Web\GenericLoggerAttribute.cs:59) - Result Executed: FilePath: / Method: GET IP: 127.0.0.1 Controller: Home Action: Index Route: controller=Home;action=Index;id=;
+

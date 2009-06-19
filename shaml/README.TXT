@@ -7,7 +7,6 @@ The project contains the following directories:
 - Shaml.Testing: Testing extension libraries
 - WebBase: Sample MVC application scaffold
 - WebBase.Test: Sample MVC Test application scaffold
-- WebBase.Generators: Scaffolds for elements that have to be generated using "shaml generate"
 
 To create the "shaml_base_template.zip" that will be used by shaml, zip WebBase and WebBaste.Test directories,
 and add the solution file from WebBase.Generators.

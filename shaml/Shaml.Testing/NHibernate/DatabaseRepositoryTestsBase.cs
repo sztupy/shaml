@@ -1,13 +1,6 @@
-﻿using FluentNHibernate.AutoMap;
+﻿using Shaml.Data.NHibernate;
 using NUnit.Framework;
-using System.Configuration;
-using System.IO;
-using NHibernate.Cfg;
-using System.Collections.Specialized;
-using Shaml.Core;
-using FluentNHibernate;
-using System.Reflection;
-using Shaml.Data.NHibernate;
+using Shaml.Testing.NHibernate;
 
 namespace Shaml.Testing.NUnit.NHibernate
 {

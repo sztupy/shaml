@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Configuration;
 using System.Reflection;
 using FluentNHibernate.AutoMap;
-using Shaml.Core;
-using NHibernate.Cfg;
-using System.Data;
-using NHibernate.Tool.hbm2ddl;
-using Shaml.Data.NHibernate;
-using System.Configuration;
-using Shaml.Data.NHibernate.FluentNHibernate;
 using NHibernate;
+using NHibernate.Tool.hbm2ddl;
+using Shaml.Core;
+using Shaml.Data.NHibernate;
+using Shaml.Data.NHibernate.FluentNHibernate;
+using Configuration = NHibernate.Cfg.Configuration;
+using System.Data;
 
-namespace Shaml.Testing.NUnit.NHibernate
+namespace Shaml.Testing.NHibernate
 {
     /// <summary>
     /// Provides helper methods for consolidating duplicated code from test fixture base classes.
@@ -20,7 +20,7 @@ namespace Shaml.Testing.NUnit.NHibernate
         public static void InitializeDatabase() {
             InitializeNHibernateSession();
             IDbConnection connection = NHibernateSession.Current.Connection;
-            new SchemaExport(cfg).Execute(false, true, false, true, connection, null);
+            new SchemaExport(cfg).Execute(false, true, false, connection, null);
         }
 
         public static void InitializeNHibernateSession() {
@@ -37,7 +37,7 @@ namespace Shaml.Testing.NUnit.NHibernate
         }
 
         public static string[] GetMappingAssemblies() {
-            string mappingAssembliesSetting = ConfigurationSettings.AppSettings["nhibernate.mapping.assembly"];
+            string mappingAssembliesSetting = ConfigurationManager.AppSettings["nhibernate.mapping.assembly"];
 
             Check.Require(!string.IsNullOrEmpty(mappingAssembliesSetting),
                 "Please add an AppSetting to your app.config for 'nhibernate.mapping.assembly.' This setting " +

@@ -1,7 +1,8 @@
-﻿using NHibernate.Validator;
+﻿using NHibernate;
+using NHibernate.Validator;
+using NHibernate.Validator.Constraints;
 using Shaml.Core.PersistenceSupport;
 using Shaml.Core.DomainModel;
-
 using System;
 
 namespace WebBase.Core
@@ -11,11 +12,11 @@ namespace WebBase.Core
         public User() { }
 
         [DomainSignature]
-        [NotNull, NotEmpty]
+        [NotNullNotEmpty]
         public virtual string Username { get; protected set; }
 
         [DomainSignature]
-        [NotNull, NotEmpty]
+        [NotNullNotEmpty]
         public virtual string Email { get; protected set; }
 
         public virtual void SetAssignedIdTo(string assignedId)

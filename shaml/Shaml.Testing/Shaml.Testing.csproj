@@ -59,17 +59,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NHaml.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="NHaml.Xps, Version=1.5.0.0, Culture=neutral, PublicKeyToken=d603208bac452365, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libraries\NHaml.Xps.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate, Version=2.0.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.0.0.0, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libraries\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.Validator, Version=1.2.0.1001, Culture=neutral, PublicKeyToken=70154e18752585bd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -84,6 +76,7 @@
       <HintPath>..\libraries\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>

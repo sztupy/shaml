@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Xml.Serialization;
 
 namespace Shaml.Core.DomainModel
@@ -16,6 +17,7 @@ namespace Shaml.Core.DomainModel
     /// an in depth and conclusive resolution.
     /// </summary>
     [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
     public abstract class BaseObject
     {
         public override bool Equals(object obj) {
@@ -29,11 +31,11 @@ namespace Shaml.Core.DomainModel
         }
 
         /// <summary>
-        /// Used to provide the hashcode identifier of an object using the signature 
+        /// This is used to provide the hashcode identifier of an object using the signature 
         /// properties of the object; although it's necessary for NHibernate's use, this can 
         /// also be useful for business logic purposes and has been included in this base 
         /// class, accordingly.  Since it is recommended that GetHashCode change infrequently, 
-        /// if at all, in an object's lifetime; it's important that properties are carefully
+        /// if at all, in an object's lifetime, it's important that properties are carefully
         /// selected which truly represent the signature of an object.
         /// </summary>
         public override int GetHashCode() {
@@ -49,7 +51,7 @@ namespace Shaml.Core.DomainModel
                     object value = property.GetValue(this, null);
 
                     if (value != null)
-                        hashCode = (hashCode * RANDOM_PRIME_NUMBER) ^ value.GetHashCode();
+                        hashCode = (hashCode * HASH_MULTIPLIER) ^ value.GetHashCode();
                 }
 
                 if (signatureProperties.Any())
@@ -64,7 +66,7 @@ namespace Shaml.Core.DomainModel
         /// <summary>
         /// You may override this method to provide your own comparison routine.
         /// </summary>
-        protected virtual bool HasSameObjectSignatureAs(BaseObject compareTo) {
+        public virtual bool HasSameObjectSignatureAs(BaseObject compareTo) {
             IEnumerable<PropertyInfo> signatureProperties = GetSignatureProperties();
 
             foreach (PropertyInfo property in signatureProperties) {
@@ -134,12 +136,12 @@ namespace Shaml.Core.DomainModel
         private static Dictionary<Type, IEnumerable<PropertyInfo>> signaturePropertiesDictionary;
 
         /// <summary>
-        /// This particular magic number is often used in GetHashCode computations but is actually 
-        /// quite random.  Resharper uses 397 as its number when overrideing GetHashCode, so it 
-        /// either started there or has a deeper and more profound history than 42.
-        /// 
-        /// And yes, I know it's ironic having a constant with the word "random" in its name.
+        /// To help ensure hashcode uniqueness, a carefully selected random number multiplier 
+        /// is used within the calculation.  Goodrich and Tamassia's Data Structures and
+        /// Algorithms in Java asserts that 31, 33, 37, 39 and 41 will produce the fewest number
+        /// of collissions.  See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
+        /// for more information.
         /// </summary>
-        private const int RANDOM_PRIME_NUMBER = 397;
+        private const int HASH_MULTIPLIER = 31;
     }
 }

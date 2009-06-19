@@ -9,7 +9,7 @@ namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
         public ValidationResult(InvalidValue invalidValue) {
             Check.Require(invalidValue != null, "invalidValue may not be null");
 
-            ClassContext = invalidValue.BeanClass;
+            ClassContext = invalidValue.EntityType;
             PropertyName = invalidValue.PropertyName;
             Message = invalidValue.Message;
             InvalidValue = invalidValue;

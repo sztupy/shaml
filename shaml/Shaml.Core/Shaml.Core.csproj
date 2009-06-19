@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EFFDC7DB-C752-442C-80C2-7E0B500A3488}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -51,10 +51,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b5f559ae0ac4e006, processorArchitecture=MSIL" />
     <Reference Include="NauckIT.PostgreSQLProvider, Version=1.3.6.136, Culture=neutral, PublicKeyToken=e179b4c7dfb3984c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NauckIT.PostgreSQLProvider.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="NHaml, Version=1.5.0.0, Culture=neutral, PublicKeyToken=d603208bac452365, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NHaml.dll</HintPath>
@@ -104,39 +106,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\CommonValidatorAdapter\ValidationResult.cs" />
-    <Compile Include="Data\CommonValidatorAdapter\Validator.cs" />
-    <Compile Include="Data\CommonValidator\IValidatable.cs" />
-    <Compile Include="Data\CommonValidator\IValidationResult.cs" />
-    <Compile Include="Data\CommonValidator\IValidator.cs" />
-    <Compile Include="Data\CommonValidator\MvcValidationAdapter.cs" />
-    <Compile Include="Data\CommonValidator\ValidatableModelBinder.cs" />
+    <Compile Include="Data\CommonValidatorAdapter\ValidationResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CommonValidatorAdapter\Validator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CommonValidator\IValidatable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CommonValidator\IValidationResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CommonValidator\IValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CommonValidator\MvcValidationAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CommonValidator\ValidatableModelBinder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DomainModel\BaseObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DomainModel\BaseObjectEqualityComparer.cs" />
+    <Compile Include="Data\DomainModel\Entity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DomainModel\IEntityWithTypedId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DomainModel\IHasAssignedId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DomainModel\ValidatableObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DomainModel\ValueObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ModelBinder\EntityCollectionValueProviderResult.cs" />
+    <Compile Include="Data\ModelBinder\EntityValueProviderResult.cs" />
+    <Compile Include="Data\ModelBinder\GenericRepositoryFactory.cs" />
+    <Compile Include="Data\ModelBinder\SharpModelBinder.cs" />
+    <Compile Include="Data\NHibernate\DbContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\EntityDuplicateChecker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\FluentNHibernate\GeneratorHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\FluentNHibernate\IAutoPersistenceModelGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\FluentNHibernate\IMapGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\ISessionStorage.cs" />
+    <Compile Include="Data\NHibernate\NHibernateInitializer.cs" />
+    <Compile Include="Data\NHibernate\NHibernateRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\NHibernateSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\Repository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\SessionFactoryAttribute.cs" />
+    <Compile Include="Data\NHibernate\SimpleSessionStorage.cs" />
+    <Compile Include="Data\NHibernate\TransactionAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\NHibernate\WebSessionStorage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\PersistenceSupport\IDbContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\PersistenceSupport\IEntityDuplicateChecker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\PersistenceSupport\IRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\PersistenceSupport\NHibernate\INHibernateRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Utility\DesignByContract.cs" />
-    <Compile Include="Data\DomainModel\BaseObject.cs" />
-    <Compile Include="Data\DomainModel\Entity.cs" />
-    <Compile Include="Data\DomainModel\IEntityWithTypedId.cs" />
-    <Compile Include="Data\DomainModel\IHasAssignedId.cs" />
-    <Compile Include="Data\DomainModel\ValidatableObject.cs" />
-    <Compile Include="Data\DomainModel\ValueObject.cs" />
     <Compile Include="Utility\Enums.cs" />
+    <Compile Include="Web\Areas\AreaRouteHelper.cs" />
+    <Compile Include="Web\Areas\AreaViewEngine.cs" />
+    <Compile Include="Web\Areas\LinkForAreasExtensions.cs" />
     <Compile Include="Web\GenericLoggerAttribute.cs" />
     <Compile Include="Utility\HasUniqueDomainSignatureValidator.cs" />
     <Compile Include="Utility\Inflector.cs" />
-    <Compile Include="Data\NHibernate\DbContext.cs" />
-    <Compile Include="Data\NHibernate\EntityDuplicateChecker.cs" />
-    <Compile Include="Data\NHibernate\FluentNHibernate\GeneratorHelper.cs" />
-    <Compile Include="Data\NHibernate\FluentNHibernate\IAutoPersistenceModelGenerator.cs" />
-    <Compile Include="Data\NHibernate\FluentNHibernate\IMapGenerator.cs" />
-    <Compile Include="Data\NHibernate\NHibernateRepository.cs" />
-    <Compile Include="Data\NHibernate\NHibernateSession.cs" />
-    <Compile Include="Data\NHibernate\Repository.cs" />
-    <Compile Include="Data\NHibernate\TransactionAttribute.cs" />
-    <Compile Include="Data\NHibernate\WebSessionStorage.cs" />
     <Compile Include="Web\OpenIDMembershipProvider.cs" />
-    <Compile Include="Data\PersistenceSupport\IDbContext.cs" />
-    <Compile Include="Data\PersistenceSupport\IEntityDuplicateChecker.cs" />
-    <Compile Include="Data\PersistenceSupport\IRepository.cs" />
-    <Compile Include="Data\PersistenceSupport\NHibernate\INHibernateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
   </ItemGroup>

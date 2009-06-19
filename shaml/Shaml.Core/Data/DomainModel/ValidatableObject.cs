@@ -17,7 +17,6 @@ namespace Shaml.Core.DomainModel
 
         private IValidator Validator {
             get {
-                // Shaml Architecture --> use always NHibernate Validator
                 return new Shaml.Core.NHibernateValidator.CommonValidatorAdapter.Validator();
             }
         }

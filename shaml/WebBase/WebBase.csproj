@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC30A450-C08E-4984-84E1-21DAD61A8396}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -108,8 +108,8 @@
     </Reference>
     <Reference Include="Shaml.Core">
       <Private>True</Private>
-      <HintPath>..\libraries\Shaml.Core.dll</HintPath>      
-    </Reference>    
+      <HintPath>..\libraries\Shaml.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -144,6 +144,11 @@
     <Compile Include="App\AppServices\RouteRegistrar.cs" />
     <Compile Include="App\Controllers\Support\MembershipAdministrationController.cs" />
     <Compile Include="App\Controllers\Support\OpenIDController.cs" />
+    <Compile Include="App\Models\Mapping\Conventions\ColumnNameConventions.cs" />
+    <Compile Include="App\Models\Mapping\Conventions\HasManyConvention.cs" />
+    <Compile Include="App\Models\Mapping\Conventions\PrimaryKeyConvention.cs" />
+    <Compile Include="App\Models\Mapping\Conventions\ReferenceConvention.cs" />
+    <Compile Include="App\Models\Mapping\Conventions\TableNameConvention.cs" />
     <Compile Include="App\Models\Mapping\UserMap.cs" />
     <Compile Include="App\Models\Users.cs" />
     <Compile Include="Default.aspx.cs">
@@ -232,6 +237,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

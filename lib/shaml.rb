@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.1.5"
+SHAML_VERSION="0.1.6"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
 
@@ -154,10 +154,13 @@ else
       puts 'S#aml ERROR: no name specified'
     end
   when "compile"
-    puts "Compiling using gmcs"
     appname = getappname
-    FileUtils.mkdir_p(File.join(appname,"bin"))
-    FileUtils.mkdir_p(File.join(appname+".Tests","bin"))
+    puts "Copying libraries"
+    FileUtils.rm_r(File.join(appname,"bin"))
+    FileUtils.rm_r(File.join(appname+".Tests","bin"))    
+    FileUtils.cp_r("libraries",File.join(appname,"bin"))
+    FileUtils.cp_r("libraries",File.join(appname+".Tests","bin"))    
+    puts "Compiling using gmcs"    
     system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/../-r:../\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
     system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/../-r:../\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
   when "server"

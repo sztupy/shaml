@@ -2,7 +2,6 @@ using System;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
 using Rhino.Mocks;
-using NUnit.Framework.SyntaxHelpers;
 using Shaml.Core.PersistenceSupport;
 using Shaml.Testing;
 using System.Collections.Generic;

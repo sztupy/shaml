@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using WebBase.Core;
-using NUnit.Framework.SyntaxHelpers;
 using Shaml.Testing;
 
 namespace Tests.Blog.Core

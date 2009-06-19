@@ -180,8 +180,8 @@ else
       puts "Changed directory to #{Dir.pwd}"
       ENV["MONO_PATH"] = File.join(Dir.pwd,"bin")
       puts "Set MONO_PATH to #{ENV["MONO_PATH"]}"
-      puts "Starting xsp2"
-      system("xsp2")
+      puts "Starting xsp2 #{ARGV.join(" ")}"
+      system("xsp2 #{ARGV.join(" ")}")
       puts "Done..."      
     end
   else

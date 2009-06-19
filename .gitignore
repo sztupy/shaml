@@ -4,6 +4,7 @@ obj
 TestResults
 TestResult.xml
 drops
+log.txt
 *.VisualState.xml
 StyleCop.Cache
 *.LDF

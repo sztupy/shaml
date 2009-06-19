@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.2.0"
+SHAML_VERSION="0.2.5"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
 

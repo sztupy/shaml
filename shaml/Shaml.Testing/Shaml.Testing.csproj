@@ -63,6 +63,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="NHibernate.Validator, Version=1.2.0.1001, Culture=neutral, PublicKeyToken=70154e18752585bd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NHibernate.Validator.dll</HintPath>

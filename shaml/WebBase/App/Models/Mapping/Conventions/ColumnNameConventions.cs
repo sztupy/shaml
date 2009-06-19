@@ -7,14 +7,12 @@ namespace WebBase.Core.Mapping
     {
         public bool Accept(IProperty propertyMap)
         {
-            return true;
+            return propertyMap.ColumnNames.List().Count == 0;
         }
 
         public void Apply(IProperty propertyMap)
         {
-            if (propertyMap.ColumnNames.List().Count == 0) {
-                propertyMap.ColumnNames.Add("\"" + propertyMap.Property.Name + "\"");
-            }
+            propertyMap.ColumnNames.Add("\"" + propertyMap.Property.Name + "\"");
         }
     }
 }

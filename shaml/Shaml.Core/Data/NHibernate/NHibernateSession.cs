@@ -86,7 +86,7 @@ namespace Shaml.Data.NHibernate
         private static ISessionFactory CreateSessionFactoryFor(string[] mappingAssemblies,
             AutoPersistenceModel autoPersistenceModel, Configuration cfg, 
             IPersistenceConfigurer persistenceConfigurer) {
-
+           
             FluentConfiguration fluentConfiguration = Fluently.Configure(cfg);
 
             if (persistenceConfigurer != null) {

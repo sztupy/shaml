@@ -34,12 +34,11 @@ namespace Tests.Blog.Data.NHibernateMaps
         [Test]
         public void CanConfirmDatabaseMatchesMappings()
         {
-            IDictionary<string, IClassMetadata> allClassMetadata =
-                NHibernateSession.SessionFactories[factoryKey].GetAllClassMetadata();
+            IDictionary allClassMetadata = NHibernateSession.SessionFactory.GetAllClassMetadata();
 
-            foreach (KeyValuePair<string, IClassMetadata> entry in allClassMetadata)
+            foreach (DictionaryEntry entry in allClassMetadata)
             {
-                NHibernateSession.CurrentFor(factoryKey).CreateCriteria(entry.Value.GetMappedClass(EntityMode.Poco))
+                NHibernateSession.Current.CreateCriteria((Type)entry.Key)
                      .SetMaxResults(0).List();
             }
         }
@@ -53,6 +52,5 @@ namespace Tests.Blog.Data.NHibernateMaps
             }
         }
 
-        string factoryKey = "nhibernate.tests_using_live_database";
     }
 }

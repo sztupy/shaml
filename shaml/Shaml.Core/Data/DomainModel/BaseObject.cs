@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using System.Xml.Serialization;
 
 namespace Shaml.Core.DomainModel
 {
@@ -16,7 +15,6 @@ namespace Shaml.Core.DomainModel
     /// and http://groups.google.com/group/sharp-architecture/browse_thread/thread/f76d1678e68e3ece?hl=en for 
     /// an in depth and conclusive resolution.
     /// </summary>
-    [Serializable]
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class BaseObject
     {

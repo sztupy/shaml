@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.2.5"
+SHAML_VERSION="0.3.0"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
 
@@ -67,7 +67,7 @@ def copy_file(from,to,appname,modelname,propertydescriptor)
   end
 end
 
-if ARGV.count == 0 then
+if ARGV.length == 0 then
   puts "S#aml architecture: ASP.NET MVC and NHibernate on mono 2.4+"
   puts " version: #{SHAML_VERSION}"
   puts
@@ -123,12 +123,12 @@ else
         appname = getappname
         copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join(appname,"App","Models","WebSample.cs"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join(appname,"App","Controllers","WebSamplesController.cs"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSample","_WebSampleForm.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSample","Create.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join(appname,"App","Views","WebSample","Delete.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join(appname,"App","Views","WebSample","Edit.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join(appname,"App","Views","WebSample","Index.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join(appname,"App","Views","WebSample","Show.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSamples","Create.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join(appname,"App","Views","WebSamples","Delete.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join(appname,"App","Views","WebSamples","Edit.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join(appname,"App","Views","WebSamples","Index.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join(appname,"App","Views","WebSamples","Show.haml"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join(appname+".Tests","Tests","Core","WebSampleTests.cs"),appname,name,desc)        
         copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join(appname+".Tests","Tests","Web","Controllers","WebSamplesControllerTests.cs"),appname,name,desc)        
       when "model"
@@ -140,12 +140,12 @@ else
         desc = ARGV.shift || nil
         appname = getappname   
         copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join(appname,"App","Controllers","WebSamplesController.cs"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSample","_WebSampleForm.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSample","Create.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join(appname,"App","Views","WebSample","Delete.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join(appname,"App","Views","WebSample","Edit.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join(appname,"App","Views","WebSample","Index.haml"),appname,name,desc)
-        copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join(appname,"App","Views","WebSample","Show.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSamples","Create.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join(appname,"App","Views","WebSamples","Delete.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join(appname,"App","Views","WebSamples","Edit.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join(appname,"App","Views","WebSamples","Index.haml"),appname,name,desc)
+        copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join(appname,"App","Views","WebSamples","Show.haml"),appname,name,desc)
         copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join(appname+".Tests","Tests","Web","Controllers","WebSamplesControllerTests.cs"),appname,name,desc)                
       else
         puts 'S#aml ERROR: unknown generate argument'

@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
-using System.Xml.Serialization;
 using System.Collections.Generic;
 using Shaml.Core.CommonValidator;
 
@@ -16,7 +15,6 @@ namespace Shaml.Core.DomainModel
     /// <remarks>
     /// This is intended for use with <see cref="Entity" />.  It may NOT be used on a <see cref="ValueObject"/>.
     /// </remarks>
-    [Serializable]
     public class DomainSignatureAttribute : Attribute { }
 
     /// <summary>
@@ -28,14 +26,12 @@ namespace Shaml.Core.DomainModel
     /// base class leverages this assumption.  If you want an entity with a type other 
     /// than int, such as string, then use <see cref="EntityWithTypedId{IdT}" /> instead.
     /// </summary>
-    [Serializable]
     public abstract class Entity : EntityWithTypedId<int> { }
 
     /// <summary>
     /// For a discussion of this object, see 
     /// http://devlicio.us/blogs/billy_mccafferty/archive/2007/04/25/using-equals-gethashcode-effectively.aspx
     /// </summary>
-    [Serializable]
     public abstract class EntityWithTypedId<IdT> : ValidatableObject, IEntityWithTypedId<IdT>
     {
         #region IEntityWithTypedId Members
@@ -49,7 +45,6 @@ namespace Shaml.Core.DomainModel
         /// This is ignored for XML serialization because it does not have a public setter (which is very much by design).
         /// See the FAQ within the documentation if you'd like to have the Id XML serialized.
         /// </summary>
-        [XmlIgnore]
         [JsonProperty]
         public virtual IdT Id { get; protected set; }
 

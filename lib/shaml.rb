@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.3.1"
+SHAML_VERSION="0.3.5"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
 
@@ -112,7 +112,11 @@ else
             File.open(infname,"rb") do |infile|         
               File.open(outfname,"wb+") do |outfile|
                 puts "Writing #{outfname}"
-                outfile.write infile.read.gsub("WebBase",name);
+                if infname=~/\.dll/ then
+                  outfile.write infile.read                 
+                else
+                  outfile.write infile.read.gsub("WebBase",name);
+                end
               end
             end
           end

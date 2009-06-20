@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'zip/zip'
 
-SHAML_VERSION="0.3.5"
+SHAML_VERSION="0.3.6"
 
 TEMPLATEDIR = File.join(File.dirname(__FILE__),"templates")
 
@@ -169,10 +169,11 @@ else
     rescue Exception => e
     end    
     FileUtils.cp_r("libraries",File.join(appname,"bin"))
-    FileUtils.cp_r("libraries",File.join(appname+".Tests","bin"))    
     puts "Compiling using gmcs"    
     system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
-    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web     -r:#{File.join(appname,"bin",appname+".dll")} -t:library -out:#{File.join(appname+".Tests","bin",appname+".dll")}")
+    FileUtils.cp_r("libraries",File.join(appname+".Tests","bin"))    
+    FileUtils.cp(File.join(appname,"bin",appname+".dll"),File.join(appname+".Tests","bin"))
+    system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web     -r:#{File.join(appname,"bin",appname+".dll")} -t:library -out:#{File.join(appname+".Tests","bin",appname+"Tests.dll")}")
     puts "Compiling stylesheets"        
     Dir.chdir(appname) do    
       system("compass --update")

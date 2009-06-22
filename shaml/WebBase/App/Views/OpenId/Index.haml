@@ -4,7 +4,7 @@
     - foreach (string id in ViewData.Model)
       %li
         = id
-        - using(Html.BeginForm( "RemoveOpenIdAccount", "OpenId" ))
+        - using(Html.BeginForm( "RemoveOpenIdAccount", "OpenId", new { openid_identifier = id } ))
           = Html.Hidden("openIdIdentifier", id)
           = Html.SubmitButton( "submit", "Delete" )
   = Html.ActionLink("Assign new ID","Login")

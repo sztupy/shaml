@@ -18,6 +18,9 @@ namespace WebBase.Core
         [NotNullNotEmpty]
         public virtual string Email { get; protected set; }
 
+        [NotNullNotEmpty]
+        public virtual string Comment { get; protected set; }        
+
         public virtual void SetAssignedIdTo(string assignedId)
         {
             throw new NotImplementedException();

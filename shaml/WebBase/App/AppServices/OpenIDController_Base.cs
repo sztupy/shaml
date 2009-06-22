@@ -126,7 +126,7 @@ namespace WebBase.AppServices
                             string username = GetUserNameFromOpenIdIdentity(response.ClaimedIdentifier);
                             if (string.IsNullOrEmpty(username))
                             {
-                                username = HandleUnknownUser(openid);
+                                username = HandleUnknownUser(response);
                                 if (string.IsNullOrEmpty(username))
                                 {
                                     errors.Add(ErrorMessages.AssociationFailure);
@@ -158,7 +158,10 @@ namespace WebBase.AppServices
         [AcceptVerbs(HttpVerbs.Post)]
         public virtual ActionResult RemoveOpenIdAccount(string openIdIdentifier)
         {
-            RemoveOpenIdIdentityFromUserName(User.Identity.Name, openIdIdentifier);
+            if (!string.IsNullOrEmpty(openIdIdentifier))
+            {
+                RemoveOpenIdIdentityFromUserName(User.Identity.Name, openIdIdentifier);
+            }
             return RedirectToAction("Index");
         }
 
@@ -180,7 +183,7 @@ namespace WebBase.AppServices
         protected abstract List<string> ListOpenIdIdentitiesForUserName(string UserName);
 
         [NonAction]
-        protected abstract string HandleUnknownUser(OpenIdRelyingParty openid);
+        protected abstract string HandleUnknownUser(IAuthenticationResponse response);
 
         [NonAction]
         protected abstract void AddNeededExtensions(ref IAuthenticationRequest request);

@@ -1362,9 +1362,10 @@ namespace Shaml.Core.OpenIDMembershipProvider
                 {
                     using (NpgsqlCommand dbCommand = dbConn.CreateCommand())
                     {
-                        dbCommand.CommandText = string.Format(CultureInfo.InvariantCulture, "DELETE FROM \"OpenIDAccounts\" WHERE \"UserName\" = @UserName AND  \"ApplicationName\" = @ApplicationName");
+                        dbCommand.CommandText = string.Format(CultureInfo.InvariantCulture, "DELETE FROM \"OpenIDAccounts\" WHERE \"UserName\" = @UserName AND  \"ApplicationName\" = @ApplicationName AND \"OpenIDString\" = @Identifier");
 
                         dbCommand.Parameters.Add("@UserName", NpgsqlDbType.Varchar, 255).Value = UserName;
+                        dbCommand.Parameters.Add("@Identifier", NpgsqlDbType.Varchar, 255).Value = id;
                         dbCommand.Parameters.Add("@ApplicationName", NpgsqlDbType.Varchar, 255).Value = m_applicationName;
 
                         try

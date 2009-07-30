@@ -3,6 +3,7 @@ using NHibernate.Validator;
 using Shaml.Core.PersistenceSupport;
 using Shaml.Core.DomainModel;
 using System;
+using NHibernate.Validator.Constraints;
 
 namespace WebBase.Core
 {

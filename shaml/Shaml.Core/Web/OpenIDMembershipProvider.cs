@@ -1309,7 +1309,7 @@ namespace Shaml.Core.OpenIDMembershipProvider
                     {
                         dbCommand.CommandText = string.Format(CultureInfo.InvariantCulture, "INSERT INTO \"OpenIDAccounts\" (\"UserName\", \"OpenIDString\", \"ApplicationName\") Values (@UserName, @OpenIDString, @ApplicationName)", s_tableName);
 
-                        dbCommand.Parameters.Add("@UserName", NpgsqlDbType.Varchar, 36).Value = UserName;
+                        dbCommand.Parameters.Add("@UserName", NpgsqlDbType.Varchar, 255).Value = UserName;
                         dbCommand.Parameters.Add("@OpenIDString", NpgsqlDbType.Varchar, 255).Value = id;
                         dbCommand.Parameters.Add("@ApplicationName", NpgsqlDbType.Varchar, 255).Value = m_applicationName;
 

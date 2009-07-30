@@ -6,10 +6,11 @@ namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
 {
     public class ValidationResult : Shaml.Core.CommonValidator.IValidationResult
     {
-        public ValidationResult(InvalidValue invalidValue) {
+        public ValidationResult(InvalidValue invalidValue)
+        {
             Check.Require(invalidValue != null, "invalidValue may not be null");
 
-            ClassContext = invalidValue.BeanClass;
+            ClassContext = invalidValue.EntityType;
             PropertyName = invalidValue.PropertyName;
             Message = invalidValue.Message;
             InvalidValue = invalidValue;
@@ -26,4 +27,5 @@ namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
         /// </summary>
         public virtual InvalidValue InvalidValue { get; protected set; }
     }
+
 }

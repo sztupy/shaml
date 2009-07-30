@@ -9,7 +9,7 @@ using Shaml.Testing.NHibernate;
 using System.Collections.Generic;
 using NHibernate.Metadata;
 
-namespace Tests.Blog.Data.NHibernateMaps
+namespace Tests.WebBase.Data.NHibernateMaps
 {
     /// <summary>
     /// Provides a means to verify that the target database is in compliance with all mappings.
@@ -34,11 +34,12 @@ namespace Tests.Blog.Data.NHibernateMaps
         [Test]
         public void CanConfirmDatabaseMatchesMappings()
         {
-            IDictionary allClassMetadata = NHibernateSession.SessionFactory.GetAllClassMetadata();
+            IDictionary<string, IClassMetadata> allClassMetadata =
+                           NHibernateSession.SessionFactories[factoryKey].GetAllClassMetadata();
 
-            foreach (DictionaryEntry entry in allClassMetadata)
+            foreach (KeyValuePair<string, IClassMetadata> entry in allClassMetadata)
             {
-                NHibernateSession.Current.CreateCriteria((Type)entry.Key)
+                NHibernateSession.CurrentFor(factoryKey).CreateCriteria(entry.Value.GetMappedClass(EntityMode.Poco))
                      .SetMaxResults(0).List();
             }
         }
@@ -52,5 +53,6 @@ namespace Tests.Blog.Data.NHibernateMaps
             }
         }
 
+        string factoryKey = "nhibernate.tests_using_live_database";
     }
 }

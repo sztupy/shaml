@@ -4,6 +4,7 @@ using NHibernate.Validator.Engine;
 using System;
 using System.Collections.ObjectModel;
 using Shaml.Core.CommonValidator;
+using Shaml.Data.NHibernate;
 
 namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
 {
@@ -15,7 +16,7 @@ namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
     {
         static Validator()
         {
-            validator = new ValidatorEngine();
+            validator = NHibernateSession.ValidatorEngine ?? new ValidatorEngine();
         }
 
         public bool IsValid(object value) {

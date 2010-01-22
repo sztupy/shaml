@@ -1,5 +1,7 @@
 shaml/**/bin
 shaml/**/Bin
+webbase/**/bin
+webbase/**/Bin
 obj
 TestResults
 TestResult.xml
@@ -18,3 +20,4 @@ PrecompiledWeb
 *.mdf
 *.swx
 .dotest
+.sass-cache

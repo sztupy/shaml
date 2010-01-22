@@ -1,0 +1,32 @@
+!!! XML
+!!! Strict
+%html{ xmlns="http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ content="text/html; charset=iso-8859-1" http-equiv="Content-Type" }
+    %script { type="text/javascript" src="/Public/Scripts/jquery-1.3.2.min.js" }
+    %script { type="text/javascript" src="/Public/Scripts/openid-jquery.js" }
+    %link{ href="/Public/Content/screen.css" media="screen,projection" rel="stylesheet" type="text/css" }
+    %link{ href="/Public/Content/print.css" media="print" rel="stylesheet" type="text/css" }
+    /[if lt IE 7]
+      %link{ href="/Public/Content/ie.css" media="screen,projection" rel="stylesheet" type="text/css" }
+    %title
+      S#aml Architecture
+  %body
+    #mainContent
+      #topContainer
+        %h1
+          S#aml Architecture
+      #columnsContainer
+        #leftColumn
+          %p
+            %img{ src="/Public/Content/Images/shaml_large.jpg" alt="S#aml architecture logo" }
+          %p
+            _ LogOnUserControl
+          %h2
+            Main Menu
+          _ MainMenu
+        #rightColumn
+          _
+            #endMain
+    #footer
+      _ Footer

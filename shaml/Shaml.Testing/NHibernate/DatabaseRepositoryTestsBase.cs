@@ -27,7 +27,7 @@ namespace Shaml.Testing.NUnit.NHibernate
         [TearDown]
         public virtual void TearDown() {
             NHibernateSession.Current.Transaction.Rollback();
-            NHibernateSession.Storage.Session.Dispose();
-        }
+			RepositoryTestsHelper.Shutdown();
+		}
     }
 }

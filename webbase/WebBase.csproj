@@ -119,21 +119,21 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Abstractions">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Routing">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile">

@@ -2,6 +2,7 @@ shaml/**/bin
 shaml/**/Bin
 webbase/**/bin
 webbase/**/Bin
+webbase/bin
 obj
 TestResults
 TestResult.xml

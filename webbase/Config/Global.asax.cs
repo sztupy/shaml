@@ -17,8 +17,46 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace WebBase
 {
-    public class MvcApplication : System.Web.HttpApplication
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
+    // visit http://go.microsoft.com/?LinkId=9394801
+
+    public class MvcApplication : HttpApplication
     {
+        /// <summary>
+        /// Due to issues on IIS7, the NHibernate initialization cannot reside in Init() but
+        /// must only be called once.  Consequently, we invoke a thread-safe singleton class to
+        /// ensure it's only initialized once.
+        /// </summary>
+        protected void Application_BeginRequest(object sender, EventArgs e) {
+            NHibernateInitializer.Instance().InitializeNHibernateOnce(
+                () => InitializeNHibernateSession());
+        }
+
+        /// <summary>
+        /// If you need to communicate to multiple databases, you'd add a line to this method to
+        /// initialize the other database as well.
+        /// </summary>
+        private void InitializeNHibernateSession() {
+          var cfg = NHibernateSession.Init(new WebSessionStorage(this),
+              new string[] { Server.MapPath("~/bin/WebBase.Data.dll") },
+              new AutoPersistenceModelGenerator().Generate(),
+              Server.MapPath("~/Config/NHibernate.config"));
+    
+          //apm.WriteMappingsTo(@"e:\Programs\Blog\db");
+          var script = cfg.GenerateSchemaCreationScript(new NHibernate.Dialect.PostgreSQL82Dialect());
+    
+          using (var tw = new System.IO.StreamWriter(System.IO.Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath,System.IO.Path.Combine("db","Auto_Mapping_Schema.sql"))))
+          {
+              foreach (string s in script)
+              {
+                  tw.WriteLine(s);
+              }
+          }
+        }
+
+        private WebSessionStorage webSessionStorage;
+
+
         protected void Application_Start()
         {
             log4net.Config.XmlConfigurator.Configure();
@@ -38,8 +76,10 @@ namespace WebBase
             ViewEngines.Engines.Add(nhaml);
 
             ModelBinders.Binders.DefaultBinder = new SharpModelBinder();
+
             InitializeServiceLocator();
 
+      			AreaRegistration.RegisterAllAreas();
             RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
         }
 
@@ -56,6 +96,11 @@ namespace WebBase
             //ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
             //container.RegisterControllers(typeof(HomeController).Assembly);
 
+//            ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
+
+//            container.RegisterControllers(typeof(HomeController).Assembly);
+//            ComponentRegistrar.AddComponentsTo(container);
+
             ComponentRegistrar.AddComponentsTo(container);
 
             ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
@@ -64,43 +109,9 @@ namespace WebBase
         public override void Init()
         {
             base.Init();
-
-            // Only allow the NHibernate session to be initialized once
-            if (!wasNHibernateInitialized)
-            {
-                lock (lockObject)
-                {
-                    if (!wasNHibernateInitialized)
-                    {
-
-                        var cfg = NHibernateSession.Init(new WebSessionStorage(this),
-                            new string[] { Server.MapPath("~/bin/WebBase.Data.dll") },
-                            new AutoPersistenceModelGenerator().Generate(),
-                            Server.MapPath("~/Config/NHibernate.config"));
-
-                        //apm.WriteMappingsTo(@"e:\Programs\Blog\db");
-                        var script = cfg.GenerateSchemaCreationScript(new NHibernate.Dialect.PostgreSQL82Dialect());
-
-                        using (var tw = new System.IO.StreamWriter(System.IO.Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath,System.IO.Path.Combine("db","Auto_Mapping_Schema.sql"))))
-                        {
-                            foreach (string s in script)
-                            {
-                                tw.WriteLine(s);
-                            }
-                        }
-
-                        wasNHibernateInitialized = true;
-                    }
-                }
-            }
+            // The WebSessionStorage must be created during the Init() to tie in HttpApplication events
+            webSessionStorage = new WebSessionStorage(this);
         }
-
-        private static bool wasNHibernateInitialized = false;
-
-        /// <summary>
-        /// Private, static object used only for synchronization
-        /// </summary>
-        private static object lockObject = new object();
 
     }
 }

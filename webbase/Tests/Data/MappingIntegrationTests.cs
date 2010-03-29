@@ -7,6 +7,7 @@ using Shaml.Data.NHibernate;
 using Shaml.Testing.NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using System.IO;
 
 namespace Tests.WebBase.Data.NHibernateMaps
 {
@@ -26,7 +27,7 @@ namespace Tests.WebBase.Data.NHibernateMaps
             string[] mappingAssemblies = RepositoryTestsHelper.GetMappingAssemblies();
             configuration = NHibernateSession.Init(new SimpleSessionStorage(), mappingAssemblies,
                                    new AutoPersistenceModelGenerator().Generate(),
-                                   "../../../../app/$solutionname$.Web/NHibernate.config");
+                                   "../Config/NHibernate.config");
         }
 
         [TearDown]
@@ -39,8 +40,7 @@ namespace Tests.WebBase.Data.NHibernateMaps
         public void CanConfirmDatabaseMatchesMappings() {
             var allClassMetadata = NHibernateSession.GetDefaultSessionFactory().GetAllClassMetadata();
 
-            foreach (var entry in allClassMetadata)
-            {
+            foreach (var entry in allClassMetadata) {
                 NHibernateSession.Current.CreateCriteria(entry.Value.GetMappedClass(EntityMode.Poco))
                      .SetMaxResults(0).List();
             }
@@ -52,7 +52,10 @@ namespace Tests.WebBase.Data.NHibernateMaps
         [Test]
         public void CanGenerateDatabaseSchema() {
             var session = NHibernateSession.GetDefaultSessionFactory().OpenSession();
-            new SchemaExport(configuration).Execute(true, false, false, session.Connection, null);
+
+            using (TextWriter stringWriter = new StreamWriter("../DB/UnitTestGeneratedSchema.sql")) {
+                new SchemaExport(configuration).Execute(true, false, false, session.Connection, stringWriter);
+            }
         }
 
         private Configuration configuration;

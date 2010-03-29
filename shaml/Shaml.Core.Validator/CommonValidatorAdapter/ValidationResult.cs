@@ -3,7 +3,7 @@ using System;
 using Shaml.Core.CommonValidator;
 using Shaml.Core;
 
-namespace Shaml.Core.Validator.CommonValidatorAdapter
+namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
 {
     public class ValidationResult : Shaml.Core.CommonValidator.IValidationResult
     {
@@ -14,11 +14,13 @@ namespace Shaml.Core.Validator.CommonValidatorAdapter
             PropertyName = invalidValue.PropertyName;
             Message = invalidValue.Message;
             InvalidValue = invalidValue;
+        	AttemptedValue = invalidValue.Value;
         }
 
         public virtual Type ClassContext { get; protected set; }
         public virtual string PropertyName { get; protected set; }
         public virtual string Message { get; protected set; }
+		public virtual object AttemptedValue { get; protected set; }
 
         /// <summary>
         /// This is not defined by IValidationResult but is useful for applications which are 

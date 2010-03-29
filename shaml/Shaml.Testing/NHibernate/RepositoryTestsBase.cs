@@ -1,5 +1,4 @@
-﻿using Shaml.Data.NHibernate;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Shaml.Testing.NHibernate;
 
 namespace Shaml.Testing.NUnit.NHibernate

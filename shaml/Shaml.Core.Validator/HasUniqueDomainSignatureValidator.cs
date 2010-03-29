@@ -3,7 +3,7 @@ using System;
 using Shaml.Core.DomainModel;
 using Shaml.Core.PersistenceSupport;
 
-namespace Shaml.Core.Validator
+namespace Shaml.Core.NHibernateValidator
 {
     #region Validator for entities with Id of type int
 

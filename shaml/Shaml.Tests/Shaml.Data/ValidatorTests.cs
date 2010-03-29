@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
+using Shaml.Core.NHibernateValidator.CommonValidatorAdapter;
 using NHibernate.Validator.Constraints;
 using Shaml.Core.CommonValidator;
 using System.Collections.Generic;
 using System.Linq;
-using Shaml.Core.Validator.CommonValidatorAdapter;
 
 namespace Tests.Shaml.Core.NHibernateValidator.CommonValidatorAdapter
 {

@@ -14,7 +14,7 @@ namespace Shaml.Core
             TDependency service;
 
             try {
-                service = ServiceLocator.Current.GetInstance<TDependency>();
+                service = (TDependency)ServiceLocator.Current.GetService(typeof(TDependency));
             }
             catch (NullReferenceException) {
                 throw new NullReferenceException("ServiceLocator has not been initialized; " +

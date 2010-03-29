@@ -10,11 +10,11 @@ using System.Diagnostics;
 using System;
 using LinFu.IoC;
 using Shaml.Core.PersistenceSupport;
-using Shaml.Core.Validator;
+using Shaml.Core.NHibernateValidator;
 using System.Collections.Generic;
 using IValidator = Shaml.Core.CommonValidator.IValidator;
 using Shaml.Core.CommonValidator;
-using Shaml.Core.Validator.CommonValidatorAdapter;
+using Shaml.Core.NHibernateValidator.CommonValidatorAdapter;
 
 namespace Tests.Shaml.Core.CommonValidator.NHibernateValidator
 {

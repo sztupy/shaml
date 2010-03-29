@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zsolt Sz. Sztupak"]
-  s.date = %q{2010-01-22}
+  s.date = %q{2010-04-01}
   s.default_executable = %q{shaml}
   s.description = %q{Shaml is an ASP.NET MVC framework with NHibernate for mono 2.4+}
   s.email = %q{mail@sztupy.hu}
@@ -28,24 +28,23 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{shaml}
-  s.rubygems_version = %q{1.3.3}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{ASP.NET MVC on mono}
-  s.test_files = [
-  ]
+  s.test_files = [  ]
  
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
  
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<febeling-rubyzip>, [">= 0.9.1"])
-      s.add_runtime_dependency(%q<chriseppstein-compass>, [">= 0.6.15"])
+      s.add_runtime_dependency(%q<rubyzip>, [">= 0.9.1"])
+      s.add_runtime_dependency(%q<compass>, [">= 0.6.15"])
     else
-      s.add_dependency(%q<febeling-rubyzip>, [">= 0.9.1"])
-      s.add_dependency(%q<chriseppstein-compass>, [">= 0.6.15"])
+      s.add_dependency(%q<rubyzip>, [">= 0.9.1"])
+      s.add_dependency(%q<compass>, [">= 0.6.15"])
     end
   else
-    s.add_dependency(%q<febeling-rubyzip>, [">= 0.9.1"])
-    s.add_dependency(%q<chriseppstein-compass>, [">= 0.6.15"])
+    s.add_dependency(%q<rubyzip>, [">= 0.9.1"])
+    s.add_dependency(%q<compass>, [">= 0.6.15"])
   end
 end

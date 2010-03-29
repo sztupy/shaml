@@ -7,7 +7,7 @@ using Shaml.Data.NHibernate;
 using Shaml.Core.CommonValidator;
 using Shaml.Core;
 
-namespace Shaml.Core.Validator.CommonValidatorAdapter
+namespace Shaml.Core.NHibernateValidator.CommonValidatorAdapter
 {
     /// <summary>
     /// Provides an implementation of the <see cref="CommonValidator.IValidator" /> interface 

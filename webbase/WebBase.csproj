@@ -156,6 +156,41 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Views\Account\ChangePassword.haml" />
+    <Content Include="App\Views\Account\ChangePasswordSuccess.haml" />
+    <Content Include="App\Views\Account\LogOn.haml" />
+    <Content Include="App\Views\Account\Register.haml" />
+    <Content Include="App\Views\Home\Index.haml" />
+    <Content Include="App\Views\MembershipAdministration\CreateUser.haml" />
+    <Content Include="App\Views\MembershipAdministration\DisplayUser.haml" />
+    <Content Include="App\Views\MembershipAdministration\ListUsers.haml" />
+    <Content Include="App\Views\MembershipAdministration\ResetPassword.haml" />
+    <Content Include="App\Views\MembershipAdministration\UsersInRole.haml" />
+    <Content Include="App\Views\OpenId\Index.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="App\Views\OpenId\Login.haml" />
+    <Content Include="App\Views\OpenId\XRDS.haml" />
+    <Content Include="App\Views\Shared\Application.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="App\Views\Shared\Empty.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="App\Views\Shared\Error.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="App\Views\Shared\_Footer.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="App\Views\Shared\_LogOnUserControl.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="App\Views\Shared\_MainMenu.haml">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="App\ApplicationServices\WebBase.ApplicationServices.csproj">
       <Project>{CE3802D9-1E17-47AB-ACEF-999F0DD685CA}</Project>
       <Name>WebBase.ApplicationServices</Name>

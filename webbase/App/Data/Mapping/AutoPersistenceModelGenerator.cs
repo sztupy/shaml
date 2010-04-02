@@ -19,12 +19,19 @@ namespace WebBase.Data.Mapping
         public AutoPersistenceModel Generate()
         {
             var mappings = new AutoPersistenceModel();
-            mappings.AddEntityAssembly(typeof(User).Assembly).Where(GetAutoMappingFilter);
+            mappings.AddEntityAssembly(typeof(Class1).Assembly).Where(GetAutoMappingFilter);
             mappings.Conventions.Setup(GetConventions());
             mappings.Setup(GetSetup());
             mappings.IgnoreBase<Entity>();
             mappings.IgnoreBase(typeof(EntityWithTypedId<>));
             mappings.UseOverridesFromAssemblyOf<AutoPersistenceModelGenerator>();
+            
+            // Membershipprovider Automappings
+            mappings.AddEntityAssembly(typeof(Shaml.Membership.Core.User).Assembly).Where(GetAutoMappingFilter);
+            mappings.Override<Shaml.Membership.Core.User>(map => Shaml.Membership.Data.Overrides.UserOverride(map));
+            mappings.Override<Shaml.Membership.Core.Role>(map => Shaml.Membership.Data.Overrides.RoleOverride(map));
+            mappings.Override<Shaml.Membership.Core.ProfileData>(map => Shaml.Membership.Data.Overrides.ProfileDataOverride(map));
+            mappings.Override<Shaml.Membership.Core.Session>(map => Shaml.Membership.Data.Overrides.SessionOverride(map));
 
             return mappings;
 

@@ -11,7 +11,7 @@
     %ol
       - foreach( var user in users )
         %li
-          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( new Guid(user.ProviderUserKey.ToString()) ), user.UserName )
+          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( int.Parse(user.ProviderUserKey.ToString()) ), user.UserName )
   - else
     %p
       No users have been entered into the system yet.

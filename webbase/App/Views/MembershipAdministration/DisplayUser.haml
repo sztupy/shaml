@@ -56,7 +56,7 @@
         = ( user.User.LastLockoutDate == DateTime.MinValue ? user.User.LastLockoutDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Locked Out" )
       - if( user.User.IsLockedOut )
         %div
-        = Html.ActionLink<MembershipAdministrationController>( x => x.UnlockUser( new Guid(user.User.ProviderUserKey.ToString()) ), "(Unlock User)" )
+        = Html.ActionLink<MembershipAdministrationController>( x => x.UnlockUser( int.Parse(user.User.ProviderUserKey.ToString()) ), "(Unlock User)" )
     %div
       = Html.SubmitButton( "submitUpdateUserDetails", "Update User Details" )
 - if (user.RolesEnabled)
@@ -68,11 +68,11 @@
         %div
           - if( user.UsersRoles.Contains(role) )
             (
-            = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( new Guid(user.User.ProviderUserKey.ToString()), role ), "-" )
+            = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( int.Parse(user.User.ProviderUserKey.ToString()), role ), "-" )
             )
           - else
             (
-            = Html.ActionLink<MembershipAdministrationController>( x => x.AddUserToRole( new Guid(user.User.ProviderUserKey.ToString()), role ), "+" )
+            = Html.ActionLink<MembershipAdministrationController>( x => x.AddUserToRole( int.Parse(user.User.ProviderUserKey.ToString()), role ), "+" )
             )
           = Html.ActionLink<MembershipAdministrationController>( x=>x.Role(role), role )
     - else
@@ -133,5 +133,5 @@
   %legend
     Permanently Delete User
   %p
-    = Html.ActionLink( "Delete User", "DeleteUser", new{ id = new Guid(user.User.ProviderUserKey.ToString()) } )
+    = Html.ActionLink( "Delete User", "DeleteUser", new{ id = int.Parse(user.User.ProviderUserKey.ToString()) } )
     (This action cannot be undone.)

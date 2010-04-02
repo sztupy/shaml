@@ -7,7 +7,6 @@ using Shaml.Core;
 using System.Collections.Generic;
 using System;
 using DotNetOpenAuth.OpenId.RelyingParty;
-using Shaml.Membership.OpenIDMembershipProvider;
 using Shaml.Membership;
 using Shaml.Web;
 
@@ -24,14 +23,14 @@ namespace WebBase.Controllers
 
 		protected override string GetUserNameFromOpenIdIdentity( string openIdIdentity )
 		{
-            PgOpenIDMembershipProvider idprov = Provider as PgOpenIDMembershipProvider;
+            NHOpenIDMembershipProvider idprov = Provider as NHOpenIDMembershipProvider;
             string user = idprov.GetUserNameByOpenID(openIdIdentity);
             return user;
 		}
 
         protected override bool AddOpenIdIdentityToUserName(string user, string openIdIdentity)
         {
-            PgOpenIDMembershipProvider idprov = Provider as PgOpenIDMembershipProvider;
+            NHOpenIDMembershipProvider idprov = Provider as NHOpenIDMembershipProvider;
             MembershipCreateStatus status;
             idprov.AddIdToUserName(user, openIdIdentity, out status);
             return status == MembershipCreateStatus.Success;
@@ -39,7 +38,7 @@ namespace WebBase.Controllers
 
         protected override bool RemoveOpenIdIdentityFromUserName(string user, string openIdIdentity)
         {
-            PgOpenIDMembershipProvider idprov = Provider as PgOpenIDMembershipProvider;
+            NHOpenIDMembershipProvider idprov = Provider as NHOpenIDMembershipProvider;
             MembershipCreateStatus status;
             idprov.RemoveIdFromUserName(user, openIdIdentity, out status);
             return status == MembershipCreateStatus.Success;
@@ -47,7 +46,7 @@ namespace WebBase.Controllers
 
         protected override System.Collections.Generic.List<string> ListOpenIdIdentitiesForUserName(string user)
         {
-            PgOpenIDMembershipProvider idprov = Provider as PgOpenIDMembershipProvider;
+            NHOpenIDMembershipProvider idprov = Provider as NHOpenIDMembershipProvider;
             return idprov.GetOpenIDIdentifiersForUserName(user);
         }
 
@@ -85,7 +84,7 @@ namespace WebBase.Controllers
             try
             {
                 var user = Membership.CreateUser(username, Guid.NewGuid().ToString(), email);
-                PgOpenIDMembershipProvider idprov = Provider as PgOpenIDMembershipProvider;
+                NHOpenIDMembershipProvider idprov = Provider as NHOpenIDMembershipProvider;
                 MembershipCreateStatus status;
                 idprov.AddIdToUser(user, response.ClaimedIdentifier, out status);
                 if (status == MembershipCreateStatus.Success)

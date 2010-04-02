@@ -20,7 +20,7 @@ namespace WebBase.ApplicationServices
 			var rvd = new RouteValueDictionary( new{
 			                                       	controller = ControllerContext.RouteData.Values["controller"],
 			                                       	action = "UserDetails",
-			                                       	id = new Guid(user.ProviderUserKey.ToString())
+			                                       	id = user.ProviderUserKey
 			                                       } );
 			return RedirectToRoute( rvd );
 		}
@@ -99,7 +99,7 @@ namespace WebBase.ApplicationServices
 			return View( "UsersInRole" );
 		}
 
-		public virtual RedirectToRouteResult AddUserToRole( Guid userId, string roleName )
+		public virtual RedirectToRouteResult AddUserToRole( int userId, string roleName )
 		{
 			var user = Membership.GetUser( userId );
 			OnBeforeAddUserToRole( user.UserName, roleName );
@@ -108,7 +108,7 @@ namespace WebBase.ApplicationServices
 			return RedirectToUserPage( user );
 		}
 
-		public virtual RedirectToRouteResult RemoveUserFromRole( Guid userId, string roleName )
+		public virtual RedirectToRouteResult RemoveUserFromRole( int userId, string roleName )
 		{
 			var user = Membership.GetUser( userId );
 			OnBeforeRemoveUserFromRole( user.UserName, roleName );
@@ -131,7 +131,7 @@ namespace WebBase.ApplicationServices
 			return View( "ListUsers" );
 		}
 
-		public virtual ViewResult UserDetails( Guid id )
+		public virtual ViewResult UserDetails( int id )
 		{
 			var user = Membership.GetUser( id );
 			ViewData["Title"] = "User Details (" + user.UserName + ")";
@@ -180,7 +180,7 @@ namespace WebBase.ApplicationServices
 			return RedirectToUserPage( user );
 		}
 
-		public virtual RedirectToRouteResult UnlockUser( Guid id )
+		public virtual RedirectToRouteResult UnlockUser( int id )
 		{
 			var user = Membership.GetUser( id );
 			OnBeforeUnlockUser( user.UserName );
@@ -189,7 +189,7 @@ namespace WebBase.ApplicationServices
 			return RedirectToUserPage( user );
 		}
 
-		public virtual RedirectToRouteResult DeleteUser( Guid id )
+		public virtual RedirectToRouteResult DeleteUser( int id )
 		{
 			var user = Membership.GetUser( id );
 			OnBeforeDeleteUser( user.UserName );
@@ -237,7 +237,7 @@ namespace WebBase.ApplicationServices
 			if( password == passwordConfirm )
 			{
 				var providerUserKey = AssociateNewUserToProviderUserKey( userName, email );
-				if( providerUserKey == Guid.Empty )
+				if( providerUserKey == 0 )
 					user = Membership.CreateUser( userName, password, email, pwdQuestion, pwdAnswer, isApproved, out status );
 				else
 					user = Membership.CreateUser( userName, password, email, pwdQuestion, pwdAnswer, isApproved, providerUserKey, out status );
@@ -261,9 +261,9 @@ namespace WebBase.ApplicationServices
 		}
 
 		[NonAction]
-		protected virtual Guid AssociateNewUserToProviderUserKey( string userName, string email )
+		protected virtual int AssociateNewUserToProviderUserKey( string userName, string email )
 		{
-			return Guid.Empty;
+			return 0;
 		}
 
 		#endregion

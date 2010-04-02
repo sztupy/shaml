@@ -75,31 +75,31 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Rhino.Mocks.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Core, Version=0.9.3674.20900, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Core.Validator, Version=0.9.3674.20901, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Core.Validator">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Core.Validator.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Data, Version=0.9.3674.20900, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Data">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Membership, Version=0.9.3674.23407, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Membership">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Membership.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Testing, Version=0.9.3674.20901, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Testing">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Testing.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Tests, Version=0.9.3674.20901, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Tests">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Tests.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Web, Version=0.9.3674.20900, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Web">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Web.dll</HintPath>
     </Reference>

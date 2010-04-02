@@ -5,8 +5,8 @@ using Shaml.Web;
 
 namespace WebBase.Controllers
 {
-//	[Authorize( Roles="Administrator" )]
+	  [Authorize( Roles="Administrator" )]
     [GenericLogger]
-	[HandleError]
+	  [HandleError]
     public class MembershipAdministrationController : MembershipAdministrationController_Base{}
 }

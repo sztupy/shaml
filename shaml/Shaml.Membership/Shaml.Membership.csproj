@@ -32,14 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NauckIT.PostgreSQLProvider, Version=1.3.6.136, Culture=neutral, PublicKeyToken=e179b4c7dfb3984c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\webbase\libraries\NauckIT.PostgreSQLProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=2.0.6.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\webbase\libraries\Npgsql.dll</HintPath>
-    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.0.0.629, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate.Validator, Version=1.2.0.3001, Culture=neutral, PublicKeyToken=70154e18752585bd, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -63,24 +59,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountMembershipService.cs" />
-    <Compile Include="FormsAuthenticationService.cs" />
-    <Compile Include="IFormsAuthentication.cs" />
-    <Compile Include="IMembershipService.cs" />
-    <Compile Include="OpenIDMembershipProvider.cs" />
+    <Compile Include="Core\Profile.cs" />
+    <Compile Include="Core\ProfileData.cs" />
+    <Compile Include="Core\Role.cs" />
+    <Compile Include="Core\Session.cs" />
+    <Compile Include="Core\Users.cs" />
+    <Compile Include="Data\Overrides.cs" />
+    <Compile Include="Providers\NHProfileProvider.cs" />
+    <Compile Include="Providers\NHRoleProvider.cs" />
+    <Compile Include="Providers\NHSessionStateStoreProvider.cs" />
+    <Compile Include="Service\SerializationHelper.cs" />
+    <Compile Include="Service\AccountMembershipService.cs" />
+    <Compile Include="Service\FormsAuthenticationService.cs" />
+    <Compile Include="Service\IFormsAuthentication.cs" />
+    <Compile Include="Service\IMembershipService.cs" />
+    <Compile Include="Providers\NHOpenIDMembershipProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Shaml.Core\Shaml.Core.csproj">
+      <Project>{EFFDC7DB-C752-442C-80C2-7E0B500A3488}</Project>
+      <Name>Shaml.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shaml.Data\Shaml.Data.csproj">
+      <Project>{E6926443-87E3-4D4A-A378-73FFAC85B6BD}</Project>
+      <Name>Shaml.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

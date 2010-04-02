@@ -469,8 +469,6 @@ li.footer { float: left; width: 250px; height: 75px; list-style-type: none; bord
 #openid_form { width: 490px; }
 #openid_form legend { font-weight: bold; }
 
-#openid_choice { display: none; }
-
 #openid_input_area { clear: both; padding: 10px; }
 
 #openid_btns { clear: both; }

@@ -35,15 +35,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libraries\DotNetOpenAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Core, Version=0.9.3673.39063, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libraries\Shaml.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Membership, Version=0.9.3673.39243, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Membership">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libraries\Shaml.Membership.dll</HintPath>
     </Reference>
-    <Reference Include="Shaml.Web, Version=0.9.3673.39063, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Shaml.Web">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libraries\Shaml.Web.dll</HintPath>
     </Reference>

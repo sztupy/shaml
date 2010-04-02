@@ -13,9 +13,9 @@
     %ol
       - foreach( MembershipUser user in ( ViewData["Role"] as MembershipRoleViewData ).Users )
         %li
-          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( new Guid(user.ProviderUserKey.ToString()) ), user.UserName )
+          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( int.Parse(user.ProviderUserKey.ToString()) ), user.UserName )
           (
-          = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( new Guid(user.ProviderUserKey.ToString()), ( ViewData["Role"] as MembershipRoleViewData ).Name ), "Remove" )
+          = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( int.Parse(user.ProviderUserKey.ToString()), ( ViewData["Role"] as MembershipRoleViewData ).Name ), "Remove" )
           )
   - else
     %div

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web.Mvc;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
+using LinFu.IoC;
 using CommonServiceLocator.LinFuAdapter;
 using Microsoft.Practices.ServiceLocation;
 using Moq;
@@ -56,8 +55,8 @@ namespace Tests.Shaml.Web.ModelBinder
         {
             int id = 2;
             string employeeName = "Michael";
-            string employee2Id = "3";
-            string employee2Name = "Alec";
+            //string employee2Id = "3";
+            //string employee2Name = "Alec";
 
             // Arrange
             var formCollection = new NameValueCollection
@@ -180,8 +179,7 @@ namespace Tests.Shaml.Web.ModelBinder
             
             mockRepository.Setup(r => r.Get(It.IsAny<int>())).Returns((int newId) =>new Employee(newId));
 
-            container.AddService(Component.For<IRepositoryWithTypedId<Employee, int>>().Instance(mockRepository.Object));
-
+            container.AddService(typeof(IRepositoryWithTypedId<Employee, int>), mockRepository.Object);
 
             ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
         }

@@ -53,6 +53,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\webbase\libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\webbase\libraries\Newtonsoft.Json.dll</HintPath>
@@ -70,6 +71,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libraries\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -107,6 +109,7 @@
     <Compile Include="Shaml.Data\ValidatorTests.cs" />
     <Compile Include="Shaml.Web\CommonValidator\MvcValidationAdapterTests.cs" />
     <Compile Include="Shaml.Web\JsonNet\JsonNetResultTests.cs" />
+    <Compile Include="Shaml.Web\ModelBinder\SharpModelBinderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shaml.Core.Validator\Shaml.Core.Validator.csproj">
@@ -133,12 +136,6 @@
       <Project>{853089CD-2444-4817-A561-E0A10DACC7E0}</Project>
       <Name>Shaml.Web</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shaml.Web\ModelBinder\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

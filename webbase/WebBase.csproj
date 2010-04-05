@@ -125,10 +125,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Abstractions">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Routing">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -136,9 +136,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web.Mobile">
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\CommonAssemblyInfo.cs" />
@@ -166,13 +163,11 @@
     </Content>
     <Content Include="App\Views\MembershipAdministration\DisplayUser.haml" />
     <Content Include="App\Views\MembershipAdministration\ListUsers.haml">
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\MembershipAdministration\ResetPassword.haml">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\MembershipAdministration\UsersInRole.haml">
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\OpenId\Index.haml">
       <SubType>ASPXCodeBehind</SubType>

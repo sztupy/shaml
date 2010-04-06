@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{shaml}
-  s.version = "0.5.0_alpha"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zsolt Sz. Sztupak"]
@@ -9,21 +9,10 @@ Gem::Specification.new do |s|
   s.description = %q{Shaml is an ASP.NET MVC framework with NHibernate for mono 2.4+}
   s.email = %q{mail@sztupy.hu}
   s.executables = ["shaml"]
-  s.files = [
-    "lib/shaml.rb",
-    "bin/shaml",
-    "lib/templates/_WebSampleForm.haml",
-    "lib/templates/Create.haml",
-    "lib/templates/Delete.haml",
-    "lib/templates/Edit.haml",
-    "lib/templates/Index.haml",
-    "lib/templates/shaml_base_template.zip",
-    "lib/templates/Show.haml",
-    "lib/templates/WebSample.cs",
-    "lib/templates/WebSamplesController.cs",
-    "lib/templates/WebSamplesControllerTests.cs",
-    "lib/templates/WebSampleTests.cs"
-  ]
+  s.files = ["bin/shaml","lib/shaml/templates/shaml_base_template.dat"] + 
+            Dir.glob("lib/**/*.rb") + 
+            Dir.glob("lib/**/*.haml") + 
+            Dir.glob("lib/**/*.cs")
   s.homepage = %q{http://code.google.com/p/shaml-architecture/}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
@@ -31,6 +20,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{ASP.NET MVC on mono}
   s.test_files = [  ]
+
+  puts s.files
  
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

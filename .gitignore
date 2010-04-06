@@ -13,6 +13,8 @@ StyleCop.Cache
 *.LDF
 *~
 PrecompiledWeb
+shaml-*.gem
+*.swp
 *.suo
 *.cache
 *.user

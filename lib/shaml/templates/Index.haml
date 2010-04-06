@@ -5,16 +5,16 @@
   %table
     %thead
       %tr
-__BEGIN__PROPERTY__          
+// TODO: List of properties begin
         %th Property
-__END__PROPERTY__  
+// TODO: List of properties end
         %th{ colspan=3 } Action
     %tbody
       - foreach (WebSample websample in ViewData.Model)
         %tr
-__BEGIN__PROPERTY__          
+// TODO: List of properties begin
           %td= websample.Property
-__END__PROPERTY__  
+// TODO: List of properties end
           %td
             = Html.ActionLink<WebSamplesController>( c => c.Show( websample.Id ), "Details ")
           %td

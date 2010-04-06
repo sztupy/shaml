@@ -1,32 +1,24 @@
 using System.Web.Mvc;
-using System.Collections.Generic;
-using System.Text;
-using System;
-using Shaml.Core;
-using Shaml.Core.DomainModel;
-using Shaml.Core.PersistenceSupport;
-using Shaml.Web.NHibernate;
-using Shaml.Web.CommonValidator;
-using NHibernate.Validator.Engine;
 using WebBase.Core;
-using Shaml.Data.NHibernate;
+using SharpArch.Core.PersistenceSupport;
+using SharpArch.Core.DomainModel;
+using System.Collections.Generic;
+using System;
+using SharpArch.Web.NHibernate;
+using NHibernate.Validator.Engine;
+using System.Text;
+using SharpArch.Web.CommonValidator;
+using SharpArch.Core;
 
 namespace WebBase.Controllers
 {
     [HandleError]
-    [GenericLogger]
     public class WebSamplesController : Controller
     {
-        private readonly IRepository<WebSample> websampleRepository;
+        public WebSamplesController(IRepository<WebSample> websampleRepository) {
+            Check.Require(websampleRepository != null, "websampleRepository may not be null");
 
-        public WebSamplesController()
-        {
-            websampleRepository = new Repository<WebSample>();
-        }
-
-        public WebSamplesController(IRepository<WebSample> rep)
-        {
-            websampleRepository = rep;
+            this.websampleRepository = websampleRepository;
         }
 
         [Transaction]
@@ -42,67 +34,63 @@ namespace WebBase.Controllers
         }
 
         public ActionResult Create() {
-            return View();
+            WebSampleFormViewModel viewModel = WebSampleFormViewModel.CreateWebSampleFormViewModel();
+            return View(viewModel);
         }
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Transaction]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(WebSample websample) {
-            if (websample.IsValid()) {
+            if (ViewData.ModelState.IsValid && websample.IsValid()) {
                 websampleRepository.SaveOrUpdate(websample);
 
-                TempData["message"] = "The websample was successfully created.";
+                TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()] = 
+					"The websample was successfully created.";
                 return RedirectToAction("Index");
             }
 
-            MvcValidationAdapter.TransferValidationMessagesTo(ViewData.ModelState,
-                websample.ValidationResults());
-            return View();
+            WebSampleFormViewModel viewModel = WebSampleFormViewModel.CreateWebSampleFormViewModel();
+            viewModel.WebSample = websample;
+            return View(viewModel);
         }
 
         [Transaction]
         public ActionResult Edit(int id) {
-            WebSample websample = websampleRepository.Get(id);
-            return View(websample);
+            WebSampleFormViewModel viewModel = WebSampleFormViewModel.CreateWebSampleFormViewModel();
+            viewModel.WebSample = websampleRepository.Get(id);
+            return View(viewModel);
         }
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Transaction]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, [ModelBinder(typeof(DefaultModelBinder))] WebSample websample) {
-            WebSample websampleToUpdate = websampleRepository.Get(id);
+        public ActionResult Edit(WebSample websample) {
+            WebSample websampleToUpdate = websampleRepository.Get(websample.Id);
             TransferFormValuesTo(websampleToUpdate, websample);
 
-            if (websampleToUpdate.IsValid()) {
-                TempData["message"] = "The websample was successfully updated.";
+            if (ViewData.ModelState.IsValid && websample.IsValid()) {
+                TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()] = 
+					"The websample was successfully updated.";
                 return RedirectToAction("Index");
             }
             else {
                 websampleRepository.DbContext.RollbackTransaction();
-                MvcValidationAdapter.TransferValidationMessagesTo(ViewData.ModelState, 
-                    websampleToUpdate.ValidationResults());
-                return View(websampleToUpdate);
+
+				WebSampleFormViewModel viewModel = WebSampleFormViewModel.CreateWebSampleFormViewModel();
+				viewModel.WebSample = websample;
+				return View(viewModel);
             }
         }
 
         private void TransferFormValuesTo(WebSample websampleToUpdate, WebSample websampleFromForm) {
-__BEGIN__PROPERTY__
-          websampleToUpdate.Property = websampleFromForm.Property;
-__END__PROPERTY__
+          // TODO: Add copy methods
         }
 
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Delete(int id)
-        {
-            WebSample websampleToDelete = websampleRepository.Get(id);
-            return View(websampleToDelete);
-        }
-
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Transaction]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult DeleteConfirmed(int id) {
+        public ActionResult Delete(int id) {
             string resultMessage = "The websample was successfully deleted.";
             WebSample websampleToDelete = websampleRepository.Get(id);
 
@@ -114,7 +102,7 @@ __END__PROPERTY__
                 }
                 catch {
                     resultMessage = "A problem was encountered preventing the websample from being deleted. " +
-                          "Another item likely depends on this websample.";
+						"Another item likely depends on this websample.";
                     websampleRepository.DbContext.RollbackTransaction();
                 }
             }
@@ -122,9 +110,31 @@ __END__PROPERTY__
                 resultMessage = "The websample could not be found for deletion. It may already have been deleted.";
             }
 
-            TempData["Message"] = resultMessage;
+            TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()] = resultMessage;
             return RedirectToAction("Index");
         }
 
+		/// <summary>
+		/// Holds data to be passed to the WebSample form for creates and edits
+		/// </summary>
+        public class WebSampleFormViewModel
+        {
+            private WebSampleFormViewModel() { }
+
+			/// <summary>
+			/// Creation method for creating the view model. Services may be passed to the creation 
+			/// method to instantiate items such as lists for drop down boxes.
+			/// </summary>
+            public static WebSampleFormViewModel CreateWebSampleFormViewModel() {
+                WebSampleFormViewModel viewModel = new WebSampleFormViewModel();
+                
+                return viewModel;
+            }
+
+            public WebSample WebSample { get; internal set; }
+        }
+
+        private readonly IRepository<WebSample> websampleRepository;
     }
 }
+

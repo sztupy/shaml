@@ -453,7 +453,7 @@ body { background-color: #f6d1b3; }
 #rightColumn { display: inline; float: left; margin-right: 0; width: 710px; }
 * html #rightColumn { overflow-x: hidden; }
 
-#footer { background-color: #823838; border-top: 1px solid #612d02; color: #eeeeee; height: 75px; text-align: center; }
+#footer { background-color: #823838; border-top: 1px solid #612D02; color: #eeeeee; height: 75px; text-align: center; }
 #footer a { color: white; }
 #footer a:hover { color: #eeeeee; }
 

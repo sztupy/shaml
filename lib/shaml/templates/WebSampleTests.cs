@@ -10,10 +10,12 @@ namespace Tests.Blog.Core
         [Test]
         public void CanCompareWebSamples() {
             WebSample instance = new WebSample();
+            EntityIdSetter.SetIdOf<int>(instance, 1);
 
             WebSample instanceToCompareTo = new WebSample();
+            EntityIdSetter.SetIdOf<int>(instanceToCompareTo, 1);
 
-            Assert.That(instance.Equals(instanceToCompareTo));
+            instance.ShouldEqual(instanceToCompareTo);
         }
     }
 }

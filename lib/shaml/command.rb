@@ -1,5 +1,6 @@
 require 'zip/zip'
 
+module Shaml
 class CommandLoader
   def initialize
   end
@@ -59,23 +60,26 @@ class CommandLoader
       puts "Where command might be:"
       puts " generate"
       puts "  app AppName             : Create new shaml application"
-      puts "  resource ResName [desc] : Create new CRUD resource with"
+      puts "  resource ResName        : Create new CRUD resource with"
       puts "                            a model, a view and a controller"
       puts "  controller Controller   : Create a standalone controller"
-      puts "  model Model [desc]      : Create a standalone model"
+      puts "  model Model             : Create a standalone model"
       puts
-      puts " compile                  : Compiles the solution under mono"
-      puts
+      puts " compile                  : Compiles the solution using xbuild"
       puts " server                   : Runs xsp2"
+      puts
+      puts " console                  : Starts a csharp console"
+      puts " gconsole                 : Starts a gsharp console"
+      puts " runner script_name.cs    : Runs the script"
       puts
       puts "Examples: "
       puts "  shaml generate app Blog"
       puts "  shaml generate resource Post"
       puts "  shaml compile"
       puts
-      puts "The optional [desc] parameter describes the base schema"
-      puts "of the model. Here is an example how it looks like:"
-      puts "  name:string;email:string;birthdate:DateTime"
+      puts "The console, gconsole and runner parameters will preload the solutions"
+      puts "assemblies and configuration files, and loads everything you need to get"
+      puts "working with the domain objects"
     else
       command = ARGV.shift
       case command
@@ -146,27 +150,18 @@ class CommandLoader
           FileUtils.rm_r(File.join(appname,"bin"))
         rescue Exception => e
         end
-        begin    
-          FileUtils.rm_r(File.join(appname+".Tests","bin"))    
-        rescue Exception => e
-        end    
         FileUtils.cp_r("libraries",File.join(appname,"bin"))
-        puts "Compiling using gmcs"    
-        system("gmcs -recurse:#{File.join(appname,"*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web -t:library -out:#{File.join(appname,"bin",appname+".dll")}")
-        FileUtils.cp_r("libraries",File.join(appname+".Tests","bin"))    
-        FileUtils.cp(File.join(appname,"bin",appname+".dll"),File.join(appname+".Tests","bin"))
-        system("gmcs -recurse:#{File.join(appname+".Tests","*.cs")} `ls libraries/*.dll | sed \"s/libr/-r:libr/\"` -r:System.Web.Routing -r:System.Web     -r:#{File.join(appname,"bin",appname+".dll")} -t:library -out:#{File.join(appname+".Tests","bin",appname+"Tests.dll")}")
+        puts "Compiling using xbuild"
+        system("xbuild #{appname}.sln")
         puts "Compiling stylesheets"        
         Dir.chdir(appname) do    
-          system("compass --update")
+          system("compass --update -c Config/compass_config.rb")
         end
       when "server"
         puts "Starting xsp2"    
         appname = getappname
         Dir.chdir(appname) do
           puts "Changed directory to #{Dir.pwd}"
-          ENV["MONO_PATH"] = File.join(Dir.pwd,"bin")
-          puts "Set MONO_PATH to #{ENV["MONO_PATH"]}"
           puts "Starting xsp2 #{ARGV.join(" ")}"
           system("xsp2 #{ARGV.join(" ")}")
           puts "Done..."      
@@ -176,4 +171,5 @@ class CommandLoader
       end
     end
   end
+end
 end

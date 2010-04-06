@@ -6,6 +6,8 @@ using Shaml.Core.PersistenceSupport;
 using Shaml.Testing;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using WebBase;
+using WebBase.Config;
 using WebBase.Core;
 using WebBase.Controllers;
 
@@ -16,46 +18,47 @@ namespace Tests.Blog.Web.Controllers
     {
         [SetUp]
         public void SetUp() {
+            ServiceLocatorInitializer.Init();
             controller = new WebSamplesController(CreateMockWebSampleRepository());
         }
 
         /// <summary>
         /// Add a couple of objects to the list within CreateWebSamples and change the 
-        /// "Is.EqualTo(0)" within this test to the respective number.
+        /// "ShouldEqual(0)" within this test to the respective number.
         /// </summary>
         [Test]
         public void CanListWebSamples() {
             ViewResult result = controller.Index().AssertViewRendered();
 
-            Assert.That(result.ViewData.Model as List<WebSample>, Is.Not.Null);
-            Assert.That((result.ViewData.Model as List<WebSample>).Count, Is.EqualTo(0));
+            result.ViewData.Model.ShouldNotBeNull();
+            (result.ViewData.Model as List<WebSample>).Count.ShouldEqual(0);
         }
 
         [Test]
         public void CanShowWebSample() {
             ViewResult result = controller.Show(1).AssertViewRendered();
 
-            Assert.That(result.ViewData.Model as WebSample, Is.Not.Null);
-            Assert.That((result.ViewData.Model as WebSample).Id, Is.EqualTo(1));
+			result.ViewData.ShouldNotBeNull();
+			
+            (result.ViewData.Model as WebSample).Id.ShouldEqual(1);
         }
 
         [Test]
         public void CanInitWebSampleCreation() {
             ViewResult result = controller.Create().AssertViewRendered();
-
-            Assert.That(result.ViewData.Model as WebSample, Is.Null);
+            
+            result.ViewData.Model.ShouldNotBeNull();
+            result.ViewData.Model.ShouldBeOfType(typeof(WebSamplesController.WebSampleFormViewModel));
+            (result.ViewData.Model as WebSamplesController.WebSampleFormViewModel).WebSample.ShouldBeNull();
         }
 
         [Test]
         public void CanEnsureWebSampleCreationIsValid() {
-           WebSample websampleFromForm = new WebSample();
+            WebSample websampleFromForm = new WebSample();
             ViewResult result = controller.Create(websampleFromForm).AssertViewRendered();
 
-            Assert.That(result.ViewData.Model as WebSample, Is.Null);
-            Assert.That(result.ViewData.ModelState.Count, Is.GreaterThan(0));
-
-            // Example validation message test for lower level testing
-            // Assert.That(result.ViewData.ModelState["WebSample.Name"].Errors[0].ErrorMessage, Is.Not.Empty);
+            result.ViewData.Model.ShouldNotBeNull();
+            result.ViewData.Model.ShouldBeOfType(typeof(WebSamplesController.WebSampleFormViewModel));
         }
 
         [Test]
@@ -63,52 +66,52 @@ namespace Tests.Blog.Web.Controllers
             WebSample websampleFromForm = CreateTransientWebSample();
             RedirectToRouteResult redirectResult = controller.Create(websampleFromForm)
                 .AssertActionRedirect().ToAction("Index");
-            Assert.That(controller.TempData["message"].ToString().Contains("was successfully created"));
+            controller.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()].ToString()
+				.ShouldContain("was successfully created");
         }
 
         [Test]
         public void CanUpdateWebSample() {
             WebSample websampleFromForm = CreateTransientWebSample();
-            RedirectToRouteResult redirectResult = controller.Edit(1, websampleFromForm)
+            EntityIdSetter.SetIdOf<int>(websampleFromForm, 1);
+            RedirectToRouteResult redirectResult = controller.Edit(websampleFromForm)
                 .AssertActionRedirect().ToAction("Index");
-            Assert.That(controller.TempData["message"].ToString().Contains("was successfully updated"));
+            controller.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()].ToString()
+				.ShouldContain("was successfully updated");
         }
 
         [Test]
         public void CanInitWebSampleEdit() {
             ViewResult result = controller.Edit(1).AssertViewRendered();
 
-            Assert.That(result.ViewData.Model as WebSample, Is.Not.Null);
-            Assert.That((result.ViewData.Model as WebSample).Id, Is.EqualTo(1));
+			result.ViewData.Model.ShouldNotBeNull();
+            result.ViewData.Model.ShouldBeOfType(typeof(WebSamplesController.WebSampleFormViewModel));
+            (result.ViewData.Model as WebSamplesController.WebSampleFormViewModel).WebSample.Id.ShouldEqual(1);
         }
 
         [Test]
         public void CanDeleteWebSample() {
-            RedirectToRouteResult redirectResult = controller.DeleteConfirmed(1)
+            RedirectToRouteResult redirectResult = controller.Delete(1)
                 .AssertActionRedirect().ToAction("Index");
-            Assert.That(controller.TempData["message"].ToString().Contains("was successfully deleted"));
+            
+            controller.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()].ToString()
+				.ShouldContain("was successfully deleted");
         }
 
 		#region Create Mock WebSample Repository
 
         private IRepository<WebSample> CreateMockWebSampleRepository() {
-            MockRepository mocks = new MockRepository();
 
-            IRepository<WebSample> mockedRepository = mocks.StrictMock<IRepository<WebSample>>();
-            Expect.Call(mockedRepository.GetAll())
-                .Return(CreateWebSamples());
-            Expect.Call(mockedRepository.Get(1)).IgnoreArguments()
-                .Return(CreateWebSample());
-            Expect.Call(mockedRepository.SaveOrUpdate(null)).IgnoreArguments()
-                .Return(CreateWebSample());
-            Expect.Call(delegate { mockedRepository.Delete(null); }).IgnoreArguments();
+            IRepository<WebSample> mockedRepository = MockRepository.GenerateMock<IRepository<WebSample>>();
+            mockedRepository.Expect(mr => mr.GetAll()).Return(CreateWebSamples());
+            mockedRepository.Expect(mr => mr.Get(1)).IgnoreArguments().Return(CreateWebSample());
+            mockedRepository.Expect(mr => mr.SaveOrUpdate(null)).IgnoreArguments().Return(CreateWebSample());
+            mockedRepository.Expect(mr => mr.Delete(null)).IgnoreArguments();
 
-            IDbContext mockedDbContext = mocks.StrictMock<IDbContext>();
-            Expect.Call(delegate { mockedDbContext.CommitChanges(); });
-            SetupResult.For(mockedRepository.DbContext).Return(mockedDbContext);
+			IDbContext mockedDbContext = MockRepository.GenerateStub<IDbContext>();
+			mockedDbContext.Stub(c => c.CommitChanges());
+			mockedRepository.Stub(mr => mr.DbContext).Return(mockedDbContext);
             
-            mocks.Replay(mockedRepository);
-
             return mockedRepository;
         }
 
@@ -118,10 +121,10 @@ namespace Tests.Blog.Web.Controllers
             return websample;
         }
 
-        private List<WebSample> CreateWebSamples() {
-            List<WebSample> websamples = new List<WebSample>();
+          private List<WebSample> CreateWebSamples() {
+              List<WebSample> websamples = new List<WebSample>();
 
-            // Create a number of websample object instances here and add them to the list
+            // Create a number of domain object instances here and add them to the list
 
             return websamples;
         }
@@ -133,9 +136,7 @@ namespace Tests.Blog.Web.Controllers
         /// </summary>
         private WebSample CreateTransientWebSample() {
             WebSample websample = new WebSample() {
-__BEGIN__PROPERTY__
-            Property = new PropertyType(),
-__END__PROPERTY__
+              //TODO: Create the properties of the object
             };
             
             return websample;

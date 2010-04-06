@@ -1,6 +1,7 @@
 require 'rbconfig'
 require 'fileutils'
 
+module Shaml
 class MonoLoader
   def initialize
     @mono_command = '/bin/mono'
@@ -87,4 +88,5 @@ class MonoLoader
     system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{gs}\"")
     delete_init_script("gsharp") 
   end
+end
 end

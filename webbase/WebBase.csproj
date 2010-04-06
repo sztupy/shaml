@@ -240,4 +240,8 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(ProjectDir)"
+compass --update -c "Config/compass_config.rb" --trace</PostBuildEvent>
+  </PropertyGroup>
 </Project>

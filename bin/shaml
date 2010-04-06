@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
-require 'shaml'
-Command.run
+require 'rubygems'
+require 'shaml/shaml'
+Shaml::Command.run

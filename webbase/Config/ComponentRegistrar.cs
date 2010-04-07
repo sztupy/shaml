@@ -11,6 +11,8 @@ using Microsoft.Practices.ServiceLocation;
 using CommonServiceLocator.LinFuAdapter;
 using System.Web.Mvc;
 using Shaml.Web.LinFu;
+using System.Reflection;
+using WebBase.Core;
 
 namespace WebBase.Config
 {
@@ -21,36 +23,36 @@ namespace WebBase.Config
             AddCustomRepositoriesTo(container);
             AddApplicationServicesTo(container);
 
-            container.AddService("validator", typeof(IValidator), typeof(Validator), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(IValidator), typeof(Validator), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
         }
 
         private static void AddApplicationServicesTo(IServiceContainer container)
         {
-            container.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"libraries"), "WebBase.ApplicationServices");
+            container.LoadFrom(Assembly.GetAssembly(typeof(WebBase.ApplicationServices.MembershipAdministrationController_Base)));
         }
 
         private static void AddCustomRepositoriesTo(IServiceContainer container)
         {
-            container.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libraries"), "WebBase.Data");
-            container.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libraries"), "WebBase.Core");
+            container.LoadFrom(Assembly.GetAssembly(typeof(WebBase.Data.Mapping.AutoPersistenceModelGenerator)));
+            container.LoadFrom(Assembly.GetAssembly(typeof(WebBase.Core.WebSample)));
         }
 
         private static void AddGenericRepositoriesTo(IServiceContainer container)
         {
-            container.AddService("entityDuplicateChecker",  typeof(IEntityDuplicateChecker), typeof(EntityDuplicateChecker), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
-            container.AddService("repositoryType",  typeof(IRepository<>), typeof(Repository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
-            container.AddService("nhibernateRepositoryType",  typeof(INHibernateRepository<>), typeof(NHibernateRepository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
-            container.AddService("repositoryWithTypedId",  typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
-            container.AddService("nhibernateRepositoryWithTypedId",  typeof(INHibernateRepositoryWithTypedId<,>), typeof(NHibernateRepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(IEntityDuplicateChecker), typeof(EntityDuplicateChecker), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(IRepository<>), typeof(Repository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(INHibernateRepository<>), typeof(NHibernateRepository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(INHibernateRepositoryWithTypedId<,>), typeof(NHibernateRepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
         }
 
         public static void InitializeServiceLocator()
         {
-          ServiceContainer container = new ServiceContainer();
-          AddComponentsTo(container);
+            ServiceContainer container = new ServiceContainer();
+            AddComponentsTo(container);
 
-          ControllerBuilder.Current.SetControllerFactory(new LinFuControllerFactory(container));
-          ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
+            ControllerBuilder.Current.SetControllerFactory(new LinFuControllerFactory(container));
+            ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
         }
     }
 }

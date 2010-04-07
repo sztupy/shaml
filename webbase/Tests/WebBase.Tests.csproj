@@ -159,15 +159,13 @@
     <Compile Include="..\Config\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\WebSamplesControllerTests.cs" />
+    <Compile Include="Core\WebSampleTests.cs" />
     <Compile Include="Data\EntityDuplicateCheckerStub.cs" />
     <Compile Include="ServiceLocatorInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Core\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

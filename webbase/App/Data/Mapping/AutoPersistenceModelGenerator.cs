@@ -19,7 +19,7 @@ namespace WebBase.Data.Mapping
         public AutoPersistenceModel Generate()
         {
             var mappings = new AutoPersistenceModel();
-            mappings.AddEntityAssembly(typeof(Class1).Assembly).Where(GetAutoMappingFilter);
+            mappings.AddEntityAssembly(typeof(WebSample).Assembly).Where(GetAutoMappingFilter);
             mappings.Conventions.Setup(GetConventions());
             mappings.Setup(GetSetup());
             mappings.IgnoreBase<Entity>();

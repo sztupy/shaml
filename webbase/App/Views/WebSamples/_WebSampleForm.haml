@@ -1,0 +1,17 @@
+@namespace=WebBase.Controllers
+@type=WebSamplesController.WebSampleFormViewModel
+= Html.ValidationSummary()
+- using (Html.BeginForm()) 
+  = Html.AntiForgeryToken()
+  = Html.Hidden("WebSample.Id", Model.WebSample.Id )
+  %ul
+    // list of properties begin
+    %li
+      %label{ for="WebSample_Property" }Property:
+        %div
+          = Html.TextBox("WebSample.Property", Model.WebSample.Property )
+          = Html.ValidationMessage("WebSample.Property")
+    // list of properties end
+    %li
+      %input{ type="submit" name="btnSave" value="Save WebSample"}/
+        %button{ name="btnCancel" onClick="window.location.href = '/WebSamples';"} Cancel

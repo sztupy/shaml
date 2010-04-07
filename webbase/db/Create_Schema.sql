@@ -1,19 +1,27 @@
 
-    drop table if exists Roles cascade
+    drop table if exists WebSamples cascade;
 
-    drop table if exists Roles_Users cascade
+    drop table if exists Roles cascade;
 
-    drop table if exists Profiles cascade
+    drop table if exists Roles_Users cascade;
 
-    drop table if exists Sessions cascade
+    drop table if exists Profiles cascade;
 
-    drop table if exists Users cascade
+    drop table if exists Sessions cascade;
 
-    drop table if exists OpenIdAlternatives cascade
+    drop table if exists Users cascade;
 
-    drop table if exists ProfileDatas cascade
+    drop table if exists OpenIdAlternatives cascade;
 
-    drop table if exists hibernate_unique_key cascade
+    drop table if exists ProfileDatas cascade;
+
+    drop table if exists hibernate_unique_key cascade;
+
+    create table WebSamples (
+        Id int4 not null,
+       Property varchar(255),
+       primary key (Id)
+    );
 
     create table Roles (
         Id int4 not null,
@@ -21,13 +29,13 @@
        ApplicationName varchar(255),
        primary key (Id),
       unique (Name, ApplicationName)
-    )
+    );
 
     create table Roles_Users (
         RoleFk int4 not null,
        UserFk int4 not null,
        primary key (UserFk, RoleFk)
-    )
+    );
 
     create table Profiles (
         Id int4 not null,
@@ -37,7 +45,7 @@
        LastUpdatedDate timestamp,
        UserFk int4,
        primary key (Id)
-    )
+    );
 
     create table Sessions (
         Id int4 not null,
@@ -53,7 +61,7 @@
        Flags int4,
        primary key (Id),
       unique (SessionId)
-    )
+    );
 
     create table Users (
         Id int4 not null,
@@ -79,12 +87,12 @@
        UserProfileFk int4,
        primary key (Id),
       unique (Username, ApplicationName)
-    )
+    );
 
     create table OpenIdAlternatives (
         User_id int4 not null,
        Value varchar(255)
-    )
+    );
 
     create table ProfileDatas (
         Id int4 not null,
@@ -93,44 +101,44 @@
        ValueBinary bytea,
        ProfileFk int4,
        primary key (Id)
-    )
+    );
 
     alter table Roles_Users 
-        add constraint FKCB323D5A638CFADF 
+        add constraint FKE25CEFA09DCE619A 
         foreign key (UserFk) 
-        references Users
+        references Users;
 
     alter table Roles_Users 
-        add constraint FKCB323D5A9757D337 
+        add constraint FKE25CEFA0F508E278 
         foreign key (RoleFk) 
-        references Roles
+        references Roles;
 
     alter table Profiles 
-        add constraint FK85C1A0B638CFADF 
+        add constraint FKF9BEAD9C9DCE619A 
         foreign key (UserFk) 
-        references Users
+        references Users;
 
-    create index users_email_index on Users (Email)
+    create index users_email_index on Users (Email);
 
-    create index users_islockedout_index on Users (IsLockedOut)
+    create index users_islockedout_index on Users (IsLockedOut);
 
     alter table Users 
-        add constraint FK2C1C7FE59DABAF15 
+        add constraint FK617D3C3A298905ED 
         foreign key (UserProfileFk) 
-        references Profiles
+        references Profiles;
 
     alter table OpenIdAlternatives 
-        add constraint FKDFDB839038B0E3C4 
+        add constraint FK9074A596BF38FCB 
         foreign key (User_id) 
-        references Users
+        references Users;
 
     alter table ProfileDatas 
-        add constraint FKBA918E802DDA97A3 
+        add constraint FKFE5D3DEC7BF48426 
         foreign key (ProfileFk) 
-        references Profiles
+        references Profiles;
 
     create table hibernate_unique_key (
          next_hi int4 
-    )
+    );
 
-    insert into hibernate_unique_key values ( 1 )
+    insert into hibernate_unique_key values ( 1 );

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using Shaml.Core.CommonValidator;
+using System.Text;
 
 namespace Shaml.Core.DomainModel
 {
@@ -61,6 +62,47 @@ namespace Shaml.Core.DomainModel
         public virtual bool IsTransient() {
             return Id == null || Id.Equals(default(IdT));
         }
+
+        #endregion
+
+        #region ToString
+
+        public override string ToString() {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("{");
+                Type t = this.GetType();
+                PropertyInfo[] pi = t.GetProperties();
+                foreach(PropertyInfo prop in pi) {
+                    object value;
+                    try
+                    {
+                        value = prop.GetValue(this, null);
+                    }
+                    catch (Exception)
+                    {
+                        value = null;
+                    }
+                    if (value != null)
+                    {
+                        sb.AppendFormat("{0}:{1}; ", prop.Name, prop.GetValue(this, null).ToString());
+                    }
+                    else
+                    {
+                        sb.AppendFormat("{0}:?; ", prop.Name);
+                    }
+                }
+                sb.Append("}");
+                cachedToString = sb.ToString();
+            }
+            catch (Exception)
+            {
+                cachedToString = base.ToString();
+            }
+            return cachedToString;
+        }
+        private string cachedToString = null;
 
         #endregion
 

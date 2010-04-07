@@ -1,4 +1,8 @@
-﻿%div
+﻿@namespace=WebBase.Core
+@namespace=WebBase.Controllers
+@namespace=Microsoft.Web.Mvc
+@type=WebSample
+%div
   %h2 Delete WebSample
   %p Are you sure?
   - using (Html.BeginForm<WebSamplesController>(c => c.DeleteConfirmed(ViewData.Model.Id)))

@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using Shaml.Core.PersistenceSupport;
 using Shaml.Testing;
+using Shaml.Testing.NUnit;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using WebBase;
@@ -54,8 +55,8 @@ namespace Tests.Blog.Web.Controllers
 
         [Test]
         public void CanEnsureWebSampleCreationIsValid() {
-            WebSample websampleFromForm = new WebSample();
-            ViewResult result = controller.Create(websampleFromForm).AssertViewRendered();
+            WebSample WebSampleFromForm = new WebSample();
+            ViewResult result = controller.Create(WebSampleFromForm).AssertViewRendered();
 
             result.ViewData.Model.ShouldNotBeNull();
             result.ViewData.Model.ShouldBeOfType(typeof(WebSamplesController.WebSampleFormViewModel));
@@ -63,8 +64,8 @@ namespace Tests.Blog.Web.Controllers
 
         [Test]
         public void CanCreateWebSample() {
-            WebSample websampleFromForm = CreateTransientWebSample();
-            RedirectToRouteResult redirectResult = controller.Create(websampleFromForm)
+            WebSample WebSampleFromForm = CreateTransientWebSample();
+            RedirectToRouteResult redirectResult = controller.Create(WebSampleFromForm)
                 .AssertActionRedirect().ToAction("Index");
             controller.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()].ToString()
 				.ShouldContain("was successfully created");
@@ -72,9 +73,9 @@ namespace Tests.Blog.Web.Controllers
 
         [Test]
         public void CanUpdateWebSample() {
-            WebSample websampleFromForm = CreateTransientWebSample();
-            EntityIdSetter.SetIdOf<int>(websampleFromForm, 1);
-            RedirectToRouteResult redirectResult = controller.Edit(websampleFromForm)
+            WebSample WebSampleFromForm = CreateTransientWebSample();
+            EntityIdSetter.SetIdOf<int>(WebSampleFromForm, 1);
+            RedirectToRouteResult redirectResult = controller.Edit(WebSampleFromForm)
                 .AssertActionRedirect().ToAction("Index");
             controller.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()].ToString()
 				.ShouldContain("was successfully updated");
@@ -116,17 +117,17 @@ namespace Tests.Blog.Web.Controllers
         }
 
         private WebSample CreateWebSample() {
-            WebSample websample = CreateTransientWebSample();
-            EntityIdSetter.SetIdOf<int>(websample, 1);
-            return websample;
+            WebSample WebSample = CreateTransientWebSample();
+            EntityIdSetter.SetIdOf<int>(WebSample, 1);
+            return WebSample;
         }
 
           private List<WebSample> CreateWebSamples() {
-              List<WebSample> websamples = new List<WebSample>();
+              List<WebSample> WebSamples = new List<WebSample>();
 
             // Create a number of domain object instances here and add them to the list
 
-            return websamples;
+            return WebSamples;
         }
         
         #endregion
@@ -135,11 +136,12 @@ namespace Tests.Blog.Web.Controllers
         /// Creates a valid, transient WebSample; typical of something retrieved back from a form submission
         /// </summary>
         private WebSample CreateTransientWebSample() {
-            WebSample websample = new WebSample() {
-              //TODO: Create the properties of the object
+            WebSample WebSample = new WebSample() {
+                //TODO: Create the properties of the object
+                Property = "property"
             };
             
-            return websample;
+            return WebSample;
         }
 
         private WebSamplesController controller;

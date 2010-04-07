@@ -1,5 +1,31 @@
 require 'zip/zip'
 
+Script = <<"SCRIPT"
+using System;
+using System.IO;
+using System.Collections.Generic;
+using WebBase.Data.Mapping;
+using WebBase.Core;
+using Shaml.Membership.Core;
+using Shaml.Data.NHibernate;
+using Shaml.Testing.NHibernate;
+using NHibernate;
+using NHibernate.Metadata;
+using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
+using NHibernate.Criterion;
+
+Configuration configuration;
+string[] mappingAssemblies = new string[1];
+mappingAssemblies[0] = "bin/WebBase.Data.dll";
+configuration = NHibernateSession.Init(
+  new SimpleSessionStorage(), mappingAssemblies,
+  new AutoPersistenceModelGenerator().Generate(),
+  "Config/NHibernate.config");
+WebBase.Config.ComponentRegistrar.InitializeServiceLocator();
+var s = NHibernateSession.GetDefaultSessionFactory().OpenSession();
+SCRIPT
+
 module Shaml
 class CommandLoader
   def initialize
@@ -69,7 +95,6 @@ class CommandLoader
       puts " server                   : Runs xsp2"
       puts
       puts " console                  : Starts a csharp console"
-      puts " gconsole                 : Starts a gsharp console"
       puts " runner script_name.cs    : Runs the script"
       puts
       puts "Examples: "
@@ -77,7 +102,7 @@ class CommandLoader
       puts "  shaml generate resource Post"
       puts "  shaml compile"
       puts
-      puts "The console, gconsole and runner parameters will preload the solutions"
+      puts "The console and runner parameters will preload the solutions"
       puts "assemblies and configuration files, and loads everything you need to get"
       puts "working with the domain objects"
     else
@@ -166,6 +191,27 @@ class CommandLoader
           system("xsp2 #{ARGV.join(" ")}")
           puts "Done..."      
         end
+      when "console"
+        appname = getappname
+        script = Script + <<SCRIPT
+System.Console.WriteLine();
+help;
+System.Console.WriteLine();
+System.Console.WriteLine("Welcome to the S#aml interactive C# console!");
+System.Console.WriteLine();
+System.Console.WriteLine("An NHibernate ISession is already opened for you");
+System.Console.WriteLine("To start a query type:");
+System.Console.WriteLine("  var c = s.CreateQuery(\\"from WebSample\\");");
+System.Console.WriteLine("  c.List<WebSample>();\");
+System.Console.WriteLine();
+SCRIPT
+        script = script.gsub("WebBase",appname);
+        Mono.load_csharp(script,"-lib:bin -r:FluentNHibernate.dll -r:Iesi.Collections.dll -r:LinFu.Core.dll -r:LinFu.DynamicProxy.dll -r:log4net.dll -r:Microsoft.Practices.ServiceLocation.dll -r:Mono.Security.dll -r:Newtonsoft.Json.dll -r:NHaml.dll -r:NHaml.Web.Mvc.dll -r:NHibernate.dll -r:NHibernate.ByteCode.LinFu.dll -r:NHibernate.Validator.dll -r:Npgsql.dll -r:Shaml.Core.dll -r:Shaml.Core.Validator.dll -r:Shaml.Data.dll -r:Shaml.Membership.dll -r:Shaml.Testing.dll -r:Shaml.Tests.dll -r:Shaml.Web.dll -r:WebBase.dll -r:WebBase.ApplicationServices.dll -r:WebBase.Config.dll -r:WebBase.Controllers.dll -r:WebBase.Core.dll -r:WebBase.Data.dll -r:WebBase.Tests.dll");
+      when "runner"
+        appname = getappname
+        command = ARGV.shift
+        script = Script.gsub("WebBase",appname);
+        Mono.load_csharp(script,"-lib:bin -r:FluentNHibernate.dll -r:Iesi.Collections.dll -r:LinFu.Core.dll -r:LinFu.DynamicProxy.dll -r:log4net.dll -r:Microsoft.Practices.ServiceLocation.dll -r:Mono.Security.dll -r:Newtonsoft.Json.dll -r:NHaml.dll -r:NHaml.Web.Mvc.dll -r:NHibernate.dll -r:NHibernate.ByteCode.LinFu.dll -r:NHibernate.Validator.dll -r:Npgsql.dll -r:Shaml.Core.dll -r:Shaml.Core.Validator.dll -r:Shaml.Data.dll -r:Shaml.Membership.dll -r:Shaml.Testing.dll -r:Shaml.Tests.dll -r:Shaml.Web.dll -r:WebBase.dll -r:WebBase.ApplicationServices.dll -r:WebBase.Config.dll -r:WebBase.Controllers.dll -r:WebBase.Core.dll -r:WebBase.Data.dll -r:WebBase.Tests.dll #{command}");
       else
         puts 'S#aml ERROR: unknown command'
       end

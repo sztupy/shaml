@@ -10,5 +10,6 @@ namespace WebBase.Core
         public WebSample() { }
 
         // TODO: Add Properties to the Domain Object
+        public virtual string Property { get; set; }
     }
 }

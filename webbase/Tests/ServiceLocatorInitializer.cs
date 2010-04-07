@@ -12,8 +12,8 @@ namespace Tests
     {
         public static void Init() {
             ServiceContainer container = new ServiceContainer();
-            container.AddService("validator", typeof(IValidator), typeof(Validator));
-            container.AddService("entityDuplicateChecker", typeof(IEntityDuplicateChecker), typeof(EntityDuplicateCheckerStub));
+            container.AddService(typeof(IValidator), typeof(Validator));
+            container.AddService(typeof(IEntityDuplicateChecker), typeof(EntityDuplicateCheckerStub));
             ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
         }
     }

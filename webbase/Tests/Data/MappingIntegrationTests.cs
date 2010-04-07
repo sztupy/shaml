@@ -51,11 +51,21 @@ namespace Tests.WebBase.Data.NHibernateMaps
         /// </summary>
         [Test]
         public void CanGenerateDatabaseSchema() {
-            var session = NHibernateSession.GetDefaultSessionFactory().OpenSession();
-
-            using (TextWriter stringWriter = new StreamWriter("../DB/UnitTestGeneratedSchema.sql")) {
-                new SchemaExport(configuration).Execute(true, false, false, session.Connection, stringWriter);
+            using (TextWriter stringWriter = new StreamWriter("../DB/Create_Schema.sql")) {
+                new SchemaExport(configuration).Execute(x => stringWriter.WriteLine(x+";"), false, false);
             }
+        }
+
+        /// <summary>
+        /// Generates and outputs the database update SQL to the console
+        /// </summary>
+        [Test]
+        public void CanGenerateDatabaseUpdateSchema()
+        {
+          using (TextWriter stringWriter = new StreamWriter("../DB/Update_Schema.sql"))
+          {
+            new SchemaUpdate(configuration).Execute(x => stringWriter.WriteLine(x + ";"), true);
+          }
         }
 
         private Configuration configuration;

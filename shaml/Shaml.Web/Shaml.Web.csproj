@@ -36,6 +36,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\webbase\libraries\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="LinFu.Core, Version=2.2.0.19938, Culture=neutral, PublicKeyToken=a4c63a184389506f, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\webbase\libraries\log4net.dll</HintPath>
@@ -92,6 +93,7 @@
     <Compile Include="CommonValidator\ValidatableModelBinder.cs" />
     <Compile Include="GenericLoggerAttribute.cs" />
     <Compile Include="JsonNet\JsonNetResult.cs" />
+    <Compile Include="LinFu\LinFuControllerFactory.cs" />
     <Compile Include="ModelBinder\EntityCollectionValueBinder.cs" />
     <Compile Include="ModelBinder\EntityValueBinder.cs" />
     <Compile Include="ModelBinder\GenericRepositoryFactory.cs" />

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBase.Controllers", "App\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBase.Tests", "Tests\WebBase.Tests.csproj", "{952D1399-3568-4490-8497-1886F67F8AB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBase.Config", "Config\WebBase.Config.csproj", "{BA8EDD55-7CE5-422C-985C-96B4A3C9A809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{952D1399-3568-4490-8497-1886F67F8AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{952D1399-3568-4490-8497-1886F67F8AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{952D1399-3568-4490-8497-1886F67F8AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA8EDD55-7CE5-422C-985C-96B4A3C9A809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8EDD55-7CE5-422C-985C-96B4A3C9A809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8EDD55-7CE5-422C-985C-96B4A3C9A809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8EDD55-7CE5-422C-985C-96B4A3C9A809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

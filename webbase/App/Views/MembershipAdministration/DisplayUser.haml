@@ -1,4 +1,7 @@
-﻿- var user = ViewData["User"] as MembershipUserAndRolesViewData;
+﻿@namespace=WebBase.ApplicationServices
+@namespace=WebBase.Controllers
+@namespace=Microsoft.Web.Mvc
+- var user = ViewData["User"] as MembershipUserAndRolesViewData;
 %h2.MvcMembership
   User Details For
   = user.User.UserName

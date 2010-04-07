@@ -4,6 +4,7 @@ using System.Web.Routing;
 using MvcContrib.TestHelper;
 using WebBase.ApplicationServices;
 using WebBase;
+using WebBase.Config;
 
 namespace Tests.WebBase
 {

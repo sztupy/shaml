@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # Creates the files in lib/shaml/templates and builds the gem
 
+require 'rubygems'
 require 'fileutils'
 require 'zip/zipfilesystem'
 

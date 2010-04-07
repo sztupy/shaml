@@ -7,8 +7,12 @@ using Shaml.Core.NHibernateValidator.CommonValidatorAdapter;
 using LinFu.IoC.Interfaces;
 using System;
 using System.IO;
+using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator.LinFuAdapter;
+using System.Web.Mvc;
+using Shaml.Web.LinFu;
 
-namespace WebBase
+namespace WebBase.Config
 {
     public class ComponentRegistrar
     {
@@ -38,6 +42,15 @@ namespace WebBase
             container.AddService("nhibernateRepositoryType",  typeof(INHibernateRepository<>), typeof(NHibernateRepository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
             container.AddService("repositoryWithTypedId",  typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
             container.AddService("nhibernateRepositoryWithTypedId",  typeof(INHibernateRepositoryWithTypedId<,>), typeof(NHibernateRepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+        }
+
+        public static void InitializeServiceLocator()
+        {
+          ServiceContainer container = new ServiceContainer();
+          AddComponentsTo(container);
+
+          ControllerBuilder.Current.SetControllerFactory(new LinFuControllerFactory(container));
+          ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
         }
     }
 }

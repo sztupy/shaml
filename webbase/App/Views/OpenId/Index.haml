@@ -1,4 +1,6 @@
-﻿%div
+﻿@namespace=Microsoft.Web.Mvc
+@type=List<string>
+%div
   %h2 List of OpenID identities for this account:
   %ul
     - foreach (string id in ViewData.Model)

@@ -1,5 +1,7 @@
-﻿%h2.MvcMembership Create User
-%h3.MvcMembership=Html.ActionLink<MembershipAdministrationController>( x=>x.Index( null, null ), "<< Return to Membership Administration" )
+﻿@namespace=Microsoft.Web.Mvc
+@namespace=WebBase.Controllers
+%h2.MvcMembership Create User
+%h3.MvcMembership= Html.ActionLink<MembershipAdministrationController>( x=>x.Index( null, null ), "<< Return to Membership Administration" )
 - using( Html.BeginForm( "SaveNewUser", "MembershipAdministration" ) )
   %fieldset.MvcMembership
     %legend

@@ -146,6 +146,10 @@
       <Project>{33500762-1B80-4AC3-88AF-029A1043AF71}</Project>
       <Name>WebBase.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Config\WebBase.Config.csproj">
+      <Project>{BA8EDD55-7CE5-422C-985C-96B4A3C9A809}</Project>
+      <Name>WebBase.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebBase.csproj">
       <Project>{08CB48AF-5AB7-4D74-ADEA-C69512C29858}</Project>
       <Name>WebBase</Name>

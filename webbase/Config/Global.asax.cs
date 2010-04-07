@@ -14,6 +14,9 @@ using Shaml.Web.ModelBinder;
 using LinFu.IoC;
 using CommonServiceLocator.LinFuAdapter;
 using Microsoft.Practices.ServiceLocation;
+using WebBase.Config;
+using NHibernate.Dialect;
+using NHibernate.Tool.hbm2ddl;
 
 namespace WebBase
 {
@@ -41,17 +44,6 @@ namespace WebBase
               new string[] { Server.MapPath("~/bin/WebBase.Data.dll") },
               new AutoPersistenceModelGenerator().Generate(),
               Server.MapPath("~/Config/NHibernate.config"));
-    
-          //apm.WriteMappingsTo(@"e:\Programs\Blog\db");
-          var script = cfg.GenerateSchemaCreationScript(new NHibernate.Dialect.PostgreSQL82Dialect());
-    
-          using (var tw = new System.IO.StreamWriter(System.IO.Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath,System.IO.Path.Combine("db","Auto_Mapping_Schema.sql"))))
-          {
-              foreach (string s in script)
-              {
-                  tw.WriteLine(s);
-              }
-          }
         }
 
         private WebSessionStorage webSessionStorage;
@@ -77,7 +69,7 @@ namespace WebBase
 
             ModelBinders.Binders.DefaultBinder = new SharpModelBinder();
 
-            InitializeServiceLocator();
+            ComponentRegistrar.InitializeServiceLocator();
 
       			AreaRegistration.RegisterAllAreas();
             RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
@@ -88,22 +80,6 @@ namespace WebBase
             // Useful for debugging
             Exception ex = Server.GetLastError();
             ReflectionTypeLoadException reflectionTypeLoadException = ex as ReflectionTypeLoadException;
-        }
-
-        protected virtual void InitializeServiceLocator()
-        {
-            ServiceContainer container = new ServiceContainer();
-            //ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
-            //container.RegisterControllers(typeof(HomeController).Assembly);
-
-//            ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
-
-//            container.RegisterControllers(typeof(HomeController).Assembly);
-//            ComponentRegistrar.AddComponentsTo(container);
-
-            ComponentRegistrar.AddComponentsTo(container);
-
-            ServiceLocator.SetLocatorProvider(() => new LinFuServiceLocator(container));
         }
 
         public override void Init()

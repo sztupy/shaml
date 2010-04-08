@@ -3,6 +3,8 @@ require 'fileutils'
 
 module Shaml
 class MonoLoader
+  attr_reader :mono_found,:is_unix
+
   def initialize
     @mono_command = '/bin/mono'
     @mono_directory = '/usr'
@@ -11,10 +13,13 @@ class MonoLoader
     @gsharp_command = '/gsharp/gsharp.exe'
     @config_dir = '~/.config'
     @init_script_name = 'shaml.cs'
+    @mono_found = true
+    @is_unix = true
 
     # get mono path for Windows
     if RbConfig::CONFIG['host_os'] =~ /mswin|windows|cygwin|mingw/i
       begin
+        @is_unix = false
         require 'win32/registry'
         # Check in default location
         base = "Software\\Novell\\Mono\\"
@@ -39,6 +44,7 @@ class MonoLoader
       rescue Exception => e
         STDERR.puts "Couldn't determine mono location under Windows!"
         STDERR.puts e.inspect
+        @mono_found = false
       end
     else
       if ENV['MONO_PREFIX'] != nil then
@@ -87,6 +93,11 @@ class MonoLoader
     puts "GSharp executable: \"#{gs}\""
     system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{gs}\" #{commands}")
     delete_init_script(init_script, "gsharp") 
+  end
+
+  def load_mono_app(command,parameters = "")
+    cm = File.join(@mono_lib_directory,command)
+    system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{cm}\" #{parameters}")
   end
 end
 end

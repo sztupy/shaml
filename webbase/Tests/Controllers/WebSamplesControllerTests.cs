@@ -92,7 +92,7 @@ namespace Tests.Blog.Web.Controllers
 
         [Test]
         public void CanDeleteWebSample() {
-            RedirectToRouteResult redirectResult = controller.Delete(1)
+            RedirectToRouteResult redirectResult = controller.DeleteConfirmed(1)
                 .AssertActionRedirect().ToAction("Index");
             
             controller.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()].ToString()

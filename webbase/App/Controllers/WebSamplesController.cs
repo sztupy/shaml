@@ -36,7 +36,6 @@ namespace WebBase.Controllers
 
         public ActionResult Create() {
             WebSampleFormViewModel viewModel = WebSampleFormViewModel.CreateWebSampleFormViewModel();
-            viewModel.WebSample = new WebSample();
             return View(viewModel);
         }
 

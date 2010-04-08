@@ -119,9 +119,10 @@ class CommandLoader
       puts "  controller Controller   : Create a standalone controller"
       puts "  model Model [desc]      : Create a standalone model"
       puts
-      puts " compile                  : Compiles the solution using xbuild"
+      puts " compile                  : Compiles the solution using {ms|x}build"
       puts " server                   : Runs xsp2"
       puts
+      puts " gconsole                 : Starts a gsharp console"      
       puts " console                  : Starts a csharp console"
       puts " runner script_name.cs    : Runs the script"
       puts
@@ -213,27 +214,30 @@ class CommandLoader
         end
       when "compile"
         appname = getappname
-        puts "Copying libraries"
         begin
-          FileUtils.rm_r(File.join(appname,"bin"))
+          FileUtils::rm_rf "bin"
         rescue Exception => e
         end
-        FileUtils.cp_r("libraries",File.join(appname,"bin"))
-        puts "Compiling using xbuild"
-        system("xbuild #{appname}.sln")
-        puts "Compiling stylesheets"        
-        Dir.chdir(appname) do    
-          system("compass --update -c Config/compass_config.rb")
+        if Mono.mono_found then
+          puts "Compiling using xbuild"
+          Mono.load_mono_app("/mono/2.0/xbuild.exe","#{appname}.sln")
+        else
+          puts "Mono not found. Compiling using msbuild"
+          system("msbuild #{appname}.sln")
         end
+        puts "Compiling stylesheets"        
+        system("compass -c Config/compass_config.rb")
       when "server"
         puts "Starting xsp2"    
         appname = getappname
-        Dir.chdir(appname) do
-          puts "Changed directory to #{Dir.pwd}"
-          puts "Starting xsp2 #{ARGV.join(" ")}"
-          system("xsp2 #{ARGV.join(" ")}")
-          puts "Done..."      
+        puts "Changed directory to #{Dir.pwd}"
+        puts "Starting xsp2 #{ARGV.join(" ")}"
+        if Mono.is_unix then
+          Mono.load_mono_app("/mono/2.0/xsp2.exe",ARGV.join(" "))
+        else
+          Mono.load_mono_app("/mono/2.0/WinHack/xsp2.exe",ARGV.join(" "))
         end
+        puts "Done..."      
       when "console"
         appname = getappname
         script = File.read(File.join("Scripts","setup","common.cs"))

@@ -3,13 +3,13 @@
 = Html.ValidationSummary()
 - using (Html.BeginForm()) 
   = Html.AntiForgeryToken()
-  = Html.Hidden("WebSample.Id", Model.WebSample.Id )
+  = Html.Hidden("WebSample.Id", (Model.WebSample != null) ? Model.WebSample.Id : 0)
   %ul
     // __BEGIN__PROPERTY__
     %li
       %label{ for="WebSample_Property" }Property:
         %div
-          = Html.TextBox("WebSample.Property", Model.WebSample.Property )
+          = Html.TextBox("WebSample.Property", (Model.WebSample != null) ? Model.WebSample.Property.ToString() : "" )
           = Html.ValidationMessage("WebSample.Property")
     // __END__PROPERTY__
     %li

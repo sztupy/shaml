@@ -5,13 +5,13 @@
   = Html.AntiForgeryToken()
   = Html.Hidden("WebSample.Id", Model.WebSample.Id )
   %ul
-    // list of properties begin
+    // __BEGIN__PROPERTY__
     %li
       %label{ for="WebSample_Property" }Property:
         %div
           = Html.TextBox("WebSample.Property", Model.WebSample.Property )
           = Html.ValidationMessage("WebSample.Property")
-    // list of properties end
+    // __END__PROPERTY__
     %li
       %input{ type="submit" name="btnSave" value="Save WebSample"}/
         %button{ name="btnCancel" onClick="window.location.href = '/WebSamples';"} Cancel

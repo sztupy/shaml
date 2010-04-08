@@ -137,8 +137,9 @@ namespace Tests.Blog.Web.Controllers
         /// </summary>
         private WebSample CreateTransientWebSample() {
             WebSample WebSample = new WebSample() {
-                //TODO: Create the properties of the object
-                Property = "property"
+                // __BEGIN__PROPERTY__
+                Property = new PropertyType(),
+                // __END__PROPERTY__
             };
             
             return WebSample;

@@ -5,11 +5,13 @@ using System;
 
 namespace WebBase.Core
 {
+    public class PropertyType { }
     public class WebSample : Entity
     {
         public WebSample() { }
 
-        // TODO: Add Properties to the Domain Object
-        public virtual string Property { get; set; }
+        // __BEGIN__PROPERTY__
+        public virtual PropertyType Property { get; set; }
+        // __END__PROPERTY__
     }
 }

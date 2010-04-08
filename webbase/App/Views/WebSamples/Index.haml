@@ -9,16 +9,16 @@
   %table
     %thead
       %tr
-        -// TODO: List of property names begin
+        -// __BEGIN__PROPERTY__
         %th Property
-        -// TODO: List of property names end
+        -// __END__PROPERTY__
         %th{ colspan=3 } Action
     %tbody
       - foreach (WebSample websample in ViewData.Model)
         %tr
-          -// TODO: List of properties begin
+          -// __BEGIN__PROPERTY__
           %td= websample.Property
-          -// TODO: List of properties end
+          -// __END__PROPERTY__
           %td
             = Html.ActionLink<WebSamplesController>( c => c.Show( websample.Id ), "Details ")
           %td

@@ -86,8 +86,9 @@ namespace WebBase.Controllers
         }
 
         private void TransferFormValuesTo(WebSample WebSampleToUpdate, WebSample WebSampleFromForm) {
-            // TODO: Add copy methods
+            // __BEGIN__PROPERTY__
             WebSampleToUpdate.Property = WebSampleFromForm.Property;
+            // __END__PROPERTY__
         }
 
 

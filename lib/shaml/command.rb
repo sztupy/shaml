@@ -1,4 +1,5 @@
 require 'zip/zip'
+require 'rexml/document'
 
 Script = <<"SCRIPT"
 using System;
@@ -53,25 +54,78 @@ class CommandLoader
      }
     }
   end
-  
-  def convert_file(file, appname, modelname, propertydescriptor)
+
+  def convert_file(file, appname, modelname, propertydescriptor = nil)
     out = ""
     pstring = ""
+    propertydescriptor = "" if propertydescriptor.nil?
     insideprop = false
     file.each_line do |line|
-      out << line.gsub("WebBase",appname).gsub("WebSample", camelcase(modelname)).gsub("websample", modelname);
+      if insideprop then
+        if line.strip =~ /__END__PROPERTY__/ then
+          propertydescriptor.split(";").each do |property|
+            p = property.split(":")
+            out << pstring.gsub("PropertyType",p[1]).gsub("Property",p[0])
+          end
+          insideprop = false
+        else
+          pstring << line.gsub("WebBase",appname).gsub("WebSample", camelcase(modelname)).gsub("websample", modelname);
+        end
+      else
+        if line.strip =~ /__BEGIN__PROPERTY__/ then
+          pstring = ""
+          insideprop = true
+        else
+          out << line.gsub("WebBase",appname).gsub("WebSample", camelcase(modelname)).gsub("websample", modelname);
+        end
+      end
     end
     out
   end
 
-  def copy_file(from,to,appname,modelname,propertydescriptor)
+
+  def copy_file(from,to,appname,modelname,propertydescriptor,xmltochange,xmltype)
     outfname = to.gsub("WebSample",camelcase(modelname))
+    outfname_w = outfname.gsub("/","\\")
+    addxml(xmltochange,outfname_w,xmltype)
     FileUtils.mkdir_p(File.dirname(outfname))
     File.open(from,"rb") do |infile|
       File.open(outfname,"wb+") do |outfile|
         puts "Writing #{outfname}"        
         outfile.write convert_file(infile.read,appname,modelname,propertydescriptor)
       end
+    end
+  end
+
+  # Fix files that depends on the existence of at least one model
+  def fix_with_model(modelname)
+    t = nil
+    appname = getappname
+    name = File.join("App","Data","Mapping","AutoPersistenceModelGenerator.cs")
+    File.open(name,"rb") { |f| t = f.read }; File.open(name,"wb+") { |f| f.write convert_file(t,appname,modelname) }
+    name = File.join("Config","ComponentRegistrar.cs")
+    File.open(name,"rb") { |f| t = f.read }; File.open(name,"wb+") { |f| f.write convert_file(t,appname,modelname) }
+  end
+
+  def addxml(file,content,type)
+    doc = nil
+    dir = File.split(file)[0].gsub("/","\\")
+    c = content.gsub(dir+"\\","")
+    File.open(file,"r") do |f|
+      doc = REXML::Document.new f.read
+      case type
+      when :content
+        el = doc.elements["//ItemGroup[Content]"]
+        cont = el.add_element("Content",{"Include"=>c})
+        stype = cont.add_element("SubType")
+        stype.text = "ASPXCodeBehind"
+      when :compile
+        el = doc.elements["//ItemGroup[Compile]"]
+        cont = el.add_element("Compile",{"Include"=>c})
+      end
+    end
+    File.open(file,"w+") do |f|
+      f.write doc.to_s
     end
   end
 
@@ -86,10 +140,10 @@ class CommandLoader
       puts "Where command might be:"
       puts " generate"
       puts "  app AppName             : Create new shaml application"
-      puts "  resource ResName        : Create new CRUD resource with"
+      puts "  resource ResName [desc] : Create new CRUD resource with"
       puts "                            a model, a view and a controller"
       puts "  controller Controller   : Create a standalone controller"
-      puts "  model Model             : Create a standalone model"
+      puts "  model Model [desc]      : Create a standalone model"
       puts
       puts " compile                  : Compiles the solution using xbuild"
       puts " server                   : Runs xsp2"
@@ -105,6 +159,10 @@ class CommandLoader
       puts "The console and runner parameters will preload the solutions"
       puts "assemblies and configuration files, and loads everything you need to get"
       puts "working with the domain objects"
+      puts
+      puts "The optional [desc] parameter describes the base schema of the model to"
+      puts "create the scaffold. Here is an example how it looks like:"
+      puts "  name:string;email:string;birthdate:DateTime" 
     else
       command = ARGV.shift
       case command
@@ -136,32 +194,43 @@ class CommandLoader
           when "resource"
             desc = ARGV.shift || nil
             appname = getappname
-            copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join(appname,"App","Models","WebSample.cs"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join(appname,"App","Controllers","WebSamplesController.cs"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSamples","Create.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join(appname,"App","Views","WebSamples","Delete.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join(appname,"App","Views","WebSamples","Edit.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join(appname,"App","Views","WebSamples","Index.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join(appname,"App","Views","WebSamples","Show.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join(appname+".Tests","Tests","Core","WebSampleTests.cs"),appname,name,desc)        
-            copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join(appname+".Tests","Tests","Web","Controllers","WebSamplesControllerTests.cs"),appname,name,desc)        
+            xmlname = File.join("App","Core","#{appname}.Core.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join("App","Core","WebSample.cs"),appname,name,desc,xmlname,:compile)
+            xmlname = File.join("App","Controllers","#{appname}.Controllers.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join("App","Controllers","WebSamplesController.cs"),appname,name,desc,xmlname,:compile)
+            xmlname = "#{appname}.csproj"            
+            copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join("App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join("App","Views","WebSamples","Create.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join("App","Views","WebSamples","Delete.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join("App","Views","WebSamples","Edit.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join("App","Views","WebSamples","Index.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join("App","Views","WebSamples","Show.haml"),appname,name,desc,xmlname,:content)
+            xmlname = File.join("Tests","#{appname}.Tests.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join("Tests","Core","WebSampleTests.cs"),appname,name,desc,xmlname,:compile)        
+            copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join("Tests","Controllers","WebSamplesControllerTests.cs"),appname,name,desc,xmlname,:compile)
+            fix_with_model(name)
           when "model"
             desc = ARGV.shift || nil
-            appname = getappname      
-            copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join(appname,"App","Models","WebSample.cs"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join(appname+".Tests","Tests","Core","WebSampleTests.cs"),appname,name,desc)        
+            appname = getappname
+            xmlname = File.join("App","Core","#{appname}.Core.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join("App","Core","WebSample.cs"),appname,name,desc,xmlname,:compile)
+            xmlname = File.join("Tests","#{appname}.Tests.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join("Tests","Core","WebSampleTests.cs"),appname,name,desc,xmlname,:compile)
+            fix_with_model(name)            
           when "controller"
             desc = ARGV.shift || nil
             appname = getappname   
-            copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join(appname,"App","Controllers","WebSamplesController.cs"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join(appname,"App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join(appname,"App","Views","WebSamples","Create.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join(appname,"App","Views","WebSamples","Delete.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join(appname,"App","Views","WebSamples","Edit.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join(appname,"App","Views","WebSamples","Index.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join(appname,"App","Views","WebSamples","Show.haml"),appname,name,desc)
-            copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join(appname+".Tests","Tests","Web","Controllers","WebSamplesControllerTests.cs"),appname,name,desc)                
+            xmlname = File.join("App","Controllers","#{appname}.Controllers.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join("App","Controllers","WebSamplesController.cs"),appname,name,desc,xmlname,:compile)
+            xmlname = "#{appname}.csproj"            
+            copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join("App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join("App","Views","WebSamples","Create.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join("App","Views","WebSamples","Delete.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join("App","Views","WebSamples","Edit.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join("App","Views","WebSamples","Index.haml"),appname,name,desc,xmlname,:content)
+            copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join("App","Views","WebSamples","Show.haml"),appname,name,desc,xmlname,:content)
+            xmlname = File.join("Tests","#{appname}.Tests.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join("Tests","Controllers","WebSamplesControllerTests.cs"),appname,name,desc,xmlname,:compile)
           else
             puts 'S#aml ERROR: unknown generate argument'
           end        

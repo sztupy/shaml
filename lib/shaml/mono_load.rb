@@ -80,12 +80,12 @@ class MonoLoader
   end
 
   # run gsharp with an optional initialization script
-  def load_gsharp(init_script = nil)
+  def load_gsharp(init_script = nil, commands = "")
     create_init_script(init_script,"gsharp")
     puts "Mono executable: \"#{File.join(@mono_directory,@mono_command)}\""
     gs = File.join(@mono_lib_directory,@gsharp_command)
     puts "GSharp executable: \"#{gs}\""
-    system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{gs}\"")
+    system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{gs}\" #{commands}")
     delete_init_script(init_script, "gsharp") 
   end
 end

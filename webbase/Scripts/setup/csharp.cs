@@ -1,0 +1,10 @@
+System.Console.WriteLine();
+help;
+System.Console.WriteLine();
+System.Console.WriteLine("Welcome to the S#aml interactive C# console!");
+System.Console.WriteLine();
+System.Console.WriteLine("An NHibernate ISession is already opened for you");
+System.Console.WriteLine("To start a query type:");
+System.Console.WriteLine("  var c = s.CreateQuery(\"from WebSample\");");
+System.Console.WriteLine("  c.List<WebSample>();");
+System.Console.WriteLine();

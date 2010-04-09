@@ -125,6 +125,7 @@ class CommandLoader
       puts " gconsole                 : Starts a gsharp console"      
       puts " console                  : Starts a csharp console"
       puts " runner script_name.cs    : Runs the script"
+      puts " test                     : Runs the tests"
       puts
       puts "Examples: "
       puts "  shaml generate app Blog"
@@ -228,9 +229,7 @@ class CommandLoader
         puts "Compiling stylesheets"        
         system("compass -c Config/compass_config.rb")
       when "server"
-        puts "Starting xsp2"    
         appname = getappname
-        puts "Changed directory to #{Dir.pwd}"
         puts "Starting xsp2 #{ARGV.join(" ")}"
         if Mono.is_unix then
           Mono.load_mono_app("/mono/2.0/xsp2.exe",ARGV.join(" "))
@@ -238,6 +237,14 @@ class CommandLoader
           Mono.load_mono_app("/mono/2.0/WinHack/xsp2.exe",ARGV.join(" "))
         end
         puts "Done..."      
+      when "test"
+        puts "Running tests"
+        appname = getappname
+        if Mono.mono_found then
+          Mono.load_app(File.join("libraries","nunit-console.exe"),File.join("bin","#{appname}.Tests.dll"))
+        else
+          system("#{File.join("libraries","nunit-console.exe")} #{File.join("bin","#{appname}.Tests.dll")}")
+        end
       when "console"
         appname = getappname
         script = File.read(File.join("Scripts","setup","common.cs"))

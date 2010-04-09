@@ -99,5 +99,9 @@ class MonoLoader
     cm = File.join(@mono_lib_directory,command)
     system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{cm}\" #{parameters}")
   end
+  def load_app(command,parameters = "")
+    cm = command
+    system("\"#{File.join(@mono_directory,@mono_command)}\" \"#{cm}\" #{parameters}")
+  end  
 end
 end

@@ -87,6 +87,7 @@ File.open(File.join("webbase","App","Core","WebSample.cs"),"rb") do |inp|
     outp.write inp.read.gsub("public class PropertyType { }","")
   end
 end
+FileUtils::cp(File.join("webbase","App","Data","WebSampleMap.cs"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","Tests","Controllers","WebSamplesControllerTests.cs"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","Tests","Core","WebSampleTests.cs"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","_WebSampleForm.haml"),File.join("lib","shaml","templates"))

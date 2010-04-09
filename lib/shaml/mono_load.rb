@@ -8,10 +8,10 @@ class MonoLoader
   def initialize
     @mono_command = '/bin/mono'
     @mono_directory = '/usr'
-    @mono_lib_directory = '/lib'
+    @mono_lib_directory = '/usr/lib'
     @csharp_command = '/mono/2.0/csharp.exe'
     @gsharp_command = '/gsharp/gsharp.exe'
-    @config_dir = '~/.config'
+    @config_dir = "#{ENV['HOME']}/.config"
     @init_script_name = 'shaml.cs'
     @mono_found = true
     @is_unix = true
@@ -47,7 +47,7 @@ class MonoLoader
         @mono_found = false
       end
     else
-      if ENV['MONO_PREFIX'] != nil then
+      if !ENV['MONO_PREFIX'].nil? and !ENV['MONO_PREFIX'].empty? then
         @mono_directory = ENV['MONO_PREFIX']
         @mono_lib_directory = File.join(@mono_directory,"lib")
       end

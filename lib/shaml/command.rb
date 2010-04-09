@@ -172,6 +172,8 @@ class CommandLoader
             appname = getappname
             xmlname = File.join("App","Core","#{appname}.Core.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join("App","Core","WebSample.cs"),appname,name,desc,xmlname,:compile)
+            xmlname = File.join("App","Data","#{appname}.Data.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSampleMap.cs"),File.join("App","Data","WebSampleMap.cs"),appname,name,desc,xmlname,:compile)            
             xmlname = File.join("App","Controllers","#{appname}.Controllers.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join("App","Controllers","WebSamplesController.cs"),appname,name,desc,xmlname,:compile)
             xmlname = "#{appname}.csproj"            
@@ -190,6 +192,8 @@ class CommandLoader
             appname = getappname
             xmlname = File.join("App","Core","#{appname}.Core.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join("App","Core","WebSample.cs"),appname,name,desc,xmlname,:compile)
+            xmlname = File.join("App","Data","#{appname}.Data.csproj")
+            copy_file(File.join(TEMPLATEDIR,"WebSampleMap.cs"),File.join("App","Data","WebSampleMap.cs"),appname,name,desc,xmlname,:compile)                        
             xmlname = File.join("Tests","#{appname}.Tests.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join("Tests","Core","WebSampleTests.cs"),appname,name,desc,xmlname,:compile)
             fix_with_model(name)            

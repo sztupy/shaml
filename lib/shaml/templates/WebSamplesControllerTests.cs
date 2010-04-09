@@ -5,6 +5,7 @@ using Rhino.Mocks;
 using Shaml.Core.PersistenceSupport;
 using Shaml.Testing;
 using Shaml.Testing.NUnit;
+using Shaml.Membership.Core;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using WebBase;

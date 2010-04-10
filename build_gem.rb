@@ -27,6 +27,7 @@ IGNORES = [
   /\.swx$/,
   /\.dotest$/,
   /\.sass-cache$/,
+  /libraries$/,
   /WebSample/
 ]
 
@@ -73,7 +74,6 @@ def search(zip,fname)
 end
 
 puts "Creating shaml_base_template.dat"
-
 Zip::ZipFile.open(zip_file_name, Zip::ZipFile::CREATE) do |zip|
   Dir.glob("webbase/*").each do |fname|
     search(zip,fname)
@@ -81,6 +81,7 @@ Zip::ZipFile.open(zip_file_name, Zip::ZipFile::CREATE) do |zip|
 end
 
 puts "Creating WebSample template files"
+FileUtils::mkdir_p(File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Controllers","WebSamplesController.cs"),File.join("lib","shaml","templates"))
 File.open(File.join("webbase","App","Core","WebSample.cs"),"rb") do |inp|
   File.open(File.join("lib","shaml","templates","WebSample.cs"),"wb+") do |outp|

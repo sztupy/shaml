@@ -160,12 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\libraries\Mono.Security.dll">
-      <Link>Mono.Security.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+      <Link>Mono.Security</Link>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>    
     <Content Include="..\libraries\Npgsql.dll">
       <Link>Npgsql.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="..\libraries\System.Data.SQLite.dll">
       <Link>System.Data.SQLite.dll</Link>

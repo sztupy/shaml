@@ -175,6 +175,14 @@ class CommandLoader
               end
             end
             FileUtils.rm_rf ".shaml_extract_temp"
+            puts
+            puts "Your S#aml-architecture web application is created"
+            puts "Before compilation you need to create a model or resource using"
+            puts "   shaml generate resource ResourceName [resourcedescriptors]"
+            puts
+            puts "After generation fix it's tests and run \"shaml compile\","
+            puts "\"shaml runner Scripts/run_create_schema.cs\" and \"shaml server\""
+            puts
           when "resource"
             desc = ARGV.shift || nil
             appname = getappname

@@ -159,6 +159,10 @@
     <None Include="NHibernate.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\libraries\Mono.Security.dll">
+      <Link>Mono.Security.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\libraries\Npgsql.dll">
       <Link>Npgsql.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

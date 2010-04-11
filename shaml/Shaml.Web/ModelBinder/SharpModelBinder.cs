@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 using System.ComponentModel;
 using System;
 using Shaml.Core.DomainModel;
@@ -30,7 +30,7 @@ namespace Shaml.Web.ModelBinder
                     (from PropertyDescriptor property in TypeDescriptor.GetProperties(bindingContext.ModelType)
                      where property.Name == ID_PROPERTY_NAME
                      select property).SingleOrDefault();
-
+				
                 BindProperty(controllerContext, bindingContext, idProperty);
 
             }

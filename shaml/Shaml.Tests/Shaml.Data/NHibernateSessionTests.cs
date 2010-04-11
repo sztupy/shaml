@@ -27,7 +27,7 @@ namespace Tests.Shaml.Data
         [Test]
         public void CanInitializeWithPersistenceConfigurerAndConfigFile() {
             var configFile = "sqlite-nhibernate-config.xml";
-            var persistenceConfigurer = SQLiteConfiguration.Standard
+            var persistenceConfigurer = SQLiteCrossPlatformConfiguration.Standard
                 .ConnectionString(c => c.Is("Data Source=:memory:;Version=3;New=True;"))
                 .ProxyFactoryFactory("NHibernate.ByteCode.LinFu.ProxyFactoryFactory, NHibernate.ByteCode.LinFu");
 
@@ -42,7 +42,7 @@ namespace Tests.Shaml.Data
 
         [Test]
         public void CanInitializeWithPersistenceConfigurerAndNoConfigFile() {
-            var persistenceConfigurer = SQLiteConfiguration.Standard
+            var persistenceConfigurer = SQLiteCrossPlatformConfiguration.Standard
                 .ConnectionString(c => c.Is("Data Source=:memory:;Version=3;New=True;"))
                 .ProxyFactoryFactory("NHibernate.ByteCode.LinFu.ProxyFactoryFactory, NHibernate.ByteCode.LinFu");
 

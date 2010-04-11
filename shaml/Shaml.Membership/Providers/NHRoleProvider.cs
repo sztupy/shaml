@@ -48,7 +48,7 @@ namespace Shaml.Membership
   {
     private const string s_rolesTableName = "Roles";
     private const string s_userInRolesTableName = "UsersInRoles";
-    private string m_connectionString = string.Empty;
+    //private string m_connectionString = string.Empty;
 
     /// <summary>
     /// System.Configuration.Provider.ProviderBase.Initialize Method
@@ -74,7 +74,7 @@ namespace Shaml.Membership
       m_applicationName = NHOpenIDMembershipProvider.GetConfigValue(config["applicationName"], HostingEnvironment.ApplicationVirtualPath);
 
       // Get connection string.
-      m_connectionString = NHOpenIDMembershipProvider.GetConnectionString(config["connectionStringName"]);
+      //m_connectionString = NHOpenIDMembershipProvider.GetConnectionString(config["connectionStringName"]);
     }
 
     /// <summary>
@@ -317,7 +317,7 @@ namespace Shaml.Membership
     /// </summary>
     public override bool IsUserInRole(string username, string roleName)
     {
-      List<string> userList = new List<string>();
+      //List<string> userList = new List<string>();
 
       using (var s = NHOpenIDMembershipProvider.GetNHibernateSession())
       {

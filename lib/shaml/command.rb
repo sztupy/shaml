@@ -23,8 +23,12 @@ class CommandLoader
     Zip::ZipFile.open(file) { |zip_file|
      zip_file.each { |f|
        f_path=File.join(destination, f.name)
-       FileUtils.mkdir_p(File.dirname(f_path))
-       zip_file.extract(f, f_path) unless File.exist?(f_path)
+       if f.directory? then
+         FileUtils.mkdir_p(f_path)
+       else
+         FileUtils.mkdir_p(File.dirname(f_path))
+         zip_file.extract(f, f_path) unless File.exist?(f_path)
+       end
      }
     }
   end
@@ -152,7 +156,11 @@ class CommandLoader
             Dir.glob(".shaml_extract_temp/**/*").each do |filename|
               infname = filename
               outfname = filename.gsub("WebBase",name).gsub(".shaml_extract_temp",name);
-              FileUtils.mkdir_p(File.dirname(outfname))
+              if File.directory?(infname) then
+                FileUtils.mkdir_p(outfname)
+              else
+                FileUtils.mkdir_p(File.dirname(outfname))
+              end
               unless File.directory?(infname)
                 File.open(infname,"rb") do |infile|         
                   File.open(outfname,"wb+") do |outfile|

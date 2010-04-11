@@ -27,7 +27,6 @@ IGNORES = [
   /\.swx$/,
   /\.dotest$/,
   /\.sass-cache$/,
-  /libraries$/,
   /WebSample/
 ]
 

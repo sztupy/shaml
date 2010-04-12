@@ -5,7 +5,7 @@
   User Details For
   = user.User.UserName
 %h3.MvcMembership
-  = Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministratrion")
+  = Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministration")
 - using( Html.BeginForm( "SaveExistingUser", "MembershipAdministration" ) )
   %fieldset.MvcMembership
     %legend
@@ -58,7 +58,7 @@
         = ( user.User.LastLockoutDate == DateTime.MinValue ? user.User.LastLockoutDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Locked Out" )
       - if( user.User.IsLockedOut )
         %div
-        = Html.ActionLink("(Unlock User)", "UnlockUser", "MembershipAdministration", new { id = int.Parse(user.User.ProviderUserKey.ToString()) } )
+        = Html.ActionLink("(Unlock User)", "UnlockUser", "MembershipAdministration", new { id = int.Parse(user.User.ProviderUserKey.ToString()) }, new { } )
     %div
       %input{ type="submit" name="submitUpdateUserDetails" value="Update User Details" }
 - if (user.RolesEnabled)
@@ -70,13 +70,13 @@
         %div
           - if( user.UsersRoles.Contains(role) )
             (
-            = Html.ActionLink("-", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.User.ProviderUserKey.ToString()), roleName = role } )
+            = Html.ActionLink("-", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.User.ProviderUserKey.ToString()), roleName = role } , new { })
             )
           - else
             (
-            = Html.ActionLink("+", "AddUserToRole", "MembershipAdministration", new { userId = int.Parse(user.User.ProviderUserKey.ToString()), roleName = role } )
+            = Html.ActionLink("+", "AddUserToRole", "MembershipAdministration", new { userId = int.Parse(user.User.ProviderUserKey.ToString()), roleName = role }, new { } )
             )
-          = Html.ActionLink(role,"Role","MembershipAdministration", new { id = role } )
+          = Html.ActionLink(role,"Role","MembershipAdministration", new { id = role }, new { } )
     - else
       %div
         No roles have been added to the system yet.
@@ -134,5 +134,5 @@
   %legend
     Permanently Delete User
   %p
-    = Html.ActionLink( "Delete User", "DeleteUser", new{ id = int.Parse(user.User.ProviderUserKey.ToString()) } )
+    = Html.ActionLink( "Delete User", "DeleteUser", new{ id = int.Parse(user.User.ProviderUserKey.ToString()) }, new { } )
     (This action cannot be undone.)

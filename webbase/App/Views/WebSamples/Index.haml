@@ -19,9 +19,9 @@
           %td= websample.Property
           -// __END__PROPERTY__
           %td
-            = Html.ActionLink("Details", "Show", "WebSamples", new { Id = websample.Id })
-              %td
-            = Html.ActionLink("Edit", "Edit", "WebSamples", new { Id = websample.Id })
+            = Html.ActionLink("Details", "Show", "WebSamples", new { Id = websample.Id }, new { })
           %td
-            = Html.ActionLink("Delete", "Delete", "WebSamples", new { Id = websample.Id })
+            = Html.ActionLink("Edit", "Edit", "WebSamples", new { Id = websample.Id }, new { })
+          %td
+            = Html.ActionLink("Delete", "Delete", "WebSamples", new { Id = websample.Id }, new { })
   %p= Html.ActionLink("Create new WebSample", "Create", "WebSamples")

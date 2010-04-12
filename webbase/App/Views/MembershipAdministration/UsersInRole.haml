@@ -6,7 +6,7 @@
   = ( ViewData["Role"] as MembershipRoleViewData ).Name
   " Role
 %h3.MvcMembership
-  = Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministratrion")
+  = Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministration")
 %fieldset.MvcMembership
   %legend
     Users In "
@@ -16,9 +16,9 @@
     %ol
       - foreach( MembershipUser user in ( ViewData["Role"] as MembershipRoleViewData ).Users )
         %li
-          = Html.ActionLink(user.UserName,"UserDetails","MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()) } )
+          = Html.ActionLink(user.UserName,"UserDetails","MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()) }, new { } )
           (
-          = Html.ActionLink("Remove", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()), roleName = ( ViewData["Role"] as MembershipRoleViewData ).Name } )
+          = Html.ActionLink("Remove", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()), roleName = ( ViewData["Role"] as MembershipRoleViewData ).Name } , new { })
           )
   - else
     %div

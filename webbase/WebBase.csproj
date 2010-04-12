@@ -183,19 +183,16 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\Shared\Empty.haml">
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\Shared\Error.haml">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\Shared\_Footer.haml">
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\Shared\_LogOnUserControl.haml">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="App\Views\Shared\_MainMenu.haml">
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

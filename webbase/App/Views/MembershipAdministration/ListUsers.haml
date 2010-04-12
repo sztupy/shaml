@@ -16,7 +16,7 @@
     %ol
       - foreach( var user in users )
         %li
-          = Html.ActionLink(user.UserName, "UserDetails", "MembershipAdministration", new { id = int.Parse(user.ProviderUserKey.ToString()) } )
+          = Html.ActionLink(user.UserName, "UserDetails", "MembershipAdministration", new { id = int.Parse(user.ProviderUserKey.ToString()) }, new { } )
   - else
     %p
       No users have been entered into the system yet.
@@ -28,9 +28,9 @@
     %ul
       - foreach( string role in (ViewData["Roles"] as List<String>) )
         %li
-          = Html.ActionLink(role,"Role","MembershipAdministration", new { id = role } )
+          = Html.ActionLink(role,"Role","MembershipAdministration", new { id = role }, new { } )
           (
-          = Html.ActionLink("Delete","DeleteRole","MembershipAdministration", new { id = role })
+          = Html.ActionLink("Delete","DeleteRole","MembershipAdministration", new { id = role }, new { })
           )
   - else
     %div

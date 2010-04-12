@@ -1,6 +1,5 @@
 ﻿@namespace=WebBase.ApplicationServices
 @namespace=WebBase.Controllers
-@namespace=Microsoft.Web.Mvc
 @namespace=System
 @namespace=System.Web.Security
 @namespace=System.Collections.Generic
@@ -17,7 +16,7 @@
     %ol
       - foreach( var user in users )
         %li
-          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( int.Parse(user.ProviderUserKey.ToString()) ), user.UserName )
+          = Html.ActionLink(user.UserName, "UserDetails", "MembershipAdministration", new { id = int.Parse(user.ProviderUserKey.ToString()) } )
   - else
     %p
       No users have been entered into the system yet.
@@ -29,9 +28,9 @@
     %ul
       - foreach( string role in (ViewData["Roles"] as List<String>) )
         %li
-          = Html.ActionLink<MembershipAdministrationController>( x=> x.Role(role), role )
+          = Html.ActionLink(role,"Role","MembershipAdministration", new { id = role } )
           (
-          = Html.ActionLink<MembershipAdministrationController>( x=> x.DeleteRole(role), "Delete" )
+          = Html.ActionLink("Delete","DeleteRole","MembershipAdministration", new { id = role })
           )
   - else
     %div
@@ -45,4 +44,4 @@
         Role
       = Html.TextBox( "role" )
     %div
-      = Html.SubmitButton( "submitAddRole", "Add Role" )
+      %input{ type="submit" name="submitAddRole" value="Add Role" }

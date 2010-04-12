@@ -1,6 +1,5 @@
 @namespace=WebBase.Core
 @namespace=WebBase.Controllers
-@namespace=Shaml.Web.HtmlExtensions
 @type=List<WebSample>
 %div
   %h2 WebSamples
@@ -20,9 +19,9 @@
           %td= websample.Property
           -// __END__PROPERTY__
           %td
-            = Html.ActionLink<WebSamplesController>( c => c.Show( websample.Id ), "Details ")
+            = Html.ActionLink("Details", "Show", "WebSamples", new { Id = websample.Id })
+              %td
+            = Html.ActionLink("Edit", "Edit", "WebSamples", new { Id = websample.Id })
           %td
-            = Html.ActionLink<WebSamplesController>( c => c.Edit( websample.Id ), "Edit")
-          %td
-            = Html.ActionLink<WebSamplesController>( c => c.Delete( websample.Id), "Delete")
-  %p= Html.ActionLink<WebSamplesController>(c => c.Create(), "Create New WebSample")
+            = Html.ActionLink("Delete", "Delete", "WebSamples", new { Id = websample.Id })
+  %p= Html.ActionLink("Create new WebSample", "Create", "WebSamples")

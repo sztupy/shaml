@@ -237,6 +237,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="App\Views\WebSamples\Show.haml">
+      <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="App\Views\WebSamples\_WebSampleForm.haml">
       <SubType>ASPXCodeBehind</SubType>

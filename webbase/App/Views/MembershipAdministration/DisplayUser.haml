@@ -1,12 +1,11 @@
 ﻿@namespace=WebBase.ApplicationServices
 @namespace=WebBase.Controllers
-@namespace=Microsoft.Web.Mvc
 - var user = ViewData["User"] as MembershipUserAndRolesViewData;
 %h2.MvcMembership
   User Details For
   = user.User.UserName
 %h3.MvcMembership
-  = Html.ActionLink<MembershipAdministrationController>( x => x.Index( null, null ), "<< Return to Membership Administration" )
+  = Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministratrion")
 - using( Html.BeginForm( "SaveExistingUser", "MembershipAdministration" ) )
   %fieldset.MvcMembership
     %legend
@@ -59,9 +58,9 @@
         = ( user.User.LastLockoutDate == DateTime.MinValue ? user.User.LastLockoutDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Locked Out" )
       - if( user.User.IsLockedOut )
         %div
-        = Html.ActionLink<MembershipAdministrationController>( x => x.UnlockUser( int.Parse(user.User.ProviderUserKey.ToString()) ), "(Unlock User)" )
+        = Html.ActionLink("(Unlock User)", "UnlockUser", "MembershipAdministration", new { id = int.Parse(user.User.ProviderUserKey.ToString()) } )
     %div
-      = Html.SubmitButton( "submitUpdateUserDetails", "Update User Details" )
+      %input{ type="submit" name="submitUpdateUserDetails" value="Update User Details" }
 - if (user.RolesEnabled)
   %fieldset.MvcMembership
     %legend
@@ -71,13 +70,13 @@
         %div
           - if( user.UsersRoles.Contains(role) )
             (
-            = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( int.Parse(user.User.ProviderUserKey.ToString()), role ), "-" )
+            = Html.ActionLink("-", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.User.ProviderUserKey.ToString()), roleName = role } )
             )
           - else
             (
-            = Html.ActionLink<MembershipAdministrationController>( x => x.AddUserToRole( int.Parse(user.User.ProviderUserKey.ToString()), role ), "+" )
+            = Html.ActionLink("+", "AddUserToRole", "MembershipAdministration", new { userId = int.Parse(user.User.ProviderUserKey.ToString()), roleName = role } )
             )
-          = Html.ActionLink<MembershipAdministrationController>( x=>x.Role(role), role )
+          = Html.ActionLink(role,"Role","MembershipAdministration", new { id = role } )
     - else
       %div
         No roles have been added to the system yet.
@@ -106,7 +105,7 @@
         Password Answer
       = Html.TextBox("PasswordAnswer")
     %div
-      = Html.SubmitButton( "submitResetPassword", "Reset Password" )
+      %input{ type="submit" name="submitResetPassword" value="Reset Password" }
 - using( Html.BeginForm( "ChangePassword", "MembershipAdministration" ) )
   %fieldset.MvcMembership
     %legend
@@ -130,8 +129,7 @@
         Confirm New Password
       = Html.Password( "NewPasswordConfirm" )
     %div
-      = Html.SubmitButton( "submitChangePassword", "Change Password" )
-
+      %input{ type="submit" name="submitChangePassword" value="Change Password" }
 %fieldset.MvcMembership
   %legend
     Permanently Delete User

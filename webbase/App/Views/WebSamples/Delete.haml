@@ -1,11 +1,10 @@
 ﻿@namespace=WebBase.Core
 @namespace=WebBase.Controllers
-@namespace=Shaml.Web.HtmlExtensions
 @type=WebSample
 %div
   %h2 Delete WebSample
   %p Are you sure?
-  - using (Html.BeginForm<WebSamplesController>(c => c.DeleteConfirmed(ViewData.Model.Id)))
+  - using (Html.BeginForm("DeleteConfirmed","WebSamples",new { Id = ViewData.Model.Id }))
     /=Html.AntiForgeryToken()
     %input{ type="submit" value="Yes" }
     %input{ type="button" name="No" value="No" onclick="javascript:history.go(-1);"}

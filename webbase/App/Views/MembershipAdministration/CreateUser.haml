@@ -1,7 +1,6 @@
-﻿@namespace=Microsoft.Web.Mvc
-@namespace=WebBase.Controllers
+﻿@namespace=WebBase.Controllers
 %h2.MvcMembership Create User
-%h3.MvcMembership= Html.ActionLink<MembershipAdministrationController>( x=>x.Index( null, null ), "<< Return to Membership Administration" )
+%h3.MvcMembership= Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministratrion")
 - using( Html.BeginForm( "SaveNewUser", "MembershipAdministration" ) )
   %fieldset.MvcMembership
     %legend
@@ -38,4 +37,4 @@
         Is Approved
       = Html.CheckBox("MembershipUser.IsApproved", bool.Parse( ( TempData["MembershipUser.IsApproved"] ?? true.ToString() ).ToString() ) )
     %div
-      = Html.SubmitButton( "submitCreateUser", "Create User" )
+      %input{ type="submit" name="submitCreateUser" value="Create User" }

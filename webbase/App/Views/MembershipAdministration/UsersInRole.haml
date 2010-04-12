@@ -1,5 +1,4 @@
-﻿@namespace=Microsoft.Web.Mvc
-@namespace=WebBase.Controllers
+﻿@namespace=WebBase.Controllers
 @namespace=WebBase.ApplicationServices
 @namespace=System.Web.Security
 %h2.MvcMembership
@@ -7,7 +6,7 @@
   = ( ViewData["Role"] as MembershipRoleViewData ).Name
   " Role
 %h3.MvcMembership
-  = Html.ActionLink<MembershipAdministrationController>( x => x.Index( null, null ), "<< Return to Membership Administration" )
+  = Html.ActionLink("<< Return to Membership Administration","Index","MembershipAdministratrion")
 %fieldset.MvcMembership
   %legend
     Users In "
@@ -17,9 +16,9 @@
     %ol
       - foreach( MembershipUser user in ( ViewData["Role"] as MembershipRoleViewData ).Users )
         %li
-          = Html.ActionLink<MembershipAdministrationController>( x => x.UserDetails( int.Parse(user.ProviderUserKey.ToString()) ), user.UserName )
+          = Html.ActionLink(user.UserName,"UserDetails","MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()) } )
           (
-          = Html.ActionLink<MembershipAdministrationController>( x => x.RemoveUserFromRole( int.Parse(user.ProviderUserKey.ToString()), ( ViewData["Role"] as MembershipRoleViewData ).Name ), "Remove" )
+          = Html.ActionLink("Remove", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()), roleName = ( ViewData["Role"] as MembershipRoleViewData ).Name } )
           )
   - else
     %div

@@ -1,5 +1,4 @@
-﻿@namespace=Shaml.Web.HtmlExtensions
-@type=List<string>
+﻿@type=List<string>
 %div
   %h2 List of OpenID identities for this account:
   %ul
@@ -8,6 +7,6 @@
         = id
         - using(Html.BeginForm( "RemoveOpenIdAccount", "OpenId", new { openid_identifier = id } ))
           = Html.Hidden("openIdIdentifier", id)
-          = Html.SubmitButton( "submit", "Delete" )
+          %input{ type="submit" name="submit" value="Delete" }
   = Html.ActionLink("Assign new ID","Login")
   = Html.ActionLink("Logout","Logout")

@@ -73,7 +73,7 @@ def search(zip,fname)
 end
 
 puts "Creating shaml_base_template.dat"
-
+FileUtils::mkdir_p(File.join("lib","shaml","templates"))
 Zip::ZipFile.open(zip_file_name, Zip::ZipFile::CREATE) do |zip|
   Dir.glob("webbase/*").each do |fname|
     search(zip,fname)

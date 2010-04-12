@@ -64,7 +64,7 @@ namespace Tests.WebBase.Data.NHibernateMaps
         {
           using (TextWriter stringWriter = new StreamWriter("../DB/Update_Schema.sql"))
           {
-            new SchemaUpdate(configuration).Execute(x => stringWriter.WriteLine(x + ";"), true);
+            new SchemaUpdate(configuration).Execute(x => stringWriter.WriteLine(x + ";"), false);
           }
         }
 

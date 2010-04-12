@@ -75,10 +75,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\NHibernate.Validator.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=2.0.6.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libraries\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="Shaml.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libraries\Shaml.Core.dll</HintPath>
@@ -157,6 +153,28 @@
   <ItemGroup>
     <None Include="compass_config.rb" />
     <None Include="NHibernate.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\libraries\Mono.Security.dll">
+      <Link>Mono.Security</Link>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>    
+    <Content Include="..\libraries\Npgsql.dll">
+      <Link>Npgsql.dll</Link>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\libraries\System.Data.SQLite.dll">
+      <Link>System.Data.SQLite.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\libraries\sqlite3.dll">
+      <Link>sqlite3.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\libraries\Mono.Data.Sqlite.dll">
+      <Link>Mono.Data.Sqlite.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>    
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

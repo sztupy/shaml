@@ -24,3 +24,5 @@ shaml-*.gem
 *.swx
 .dotest
 .sass-cache
+lib/shaml/templates
+database.sqlite3

@@ -78,7 +78,14 @@ namespace Shaml.Core.DomainModel
                     object value;
                     try
                     {
+                      if (prop.PropertyType.IsGenericType)
+                      {
+                        value = null;
+                      }
+                      else
+                      {
                         value = prop.GetValue(this, null);
+                      }
                     }
                     catch (Exception)
                     {
@@ -86,11 +93,18 @@ namespace Shaml.Core.DomainModel
                     }
                     if (value != null)
                     {
+                      if ((value.GetType().IsValueType) || (value is string) || (value is DateTime))
+                      {
                         sb.AppendFormat("{0}:{1}; ", prop.Name, prop.GetValue(this, null).ToString());
+                      }
+                      else
+                      {
+                        sb.AppendFormat("{0}:?({1}); ", prop.Name, prop.PropertyType.ToString());
+                      }
                     }
                     else
                     {
-                        sb.AppendFormat("{0}:?; ", prop.Name);
+                        sb.AppendFormat("{0}:?({1}); ", prop.Name, prop.PropertyType.ToString());
                     }
                 }
                 sb.Append("}");

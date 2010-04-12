@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
@@ -21,7 +21,7 @@ namespace Shaml.Membership
     {
         private const string s_tableName = "Users";
         private const int s_newPasswordLength = 8;
-        private string m_connectionString = string.Empty;
+        //private string m_connectionString = string.Empty;
 
         // Used when determining encryption key values.
         private MachineKeySection m_machineKeyConfig = null;

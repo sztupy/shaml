@@ -48,7 +48,7 @@ namespace Shaml.Membership
 		private const string s_profilesTableName = "Profiles";
 		private const string s_profileDataTableName = "ProfileData";
 		private const string s_serializationNamespace = "http://schemas.nauck-it.de/PostgreSQLProvider/1.0/";
-		private string m_connectionString = string.Empty;
+		//private string m_connectionString = string.Empty;
 
 		/// <summary>
 		/// System.Configuration.Provider.ProviderBase.Initialize Method
@@ -74,7 +74,7 @@ namespace Shaml.Membership
 			m_applicationName = NHOpenIDMembershipProvider.GetConfigValue(config["applicationName"], HostingEnvironment.ApplicationVirtualPath);
 
 			// Get connection string.
-            m_connectionString = NHOpenIDMembershipProvider.GetConnectionString(config["connectionStringName"]);
+            //m_connectionString = NHOpenIDMembershipProvider.GetConnectionString(config["connectionStringName"]);
 		}
 
 		/// <summary>

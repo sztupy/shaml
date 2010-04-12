@@ -48,7 +48,7 @@ namespace Shaml.Membership
 	{
 		private const string s_tableName = "Sessions";
 		private System.Timers.Timer m_expiredSessionDeletionTimer;
-		private string m_connectionString = string.Empty;
+		//private string m_connectionString = string.Empty;
 		private string m_applicationName = string.Empty;
 		private SessionStateSection m_config = null;
 		private bool m_enableExpireCallback = false;
@@ -365,7 +365,7 @@ namespace Shaml.Membership
 			locked = false;
 			actionFlags = 0;
 			DateTime expires = DateTime.MinValue;
-			int timeout = 0;
+			//int timeout = 0;
 			string serializedItems = null;
 
             using (var s = NHOpenIDMembershipProvider.GetNHibernateSession())
@@ -382,7 +382,7 @@ namespace Shaml.Membership
                         foreach (var session in sessions)
                         {
                             expires = session.Expires;
-                            timeout = session.Timeout;
+                            //timeout = session.Timeout;
                             locked = session.Locked;
                             lockId = session.LockId;
                             lockAge = DateTime.Now.Subtract(session.LockDate);

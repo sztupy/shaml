@@ -3,6 +3,7 @@ shaml/**/Bin
 webbase/**/bin
 webbase/**/Bin
 webbase/bin
+webbase/libraries/Shaml*
 obj
 TestResults
 TestResult.xml

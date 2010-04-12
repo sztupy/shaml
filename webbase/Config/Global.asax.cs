@@ -17,6 +17,7 @@ using Microsoft.Practices.ServiceLocation;
 using WebBase.Config;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
+using Shaml.Web.Areas;
 
 namespace WebBase
 {
@@ -64,8 +65,20 @@ namespace WebBase
             };
             nhaml.PartialViewLocationFormats = nhaml.ViewLocationFormats;
 
+            var area = new AreaViewEngine();
+            area.MasterLocationFormats = new[] {
+                "~/App/Views/Shared/{0}.haml",
+                "~/App/Views/Shared/Application.haml",
+            };
+            area.ViewLocationFormats = new[] {
+                "~/App/Views/{1}/{0}.haml",
+                "~/App/Views/Shared/{0}.haml"
+            };
+            area.PartialViewLocationFormats = area.ViewLocationFormats;
+
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(nhaml);
+            ViewEngines.Engines.Add(area);
 
             ModelBinders.Binders.DefaultBinder = new SharpModelBinder();
 

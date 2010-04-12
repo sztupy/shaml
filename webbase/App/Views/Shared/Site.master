@@ -1,0 +1,97 @@
+<%@ Master Language="C#" AutoEventWireup="true" 
+    Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="WebBase.Controllers" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+  <head id="Head1" runat="server">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" /> 
+    <script type="text/javascript" src="/Public/Scripts/jquery-1.4.2.min.js"> 
+    </script> 
+    <script type="text/javascript" src="/Public/Scripts/openid-jquery.js"> 
+    </script> 
+    <link href="/Public/Content/screen.css" media="screen,projection" rel="stylesheet" type="text/css" /> 
+    <link href="/Public/Content/print.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!--[if lt IE 7]>
+      <link href="/Public/Content/ie.css" media="screen,projection" rel="stylesheet" type="text/css" />
+    <![endif]-->   
+    <% // At bottom to facilitate other JS files to be loaded before page-by-page JS is loaded %>
+    <asp:ContentPlaceHolder ID="HeadContentPlaceHolder" runat="server">
+      <title>S#aml Architecture</title>
+    </asp:ContentPlaceHolder>
+  </head>
+
+  <body> 
+    <div id="mainContent"> 
+      <div id="topContainer"> 
+        <h1> 
+          S#aml Architecture
+        </h1> 
+      </div> 
+      <div id="columnsContainer"> 
+        <div id="leftColumn"> 
+          <p> 
+            <img src="/Public/Content/Images/shaml_large.jpg" alt="S#aml architecture logo" /> 
+          </p> 
+          <p> 
+            [
+            <a href="/Account/LogOn">Log On</a> 
+            ]
+          </p> 
+          <h2> 
+            Main Menu
+          </h2> 
+          <ul class="mainmenu"> 
+            <li> 
+              <a href="/">Main Page</a> 
+            </li> 
+            <li> 
+              <a href="/OpenId">OpenID Management</a> 
+            </li> 
+            <li> 
+              <a href="/MembershipAdministration">Membership Administration</a> 
+            </li> 
+          </ul> 
+        </div> 
+        <div id="rightColumn"> 
+          <div> 
+            <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server" />
+            <div id="endMain"> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+    <div id="footer"> 
+      <ul class="footer"> 
+        <li class="footer"> 
+          Index
+          <ul> 
+            <li> 
+              <a href="/">Main Page</a> 
+            </li> 
+          </ul> 
+        </li> 
+        <li class="footer"> 
+          User Administration
+          <ul> 
+            <li> 
+              <a href="/OpenId">OpenID Administration</a> 
+            </li> 
+            <li> 
+              <a href="/MembershipAdministration">Membership Administration</a> 
+            </li> 
+          </ul> 
+        </li> 
+        <li class="footer"> 
+          Controllers
+          <ul> 
+            <li> 
+              <a href="/WebSamples">Sample Controller</a> 
+            </li> 
+          </ul> 
+        </li> 
+      </ul> 
+    </div> 
+  </body> 
+</html> 

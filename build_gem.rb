@@ -84,7 +84,7 @@ puts "Creating WebSample template files"
 FileUtils::cp(File.join("webbase","App","Controllers","WebSamplesController.cs"),File.join("lib","shaml","templates"))
 File.open(File.join("webbase","App","Core","WebSample.cs"),"rb") do |inp|
   File.open(File.join("lib","shaml","templates","WebSample.cs"),"wb+") do |outp|
-    outp.write inp.read.gsub("public class PropertyType { }","")
+    outp.write inp.read.gsub("public class PropertyType : Entity { }","")
   end
 end
 FileUtils::cp(File.join("webbase","App","Data","WebSampleMap.cs"),File.join("lib","shaml","templates"))

@@ -6,7 +6,7 @@ using System;
 
 namespace WebBase.Core
 {
-    public class PropertyType { }
+    public class PropertyType : Entity { }
     public class WebSample : Entity
     {
         public WebSample() { }

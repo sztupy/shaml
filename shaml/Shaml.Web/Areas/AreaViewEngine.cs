@@ -12,31 +12,30 @@ namespace Shaml.Web.Areas
         public AreaViewEngine()
         {
             MasterLocationFormats = new[] {
-                "~/{0}.master",
-                "~/Shared/{0}.master",
-                "~/Views/{1}/{0}.master",
-                "~/Views/Shared/{0}.master",
+                "~/App/Views/{0}.master",
+                "~/App/Views/{1}/{0}.master",
+                "~/App/Views/Shared/{0}.master",
             };
 
             AreaMasterLocationFormats = new[] {
-                "~/Views/{2}/{1}/{0}.master",
-                "~/Views/{2}/Shared/{0}.master",
+                "~/App/Views/{2}/{1}/{0}.master",
+                "~/App/Views/{2}/Shared/{0}.master",
             };
 
             ViewLocationFormats = new[] { 
-                "~/{0}.aspx",
-                "~/{0}.ascx",
-                "~/Views/{1}/{0}.aspx",
-                "~/Views/{1}/{0}.ascx",
-                "~/Views/Shared/{0}.aspx",
-                "~/Views/Shared/{0}.ascx",
+                "~/App/Views/{0}.aspx",
+                "~/App/Views/{0}.ascx",
+                "~/App/Views/{1}/{0}.aspx",
+                "~/App/Views/{1}/{0}.ascx",
+                "~/App/Views/Shared/{0}.aspx",
+                "~/App/Views/Shared/{0}.ascx",
             };
 
             AreaViewLocationFormats = new[] {
-                "~/Views/{2}/{1}/{0}.aspx",
-                "~/Views/{2}/{1}/{0}.ascx",
-                "~/Views/{2}/Shared/{0}.aspx",
-                "~/Views/{2}/Shared/{0}.ascx",
+                "~/App/Views/{2}/{1}/{0}.aspx",
+                "~/App/Views/{2}/{1}/{0}.ascx",
+                "~/App/Views/{2}/Shared/{0}.aspx",
+                "~/App/Views/{2}/Shared/{0}.ascx",
             };
 
             PartialViewLocationFormats = ViewLocationFormats;

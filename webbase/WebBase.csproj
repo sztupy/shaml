@@ -51,10 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b5f559ae0ac4e006, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>libraries\Microsoft.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="MvcContrib, Version=1.0.0.947, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libraries\MvcContrib.dll</HintPath>
@@ -245,7 +241,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="App\Views\WebSamples\Show.haml">
-      <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="App\Views\WebSamples\_WebSampleForm.haml">
       <SubType>ASPXCodeBehind</SubType>

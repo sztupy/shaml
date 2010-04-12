@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zsolt Sz. Sztupak"]
-  s.date = %q{2010-04-01}
+  s.date = %q{2010-04-09}
   s.default_executable = %q{shaml}
   s.description = %q{Shaml is an ASP.NET MVC 2 framework with NHibernate 2.1 for mono 2.4.4+}
   s.email = %q{mail@sztupy.hu}

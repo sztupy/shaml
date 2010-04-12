@@ -3,7 +3,6 @@ using System.Linq.Expressions;
 using System;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
-using ExpressionHelper = Microsoft.Web.Mvc.Internal.ExpressionHelper;
 
 namespace Shaml.Web.Areas
 {
@@ -51,7 +50,8 @@ namespace Shaml.Web.Areas
         }
 
         private static string GetQueryStringArguments<TController>(HtmlHelper helper, Expression<Action<TController>> action, string linkText) where TController : Controller {
-            RouteValueDictionary routingValues = ExpressionHelper.GetRouteValuesFromExpression(action);
+            throw new NotImplementedException();
+            /*RouteValueDictionary routingValues = ExpressionHelper.GetRouteValuesFromExpression(action);
             string routeLinkFromMvc = helper.RouteLink(linkText, routingValues).ToString();
 
             string routePortion = GetRoutePortionFrom(routeLinkFromMvc);
@@ -61,7 +61,7 @@ namespace Shaml.Web.Areas
             }
             else {
                 return "";
-            }
+            }*/
         }
 
         private static string GetRoutePortionFrom(string anchorLink) {

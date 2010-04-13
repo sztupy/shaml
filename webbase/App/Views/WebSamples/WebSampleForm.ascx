@@ -1,0 +1,26 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true"
+	Inherits="System.Web.Mvc.ViewUserControl<WebBase.Controllers.WebSamplesController.WebSampleFormViewModel>" %>
+<%@ Import Namespace="WebBase.Core #>" %>
+<%@ Import Namespace="WebBase.Controllers" %>
+
+<%= Html.ValidationSummary() %>
+<% using (Html.BeginForm()) %>
+  <% // Html.AntiForgeryToken() %>
+  <%= Html.Hidden("WebSample.Id", (Model.WebSample != null) ? Model.WebSample.Id : 0) %>
+  <ul>
+<!-- __BEGIN__PROPERTY__ -->
+   <li>
+     <label for="WebSample_Property">Property:</label>
+     <div>
+       <%= Html.TextBox("WebSample.Property", (Model.WebSample != null) ? Model.WebSample.Property.ToString() : "" ) %>
+       <%= Html.ValidationMessage("WebSample.Property") %>
+     </div>
+   </li>
+<!-- __END__PROPERTY__ -->
+   <li>
+    <input type="submit" name="btnSave" value="Save WebSample" />
+    <button name="btnCancel" onClick="window.location.href = '/WebSamples';">Cancel</button>
+   </li>
+  </ul>
+<% } %>
+

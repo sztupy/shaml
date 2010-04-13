@@ -16,7 +16,7 @@
     %ol
       - foreach( MembershipUser user in ( ViewData["Role"] as MembershipRoleViewData ).Users )
         %li
-          = Html.ActionLink(user.UserName,"UserDetails","MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()) }, new { } )
+          = Html.ActionLink(user.UserName,"UserDetails","MembershipAdministration", new { Id = int.Parse(user.ProviderUserKey.ToString()) }, new { } )
           (
           = Html.ActionLink("Remove", "RemoveUserFromRole", "MembershipAdministration", new { userId = int.Parse(user.ProviderUserKey.ToString()), roleName = ( ViewData["Role"] as MembershipRoleViewData ).Name } , new { })
           )

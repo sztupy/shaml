@@ -147,7 +147,11 @@ namespace Shaml.Membership
             {
                 using (s.BeginTransaction())
                 {
-                    Session session = new Session();
+                    Session session;
+                    session = s.CreateQuery("from Session where sessionId = :id").SetParameter<string>("id",id).UniqueResult<Session>();
+                    if (session==null) {
+                        session = new Session();    
+                    }
                     session.SessionId = id;
                     session.ApplicationName = m_applicationName;
                     session.Created = DateTime.Now;
@@ -158,7 +162,7 @@ namespace Shaml.Membership
                     session.LockDate = DateTime.Now;
                     session.Data = string.Empty;
                     session.Flags = 1;
-                    s.Save(session);
+                    s.SaveOrUpdate(session);
                     s.Transaction.Commit();
                 }
             }

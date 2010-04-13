@@ -118,9 +118,11 @@ class CommandLoader
       puts "Where command might be:"
       puts " generate"
       puts "  app AppName             : Create new shaml application"
-      puts "  resource ResName [desc] : Create new CRUD resource with"
+      puts "  resource ResName "
+      puts "        {haml|asp} [desc] : Create new CRUD resource with"
       puts "                            a model, a view and a controller"
-      puts "  controller Controller   : Create a standalone controller"
+      puts "  controller Controller "
+      puts "        {haml|asp} [desc] : Create a standalone controller"
       puts "  model Model [desc]      : Create a standalone model"
       puts
       puts " compile                  : Compiles the solution using {ms|x}build"
@@ -185,6 +187,13 @@ class CommandLoader
             puts
           when "resource"
             desc = ARGV.shift || nil
+            type = "haml"
+            if desc=~/^asp([x])?/ then
+              type="asp"
+              desc = ARGV.shift || nil
+            elsif desc=~/^haml/ then
+              desc = ARGV.shift || nil
+            end
             appname = getappname
             xmlname = File.join("App","Core","#{appname}.Core.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSample.cs"),File.join("App","Core","WebSample.cs"),appname,name,desc,xmlname,:compile)
@@ -192,13 +201,22 @@ class CommandLoader
             copy_file(File.join(TEMPLATEDIR,"WebSampleMap.cs"),File.join("App","Data","WebSampleMap.cs"),appname,name,desc,xmlname,:compile)            
             xmlname = File.join("App","Controllers","#{appname}.Controllers.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join("App","Controllers","WebSamplesController.cs"),appname,name,desc,xmlname,:compile)
-            xmlname = "#{appname}.csproj"            
-            copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join("App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join("App","Views","WebSamples","Create.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join("App","Views","WebSamples","Delete.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join("App","Views","WebSamples","Edit.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join("App","Views","WebSamples","Index.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join("App","Views","WebSamples","Show.haml"),appname,name,desc,xmlname,:content)
+            xmlname = "#{appname}.csproj"
+            if type=="haml" then
+              copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join("App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join("App","Views","WebSamples","Create.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join("App","Views","WebSamples","Delete.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join("App","Views","WebSamples","Edit.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join("App","Views","WebSamples","Index.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join("App","Views","WebSamples","Show.haml"),appname,name,desc,xmlname,:content)
+            else
+              copy_file(File.join(TEMPLATEDIR,"WebSampleForm.ascx"),File.join("App","Views","WebSamples","WebSampleForm.ascx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Create.aspx"),File.join("App","Views","WebSamples","Create.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Delete.aspx"),File.join("App","Views","WebSamples","Delete.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Edit.aspx"),File.join("App","Views","WebSamples","Edit.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Index.aspx"),File.join("App","Views","WebSamples","Index.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Show.aspx"),File.join("App","Views","WebSamples","Show.aspx"),appname,name,desc,xmlname,:content)
+            end
             xmlname = File.join("Tests","#{appname}.Tests.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSampleTests.cs"),File.join("Tests","Core","WebSampleTests.cs"),appname,name,desc,xmlname,:compile)        
             copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join("Tests","Controllers","WebSamplesControllerTests.cs"),appname,name,desc,xmlname,:compile)
@@ -215,16 +233,32 @@ class CommandLoader
             fix_with_model(name)            
           when "controller"
             desc = ARGV.shift || nil
+            type = "haml"
+            if desc=~/^asp([x])?/ then
+              type="asp"
+              desc = ARGV.shift || nil
+            elsif desc=~/^haml/ then
+              desc = ARGV.shift || nil
+            end
             appname = getappname   
             xmlname = File.join("App","Controllers","#{appname}.Controllers.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSamplesController.cs"),File.join("App","Controllers","WebSamplesController.cs"),appname,name,desc,xmlname,:compile)
             xmlname = "#{appname}.csproj"            
-            copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join("App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join("App","Views","WebSamples","Create.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join("App","Views","WebSamples","Delete.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join("App","Views","WebSamples","Edit.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join("App","Views","WebSamples","Index.haml"),appname,name,desc,xmlname,:content)
-            copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join("App","Views","WebSamples","Show.haml"),appname,name,desc,xmlname,:content)
+            if type=="haml" then
+              copy_file(File.join(TEMPLATEDIR,"_WebSampleForm.haml"),File.join("App","Views","WebSamples","_WebSampleForm.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Create.haml"),File.join("App","Views","WebSamples","Create.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Delete.haml"),File.join("App","Views","WebSamples","Delete.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Edit.haml"),File.join("App","Views","WebSamples","Edit.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Index.haml"),File.join("App","Views","WebSamples","Index.haml"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Show.haml"),File.join("App","Views","WebSamples","Show.haml"),appname,name,desc,xmlname,:content)
+            else
+              copy_file(File.join(TEMPLATEDIR,"WebSampleForm.ascx"),File.join("App","Views","WebSamples","WebSampleForm.ascx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Create.aspx"),File.join("App","Views","WebSamples","Create.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Delete.aspx"),File.join("App","Views","WebSamples","Delete.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Edit.aspx"),File.join("App","Views","WebSamples","Edit.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Index.aspx"),File.join("App","Views","WebSamples","Index.aspx"),appname,name,desc,xmlname,:content)
+              copy_file(File.join(TEMPLATEDIR,"Show.aspx"),File.join("App","Views","WebSamples","Show.aspx"),appname,name,desc,xmlname,:content)
+            end
             xmlname = File.join("Tests","#{appname}.Tests.csproj")
             copy_file(File.join(TEMPLATEDIR,"WebSamplesControllerTests.cs"),File.join("Tests","Controllers","WebSamplesControllerTests.cs"),appname,name,desc,xmlname,:compile)
           else

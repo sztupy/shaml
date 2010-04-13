@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
   s.files = ["bin/shaml","lib/shaml/templates/shaml_base_template.dat"] + 
             Dir.glob("lib/**/*.rb") + 
             Dir.glob("lib/**/*.haml") + 
+            Dir.glob("lib/**/*.ascx") +
+            Dir.glob("lib/**/*.aspx") +
             Dir.glob("lib/**/*.cs")
   s.homepage = %q{http://code.google.com/p/shaml-architecture/}
   s.rdoc_options = ["--charset=UTF-8"]

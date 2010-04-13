@@ -90,12 +90,20 @@ end
 FileUtils::cp(File.join("webbase","App","Data","WebSampleMap.cs"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","Tests","Controllers","WebSamplesControllerTests.cs"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","Tests","Core","WebSampleTests.cs"),File.join("lib","shaml","templates"))
+
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","_WebSampleForm.haml"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","Create.haml"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","Edit.haml"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","Delete.haml"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","Index.haml"),File.join("lib","shaml","templates"))
 FileUtils::cp(File.join("webbase","App","Views","WebSamples","Show.haml"),File.join("lib","shaml","templates"))
+
+FileUtils::cp(File.join("webbase","App","Views","WebSamples","WebSampleForm.ascx"),File.join("lib","shaml","templates"))
+FileUtils::cp(File.join("webbase","App","Views","WebSamples","Create.aspx"),File.join("lib","shaml","templates"))
+FileUtils::cp(File.join("webbase","App","Views","WebSamples","Edit.aspx"),File.join("lib","shaml","templates"))
+FileUtils::cp(File.join("webbase","App","Views","WebSamples","Delete.aspx"),File.join("lib","shaml","templates"))
+FileUtils::cp(File.join("webbase","App","Views","WebSamples","Index.aspx"),File.join("lib","shaml","templates"))
+FileUtils::cp(File.join("webbase","App","Views","WebSamples","Show.aspx"),File.join("lib","shaml","templates"))
 
 puts "Building Gem"
 system("gem build shaml.gemspec")

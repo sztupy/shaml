@@ -1,10 +1,9 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true"
-	Inherits="System.Web.Mvc.ViewUserControl<WebBase.Controllers.WebSamplesController.WebSampleFormViewModel>" %>
-<%@ Import Namespace="WebBase.Core #>" %>
+﻿<%@ Import Namespace="WebBase.Core" %>
 <%@ Import Namespace="WebBase.Controllers" %>
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="System.Web.Mvc.ViewUserControl<WebBase.Controllers.WebSamplesController.WebSampleFormViewModel>" %>
 
 <%= Html.ValidationSummary() %>
-<% using (Html.BeginForm()) %>
+<% using (Html.BeginForm()) { %>
   <% // Html.AntiForgeryToken() %>
   <%= Html.Hidden("WebSample.Id", (Model.WebSample != null) ? Model.WebSample.Id : 0) %>
   <ul>

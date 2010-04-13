@@ -221,6 +221,15 @@
     <None Include="App\Stylesheets\ie.sass" />
     <None Include="App\Stylesheets\print.sass" />
     <None Include="App\Stylesheets\screen.sass" />
+    <Content Include="App\Views\Home\Index.aspx" />
+    <Content Include="App\Views\Shared\Site.master" />
+    <Content Include="App\Views\WebSamples\Create.aspx" />
+    <Content Include="App\Views\WebSamples\Delete.aspx" />
+    <Content Include="App\Views\WebSamples\Edit.aspx" />
+    <Content Include="App\Views\WebSamples\Index.aspx" />
+    <Content Include="App\Views\WebSamples\Show.aspx" />
+    <Content Include="App\Views\WebSamples\WebSampleForm.ascx" />
+    <Content Include="App\Views\Web.config" />
     <None Include="App\Views\WebSamples\Create.haml">
       <SubType>ASPXCodeBehind</SubType>
     </None>

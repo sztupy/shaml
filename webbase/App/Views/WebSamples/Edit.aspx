@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Create WebSample" Language="C#" MasterPageFile="~/App/Views/Shared/Site.Master" AutoEventWireup="true" 
-	Inherits="System.Web.Mvc.ViewPage<WebBase.Controllers.WebSamplesController.WebSampleFormViewModel>" %>
+﻿<%@ Page Title="Create WebSample" Language="C#" MasterPageFile="~/App/Views/Shared/Site.master" AutoEventWireup="true" Inherits="System.Web.Mvc.ViewPage<WebBase.Controllers.WebSamplesController.WebSampleFormViewModel>" %>
 
 <asp:Content ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
 <div>

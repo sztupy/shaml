@@ -1,11 +1,10 @@
-﻿<%@ Page Title="Create WebSample" Language="C#" MasterPageFile="~/App/Views/Shared/Site.Master" AutoEventWireup="true" 
-	Inherits="System.Web.Mvc.ViewPage<WebBase..Controllers.WebSamplesController.WebSampleFormViewModel>" %>
-<%@ Import Namespace="WebBase.Core #>" %>
+﻿<%@ Page Title="Create WebSample" Language="C#" MasterPageFile="~/App/Views/Shared/Site.master" Inherits="System.Web.Mvc.ViewPage<List<WebSample>>" %>
+<%@ Import Namespace="WebBase.Core" %>
 <%@ Import Namespace="WebBase.Controllers" %>
 <asp:Content ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
   <h1>WebSamples</h1>
-  <% if (ViewContext.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()] != null) { %>
-  <p id="pageMessage"><%= ViewContext.TempData[ControllerEnums.GlobalViewDataProperty.PageMessage.ToString()]%></p>
+  <% if (ViewContext.TempData["message"] != null) { %>
+  <p id="pageMessage"><%= ViewContext.TempData["message"].ToString() %></p>
   <% } %>
   <table>
    <thead>
@@ -16,7 +15,7 @@
      <th colspan="3">Action</th>
     </tr>
    </thead>
-	 <% foreach (WebSample websample in ViewData.Model) { %>
+  <% foreach (WebSample websample in ViewData.Model) { %>
     <tr>
 <!-- __BEGIN__PROPERTY__ -->
 	   <td><%= websample.Property %></td>

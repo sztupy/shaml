@@ -66,15 +66,6 @@ namespace WebBase
             nhaml.PartialViewLocationFormats = nhaml.ViewLocationFormats;
 
             var area = new AreaViewEngine();
-            area.MasterLocationFormats = new[] {
-                "~/App/Views/Shared/{0}.haml",
-                "~/App/Views/Shared/Application.haml",
-            };
-            area.ViewLocationFormats = new[] {
-                "~/App/Views/{1}/{0}.haml",
-                "~/App/Views/Shared/{0}.haml"
-            };
-            area.PartialViewLocationFormats = area.ViewLocationFormats;
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(nhaml);

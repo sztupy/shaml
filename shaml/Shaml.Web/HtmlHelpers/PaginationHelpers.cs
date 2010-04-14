@@ -67,9 +67,9 @@ namespace Shaml.Web.HtmlHelpers
             NextText = "Next »";
         }
 
-        public virtual void FillPageData(RouteValueDictionary r)
+        public virtual void FillPageData(HtmlHelper helper)
         {
-            string currentPageString = r["Page"] as string;
+            string currentPageString = helper.ViewContext.RouteData.Values["Page"] as string;
             CurrentPage = 0;
             int result;
             if (Int32.TryParse(currentPageString, out result))
@@ -78,9 +78,13 @@ namespace Shaml.Web.HtmlHelpers
             }
 
             CurrentRoute = new RouteValueDictionary();
-            foreach (var p in r)
+            foreach (var p in helper.ViewContext.RouteData.Values)
             {
                 CurrentRoute.Add(p.Key, p.Value);
+            }
+            foreach (string var in helper.ViewContext.HttpContext.Request.QueryString)
+            {
+                CurrentRoute.Add(var, helper.ViewContext.HttpContext.Request.QueryString[var]);
             }
         }
 
@@ -109,7 +113,7 @@ namespace Shaml.Web.HtmlHelpers
             StringBuilder str = new StringBuilder();
 
             // First block: Previous link
-            FillPageData(helper.ViewContext.RouteData.Values);
+            FillPageData(helper);
             if (Page <= 0)
             {
                 str.Append(PreviousText);

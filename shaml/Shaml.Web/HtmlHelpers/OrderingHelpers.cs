@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace Shaml.Web.HtmlHelpers
 {
-    static public class ORderingHelpers
+    static public class OrderingHelpers
     {
         static public MvcHtmlString SwitchOrderLink(this HtmlHelper helper, string linkText, string propertyName)
         {
@@ -16,6 +16,10 @@ namespace Shaml.Web.HtmlHelpers
             foreach (var p in helper.ViewContext.RouteData.Values)
             {
                 RouteToChange.Add(p.Key, p.Value);
+            }
+            foreach (string var in helper.ViewContext.HttpContext.Request.QueryString)
+            {
+                RouteToChange.Add(var, helper.ViewContext.HttpContext.Request.QueryString[var]);
             }
             object actualPropertyObject;
             if (RouteToChange.TryGetValue("OrderBy",out actualPropertyObject)) {
@@ -26,20 +30,19 @@ namespace Shaml.Web.HtmlHelpers
                     if (RouteToChange.TryGetValue("Desc", out actualDescObject))
                     {
                         RouteToChange["OrderBy"] = propertyName;
-                        bool? actualDesc = actualDescObject as bool?;
+                        bool actualDesc;
+                        if (Boolean.TryParse(actualDescObject.ToString(), out actualDesc))
                         if (actualDesc == true)
                         {
                             RouteToChange["Desc"] = false;
-                            return helper.ActionLink(linkText, RouteToChange["Action"].ToString(), RouteToChange);
-                        }
-                        else
-                        {
-                            RouteToChange["Desc"] = true;
-                            return helper.ActionLink(linkText, RouteToChange["Action"].ToString(), RouteToChange);
+                            return helper.ActionLink(linkText + " ▲", RouteToChange["Action"].ToString(), RouteToChange);
                         }
                     }
+                    RouteToChange["Desc"] = true;
+                    return helper.ActionLink(linkText + " ▼", RouteToChange["Action"].ToString(), RouteToChange);
                 }
             }
+            RouteToChange["Desc"] = false;
             RouteToChange["OrderBy"] = propertyName;
             return helper.ActionLink(linkText,RouteToChange["Action"].ToString(),RouteToChange);
         }

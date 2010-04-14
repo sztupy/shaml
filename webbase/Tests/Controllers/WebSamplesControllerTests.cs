@@ -31,7 +31,7 @@ namespace Tests.Blog.Web.Controllers
         /// </summary>
         [Test]
         public void CanListWebSamples() {
-            ViewResult result = controller.Index().AssertViewRendered();
+            ViewResult result = controller.Index(null,null,null).AssertViewRendered();
 
             result.ViewData.Model.ShouldNotBeNull();
             (result.ViewData.Model as List<WebSample>).Count.ShouldEqual(0);

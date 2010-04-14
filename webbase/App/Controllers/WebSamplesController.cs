@@ -28,12 +28,6 @@ namespace WebBase.Controllers
         }
 
         [Transaction]
-        public ActionResult Index()
-        {
-            return Index(null, null, null);
-        }
-
-        [Transaction]
         public ActionResult Index(int? Page, string OrderBy, bool? Desc) {
             long numResults;
             int page = 0;

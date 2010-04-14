@@ -10,6 +10,7 @@ using System;
 using Shaml.Core.PersistenceSupport.NHibernate;
 using Shaml.Core.DomainModel;
 using System.Collections;
+using NHibernate.Metadata;
 
 namespace Shaml.Data.NHibernate
 {
@@ -46,6 +47,43 @@ namespace Shaml.Data.NHibernate
             }
         }
 
+        protected void AddOrderingsToCriteria(ICriteria criteria, params IPropertyOrder<T>[] order)
+        {
+            foreach (IPropertyOrder<T> i in order)
+            {
+                if (i.IsValid)
+                {
+                    if (i.Desc)
+                    {
+                        criteria.AddOrder(Order.Desc(i.PropertyName));
+                    }
+                    else
+                    {
+                        criteria.AddOrder(Order.Asc(i.PropertyName));
+                    }
+                }
+            }
+        }
+
+        protected void AddOrderingsToCriteria(DetachedCriteria criteria, params IPropertyOrder<T>[] order)
+        {
+            foreach (IPropertyOrder<T> i in order)
+            {
+                if (i.IsValid)
+                {
+                    if (i.Desc)
+                    {
+                        criteria.AddOrder(Order.Desc(i.PropertyName));
+                    }
+                    else
+                    {
+                        criteria.AddOrder(Order.Asc(i.PropertyName));
+                    }
+                }
+            }
+        }
+
+
         public virtual T Get(IdT id) {
             return Session.Get<T>(id);
         }
@@ -55,19 +93,22 @@ namespace Shaml.Data.NHibernate
             return criteria.List<T>();
         }
 
-        public virtual IList<T> GetAll(int pageSize, int page)
+        public virtual IList<T> GetAll(int pageSize, int page, params IPropertyOrder<T>[] order)
         {
             ICriteria criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize*page);
+            AddOrderingsToCriteria(criteria, order);
             return criteria.List<T>();
         }
 
-        public virtual IList<T> GetAll(int pageSize, int page, out long numResults)
+        public virtual IList<T> GetAll(int pageSize, int page, out long numResults, params IPropertyOrder<T>[] order)
         {
-            IMultiCriteria criteria = Session.CreateMultiCriteria()
-                        .Add(Session.CreateCriteria(typeof(T)).SetFirstResult(page * pageSize).SetMaxResults(pageSize))
+            ICriteria criteria = Session.CreateCriteria(typeof(T)).SetFirstResult(page * pageSize).SetMaxResults(pageSize);
+            AddOrderingsToCriteria(criteria, order);
+            IMultiCriteria multicriteria = Session.CreateMultiCriteria()
+                        .Add(criteria)
                         .Add(Session.CreateCriteria(typeof(T)).SetProjection(Projections.RowCountInt64()));
 
-            IList results = criteria.List();
+            IList results = multicriteria.List();
             numResults = (long)((IList)results[1])[0];
             return ((IList)results[0]).Cast<T>().ToList<T>();
         }
@@ -76,13 +117,14 @@ namespace Shaml.Data.NHibernate
             return FindAll(propertyValuePairs, 0, 0);
         }
 
-        public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page)
+        public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, params IPropertyOrder<T>[] order)
         {
             Check.Require(propertyValuePairs != null && propertyValuePairs.Count > 0,
                 "propertyValuePairs was null or empty; " +
                 "it has to have at least one property/value pair in it");
 
             ICriteria criteria = Session.CreateCriteria(typeof(T));
+            AddOrderingsToCriteria(criteria, order);
 
             foreach (string key in propertyValuePairs.Keys)
             {
@@ -102,7 +144,7 @@ namespace Shaml.Data.NHibernate
             return criteria.List<T>();
         }
 
-        public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults)
+        public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] order)
         {
             Check.Require(propertyValuePairs != null && propertyValuePairs.Count > 0,
                 "propertyValuePairs was null or empty; " +
@@ -110,6 +152,7 @@ namespace Shaml.Data.NHibernate
 
             IMultiCriteria multicriteria = Session.CreateMultiCriteria();
             ICriteria criteria = Session.CreateCriteria(typeof(T));
+            AddOrderingsToCriteria(criteria, order);
 
             foreach (string key in propertyValuePairs.Keys)
             {
@@ -163,5 +206,38 @@ namespace Shaml.Data.NHibernate
         }
 
         private IDbContext dbContext;
+
+        public IPropertyOrder<T> CreateOrder(string propertyName, bool isDesc)
+        {
+            return new PropertyOrder<T>(Session.SessionFactory, propertyName, isDesc);
+        }
+
+        /// <summary>
+        /// Returns an IPropertyOrder element, that has checked previously whether the property actually exists
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private class PropertyOrder<TT> : IPropertyOrder<T>
+        {
+            public virtual bool IsValid { get; private set; }
+            public virtual bool Desc { get; private set; }
+            public virtual string PropertyName { get; private set; }
+
+            public PropertyOrder(ISessionFactory sessionFactory, string propertyname, bool desc)
+            {
+                
+                PropertyName = propertyname;
+                Desc = desc;
+                if (String.IsNullOrEmpty(propertyname))
+                {
+                    IsValid = false;
+                }
+                else
+                {
+                    Type type = typeof(TT);
+                    IClassMetadata meta = sessionFactory.GetClassMetadata(type);
+                    IsValid = meta.PropertyNames.Contains<string>(propertyname);
+                }
+            }
+        }
     }
 }

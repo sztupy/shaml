@@ -27,11 +27,13 @@ namespace Shaml.Core.PersistenceSupport.NHibernate
 
         /// <summary>
         /// Looks for zero or more instances using the query string provided. Paginated.
+        /// PageSize and page can be 0, which means no pagination will occur.
         /// </summary>
         IList<T> FindByQuery(string query, int pageSize, int page);
 
         /// <summary>
         /// Looks for zero or more instances using the query string provided. Paginated with the number of results.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
         IList<T> FindByQuery(string query, int pageSize, int page, out long numResults);
 
@@ -48,12 +50,14 @@ namespace Shaml.Core.PersistenceSupport.NHibernate
 
         /// <summary>
         /// Looks for zero or more instances using the DetachedCriteria provided. Paginated.
+        /// PageSize and page can be 0, which means no pagination will occur.
         /// </summary>
-        IList<T> FindByCriteria(object criteria, int pageSize, int page);
+        IList<T> FindByCriteria(object criteria, int pageSize, int page, params IPropertyOrder<T>[] order);
 
         /// <summary>
         /// Looks for zero or more instances using the DetachedCriteria provided. Paginated with the number of results.
+        /// PageSize and page can be 0, which means no pagination will occur.
         /// </summary>
-        IList<T> FindByCriteria(object criteria, int pageSize, int page, out long numResults);
+        IList<T> FindByCriteria(object criteria, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] order);
     }
 }

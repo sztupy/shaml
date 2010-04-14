@@ -6,6 +6,28 @@ using System.Text;
 namespace Shaml.Core.PersistenceSupport
 {
     /// <summary>
+    /// Allows storing propertynames for ordering. Should check propertyname is valid
+    /// before usage
+    /// </summary>
+    public interface IPropertyOrder<T>
+    {
+        /// <summary>
+        /// Should return true if the property exists for the appropriate entity
+        /// </summary>
+        bool IsValid { get; }
+
+        /// <summary>
+        /// Whether the ordering is a descending or an ascending one
+        /// </summary>
+        bool Desc { get; }
+
+        /// <summary>
+        /// The name of the property the ordering is defined
+        /// </summary>
+        string PropertyName { get; }
+    }
+
+    /// <summary>
     /// Provides a standard interface for DAOs which are data-access mechanism agnostic.
     /// 
     /// Since nearly all of the domain objects you create will have a type of int Id, this 
@@ -27,14 +49,16 @@ namespace Shaml.Core.PersistenceSupport
         IList<T> GetAll();
 
         /// <summary>
-        /// Returns all of the items of a given type paginated.
+        /// Returns all of the items of a given type paginated, with additional ordering.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> GetAll(int pageSize, int page);
+        IList<T> GetAll(int pageSize, int page, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Returns all of the items of a given type paginated and the number of results.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> GetAll(int pageSize, int page, out long numResults);
+        IList<T> GetAll(int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
@@ -47,15 +71,17 @@ namespace Shaml.Core.PersistenceSupport
         /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
         /// The key of the collection should be the property name and the value should be
         /// the value of the property to filter by. Paginated.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page);
+        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
         /// The key of the collection should be the property name and the value should be
         /// the value of the property to filter by. Paginated with the number of results.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults);
+        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Looks for a single instance using the property/values provided.
@@ -82,5 +108,8 @@ namespace Shaml.Core.PersistenceSupport
         /// beginning a transaction, rolling back a transaction, etc.
         /// </summary>
         IDbContext DbContext { get; }
+
+
+        IPropertyOrder<T> CreateOrder(string propertyName, bool isDesc);
     }
 }

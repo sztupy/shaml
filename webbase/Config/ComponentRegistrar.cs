@@ -44,6 +44,8 @@ namespace WebBase.Config
             container.AddService(typeof(INHibernateRepository<>), typeof(NHibernateRepository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
             container.AddService(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
             container.AddService(typeof(INHibernateRepositoryWithTypedId<,>), typeof(NHibernateRepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(INHibernateQueryRepository<>), typeof(NHibernateQueryRepository<>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
+            container.AddService(typeof(INHibernateQueryRepositoryWithTypedId<,>), typeof(NHibernateQueryRepositoryWithTypedId<,>), LinFu.IoC.Configuration.LifecycleType.OncePerRequest);
         }
 
         public static void InitializeServiceLocator()

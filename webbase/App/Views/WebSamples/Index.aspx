@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Create WebSample" Language="C#" MasterPageFile="~/App/Views/Shared/Site.master" Inherits="System.Web.Mvc.ViewPage<List<WebSample>>" %>
 <%@ Import Namespace="WebBase.Core" %>
 <%@ Import Namespace="WebBase.Controllers" %>
+<%@ Import Namespace="Shaml.Web.HtmlHelpers" %>
+
 <asp:Content ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
   <h1>WebSamples</h1>
   <% if (ViewContext.TempData["message"] != null) { %>
@@ -26,5 +28,6 @@
     </tr>
    <%} %>
    </table>
+  <p><%= Html.RenderPagination(ViewData["Pagination"] as PaginationData); %></p>
   <p><%= Html.ActionLink("Create new WebSample", "Create", "WebSamples") %></p>
 </asp:Content>

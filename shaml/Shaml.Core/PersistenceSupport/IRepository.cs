@@ -27,11 +27,35 @@ namespace Shaml.Core.PersistenceSupport
         IList<T> GetAll();
 
         /// <summary>
+        /// Returns all of the items of a given type paginated.
+        /// </summary>
+        IList<T> GetAll(int pageSize, int page);
+
+        /// <summary>
+        /// Returns all of the items of a given type paginated and the number of results.
+        /// </summary>
+        IList<T> GetAll(int pageSize, int page, out long numResults);
+
+        /// <summary>
         /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
         /// The key of the collection should be the property name and the value should be
         /// the value of the property to filter by.
         /// </summary>
         IList<T> FindAll(IDictionary<string, object> propertyValuePairs);
+
+        /// <summary>
+        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
+        /// The key of the collection should be the property name and the value should be
+        /// the value of the property to filter by. Paginated.
+        /// </summary>
+        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page);
+
+        /// <summary>
+        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
+        /// The key of the collection should be the property name and the value should be
+        /// the value of the property to filter by. Paginated with the number of results.
+        /// </summary>
+        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults);
 
         /// <summary>
         /// Looks for a single instance using the property/values provided.

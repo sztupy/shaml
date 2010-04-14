@@ -12,6 +12,7 @@ using WebBase;
 using WebBase.Config;
 using WebBase.Core;
 using WebBase.Controllers;
+using Shaml.Core.PersistenceSupport.NHibernate;
 
 namespace Tests.Blog.Web.Controllers
 {
@@ -30,7 +31,7 @@ namespace Tests.Blog.Web.Controllers
         /// </summary>
         [Test]
         public void CanListWebSamples() {
-            ViewResult result = controller.Index().AssertViewRendered();
+            ViewResult result = controller.Index(null).AssertViewRendered();
 
             result.ViewData.Model.ShouldNotBeNull();
             (result.ViewData.Model as List<WebSample>).Count.ShouldEqual(0);
@@ -102,9 +103,9 @@ namespace Tests.Blog.Web.Controllers
 
 		#region Create Mock WebSample Repository
 
-        private IRepository<WebSample> CreateMockWebSampleRepository() {
+        private INHibernateQueryRepository<WebSample> CreateMockWebSampleRepository() {
 
-            IRepository<WebSample> mockedRepository = MockRepository.GenerateMock<IRepository<WebSample>>();
+            INHibernateQueryRepository<WebSample> mockedRepository = MockRepository.GenerateMock<INHibernateQueryRepository<WebSample>>();
             mockedRepository.Expect(mr => mr.GetAll()).Return(CreateWebSamples());
             mockedRepository.Expect(mr => mr.Get(1)).IgnoreArguments().Return(CreateWebSample());
             mockedRepository.Expect(mr => mr.SaveOrUpdate(null)).IgnoreArguments().Return(CreateWebSample());

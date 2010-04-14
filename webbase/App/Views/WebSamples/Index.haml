@@ -1,5 +1,6 @@
 @namespace=WebBase.Core
 @namespace=WebBase.Controllers
+@namespace=Shaml.Web.HtmlHelpers
 @type=List<WebSample>
 %div
   %h2 WebSamples
@@ -24,4 +25,5 @@
             = Html.ActionLink("Edit", "Edit", "WebSamples", new { Id = websample.Id }, new { })
           %td
             = Html.ActionLink("Delete", "Delete", "WebSamples", new { Id = websample.Id }, new { })
+  %p= Html.RenderPagination(ViewData["Pagination"] as PaginationData)
   %p= Html.ActionLink("Create new WebSample", "Create", "WebSamples")

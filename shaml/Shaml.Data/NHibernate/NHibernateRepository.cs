@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using NHibernate;
 using System.Reflection;
+using System.Linq;
 using Shaml.Core;
 using Shaml.Core.PersistenceSupport;
 using NHibernate.Criterion;
 using System.Collections.Specialized;
 using System;
 using Shaml.Core.PersistenceSupport.NHibernate;
+using System.Collections;
 
 namespace Shaml.Data.NHibernate
 {
@@ -38,16 +40,50 @@ namespace Shaml.Data.NHibernate
         }
 
         public virtual IList<T> FindAll(T exampleInstance, params string[] propertiesToExclude) {
+            return FindAll(exampleInstance, 0, 0, propertiesToExclude);
+        }
+
+        public virtual IList<T> FindAll(T exampleInstance, int pageSize, int page, params string[] propertiesToExclude)
+        {
             ICriteria criteria = Session.CreateCriteria(typeof(T));
             Example example = Example.Create(exampleInstance);
 
-            foreach (string propertyToExclude in propertiesToExclude) {
+            foreach (string propertyToExclude in propertiesToExclude)
+            {
+                example.ExcludeProperty(propertyToExclude);
+            }
+            criteria.Add(example);
+            if ((pageSize > 0) && (page >= 0))
+            {
+                criteria.SetFirstResult(pageSize * page);
+                criteria.SetMaxResults(pageSize);
+            }
+            return criteria.List<T>();
+        }
+
+        public virtual IList<T> FindAll(T exampleInstance, int pageSize, int page, out long numResults, params string[] propertiesToExclude)
+        {
+            IMultiCriteria mcriteria = Session.CreateMultiCriteria();
+            ICriteria criteria = Session.CreateCriteria(typeof(T));
+            Example example = Example.Create(exampleInstance);
+
+            foreach (string propertyToExclude in propertiesToExclude)
+            {
                 example.ExcludeProperty(propertyToExclude);
             }
 
             criteria.Add(example);
+            if ((pageSize > 0) && (page >= 0))
+            {
+                criteria.SetFirstResult(pageSize * page);
+                criteria.SetMaxResults(pageSize);
+            }
+            mcriteria.Add(criteria);
+            mcriteria.Add(Session.CreateCriteria(typeof(T)).SetProjection(Projections.RowCountInt64()));
 
-            return criteria.List<T>();
+            IList results = mcriteria.List();
+            numResults = (long)((IList)results[1])[0];
+            return ((IList)results[0]).Cast<T>().ToList<T>();
         }
 
         public virtual T FindOne(T exampleInstance, params string[] propertiesToExclude) {

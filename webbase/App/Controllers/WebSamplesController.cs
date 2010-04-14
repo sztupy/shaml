@@ -1,30 +1,43 @@
+using System;
 using System.Web.Mvc;
-using WebBase.Core;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq.Expressions;
+
+using NHibernate.Validator.Engine;
+
+using Shaml.Web.CommonValidator;
+using Shaml.Web.NHibernate;
+using Shaml.Web.HtmlHelpers;
+using Shaml.Core;
 using Shaml.Core.PersistenceSupport;
 using Shaml.Core.DomainModel;
-using System.Collections.Generic;
-using System;
-using Shaml.Web.NHibernate;
-using NHibernate.Validator.Engine;
-using System.Text;
-using Shaml.Web.CommonValidator;
-using Shaml.Core;
-using System.Linq.Expressions;
+using Shaml.Core.PersistenceSupport.NHibernate;
+
+using WebBase.Core;
 
 namespace WebBase.Controllers
 {
     [HandleError]
     public class WebSamplesController : Controller
     {
-        public WebSamplesController(IRepository<WebSample> WebSampleRepository) {
+        public WebSamplesController(INHibernateQueryRepository<WebSample> WebSampleRepository) {
             Check.Require(WebSampleRepository != null, "WebSampleRepository may not be null");
 
             this.WebSampleRepository = WebSampleRepository;
         }
 
         [Transaction]
-        public ActionResult Index() {
-            IList<WebSample> WebSamples = WebSampleRepository.GetAll();
+        public ActionResult Index(int? Page) {
+            long numResults;
+            int page = 0;
+            if (Page != null)
+            {
+                page = (int)Page;
+            }
+            IList<WebSample> WebSamples = WebSampleRepository.GetAll(20,page,out numResults);
+            PaginationData pd = new ThreeWayPaginationData(page, 20, numResults);
+            ViewData["Pagination"] = pd;
             return View(WebSamples);
         }
 

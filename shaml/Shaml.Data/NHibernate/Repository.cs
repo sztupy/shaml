@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using NHibernate;
 using System.Reflection;
 using Shaml.Core;
@@ -8,6 +9,7 @@ using System.Collections.Specialized;
 using System;
 using Shaml.Core.PersistenceSupport.NHibernate;
 using Shaml.Core.DomainModel;
+using System.Collections;
 
 namespace Shaml.Data.NHibernate
 {
@@ -53,23 +55,82 @@ namespace Shaml.Data.NHibernate
             return criteria.List<T>();
         }
 
+        public virtual IList<T> GetAll(int pageSize, int page)
+        {
+            ICriteria criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize*page);
+            return criteria.List<T>();
+        }
+
+        public virtual IList<T> GetAll(int pageSize, int page, out long numResults)
+        {
+            IMultiCriteria criteria = Session.CreateMultiCriteria()
+                        .Add(Session.CreateCriteria(typeof(T)).SetFirstResult(page * pageSize).SetMaxResults(pageSize))
+                        .Add(Session.CreateCriteria(typeof(T)).SetProjection(Projections.RowCountInt64()));
+
+            IList results = criteria.List();
+            numResults = (long)((IList)results[1])[0];
+            return ((IList)results[0]).Cast<T>().ToList<T>();
+        }
+
         public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs) {
+            return FindAll(propertyValuePairs, 0, 0);
+        }
+
+        public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page)
+        {
             Check.Require(propertyValuePairs != null && propertyValuePairs.Count > 0,
                 "propertyValuePairs was null or empty; " +
                 "it has to have at least one property/value pair in it");
 
             ICriteria criteria = Session.CreateCriteria(typeof(T));
 
-            foreach (string key in propertyValuePairs.Keys) {
-                if (propertyValuePairs[key] != null) {
+            foreach (string key in propertyValuePairs.Keys)
+            {
+                if (propertyValuePairs[key] != null)
+                {
                     criteria.Add(Expression.Eq(key, propertyValuePairs[key]));
                 }
-                else {
+                else
+                {
                     criteria.Add(Expression.IsNull(key));
                 }
             }
-
+            if ((pageSize > 0) && (page >= 0))
+            {
+                criteria.SetFirstResult(page * pageSize).SetMaxResults(pageSize);
+            }
             return criteria.List<T>();
+        }
+
+        public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults)
+        {
+            Check.Require(propertyValuePairs != null && propertyValuePairs.Count > 0,
+                "propertyValuePairs was null or empty; " +
+                "it has to have at least one property/value pair in it");
+
+            IMultiCriteria multicriteria = Session.CreateMultiCriteria();
+            ICriteria criteria = Session.CreateCriteria(typeof(T));
+
+            foreach (string key in propertyValuePairs.Keys)
+            {
+                if (propertyValuePairs[key] != null)
+                {
+                    criteria.Add(Expression.Eq(key, propertyValuePairs[key]));
+                }
+                else
+                {
+                    criteria.Add(Expression.IsNull(key));
+                }
+            }
+            if ((pageSize > 0) && (page >= 0)) {
+                criteria.SetFirstResult(page * pageSize).SetMaxResults(pageSize);
+            }
+            multicriteria.Add(criteria);
+            multicriteria.Add(Session.CreateCriteria(typeof(T)).SetProjection(Projections.RowCountInt64()));
+                        
+            IList results = multicriteria.List();
+            numResults = (long)((IList)results[1])[0];
+            return ((IList)results[0]).Cast<T>().ToList<T>();
         }
 
         public virtual T FindOne(IDictionary<string, object> propertyValuePairs) {

@@ -12,7 +12,7 @@
    <thead>
     <tr>
 <!-- __BEGIN__PROPERTY__ -->
-     <th>Property</th>
+     <th><%= Html.SwitchOrderLink("Property","Property") %></th>
 <!-- __END__PROPERTY__ -->
      <th colspan="3">Action</th>
     </tr>

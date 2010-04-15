@@ -9,6 +9,7 @@ using System.Collections.Specialized;
 using System;
 using Shaml.Core.PersistenceSupport.NHibernate;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace Shaml.Data.NHibernate
 {
@@ -70,6 +71,11 @@ namespace Shaml.Data.NHibernate
                 q.SetMaxResults(pageSize);
             }
             mq.Add(q);
+
+            // Change select part of the original query
+
+            string newquery = "select count(*) " + Regex.Replace(query, "select .*? from", "from");
+
             mq.Add(Session.CreateQuery("select count(*) " + query));
             IList results = mq.List();
             numResults = (long)((IList)results[1])[0];
@@ -97,10 +103,11 @@ namespace Shaml.Data.NHibernate
             return FindByCriteria(criteria, 0, 0);
         }
 
-        public IList<T> FindByCriteria(object criteria, int pageSize, int page)
+        public IList<T> FindByCriteria(object criteria, int pageSize, int page, params IPropertyOrder<T>[] order)
         {
             Check.Require(criteria is DetachedCriteria, "The criteria should be a DetachedCrtieria!");
             DetachedCriteria cr = CriteriaTransformer.Clone(criteria as DetachedCriteria);
+            AddOrderingsToCriteria(cr, order);
 
             if ((pageSize >= 0) && (page > 0))
             {
@@ -110,11 +117,14 @@ namespace Shaml.Data.NHibernate
             return cr.GetExecutableCriteria(Session).List<T>();
         }
 
-        public IList<T> FindByCriteria(object criteria, int pageSize, int page, out long numResults)
+        public IList<T> FindByCriteria(object criteria, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] order)
         {
             Check.Require(criteria is DetachedCriteria, "The criteria should be a DetachedCrtieria!");
             DetachedCriteria cr = CriteriaTransformer.Clone(criteria as DetachedCriteria);
             DetachedCriteria crmaxres = CriteriaTransformer.Clone(criteria as DetachedCriteria);
+
+            AddOrderingsToCriteria(cr, order);
+
 
             if ((pageSize >= 0) && (page > 0))
             {

@@ -37,11 +37,13 @@ namespace Shaml.Core.PersistenceSupport.NHibernate
 
         /// <summary>
         /// Looks for zero or more instances using the example provided.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
         IList<T> FindAll(T exampleInstance, int pageSize, int page, params string[] propertiesToExclude);
 
         /// <summary>
         /// Looks for zero or more instances using the example provided.
+        /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
         IList<T> FindAll(T exampleInstance, int pageSize, int page, out long numResults, params string[] propertiesToExclude);
 

@@ -28,14 +28,15 @@ namespace WebBase.Controllers
         }
 
         [Transaction]
-        public ActionResult Index(int? Page) {
+        public ActionResult Index(int? Page, string OrderBy, bool? Desc) {
             long numResults;
             int page = 0;
             if (Page != null)
             {
                 page = (int)Page;
             }
-            IList<WebSample> WebSamples = WebSampleRepository.GetAll(20,page,out numResults);
+            IList<WebSample> WebSamples = null;
+            WebSamples = WebSampleRepository.GetAll(20, page, out numResults, WebSampleRepository.CreateOrder(OrderBy,Desc==true));
             PaginationData pd = new ThreeWayPaginationData(page, 20, numResults);
             ViewData["Pagination"] = pd;
             return View(WebSamples);

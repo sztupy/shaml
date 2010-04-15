@@ -63,6 +63,14 @@ namespace Shaml.Web.HtmlHelpers
             {
                 LastPage = (int)(MaxResults / pageSize) + 1;
             }
+            if (LastPage == 0)
+            {
+                LastPage = 1;
+            }
+            if (Page >= LastPage)
+            {
+                Page = LastPage - 1;
+            }
             PreviousText = "« Previous";
             NextText = "Next »";
         }
@@ -95,7 +103,7 @@ namespace Shaml.Web.HtmlHelpers
 
         public ThreeWayPaginationData(int page, int pageSize, long maxResults) : base(page, pageSize, maxResults)
         {
-            PagesPerBlock = 3;
+            PagesPerBlock = 5;
         }
 
         public ThreeWayPaginationData(int page, int pageSize, long maxResults, int pagesPerBlock) :
@@ -138,10 +146,10 @@ namespace Shaml.Web.HtmlHelpers
                 cpage++;
             }
             // Third block: middle links
-            if (cpage < Page - PagesPerBlock)
+            if (cpage < Page - PagesPerBlock + 1)
             {
-                str.Append("...");
-                cpage = Page - PagesPerBlock;
+                str.Append("... ");
+                cpage = Page - PagesPerBlock + 1;
             }
             while (cpage < Page+PagesPerBlock)
             {
@@ -160,10 +168,10 @@ namespace Shaml.Web.HtmlHelpers
             }            
 
             // Fourth block: end links
-            if (cpage < LastPage - PagesPerBlock)
+            if (cpage < LastPage - PagesPerBlock + 1)
             {
-                str.Append("...");
-                cpage = LastPage - PagesPerBlock;
+                str.Append("... ");
+                cpage = LastPage - PagesPerBlock + 1;
             }
             while (cpage < LastPage)
             {

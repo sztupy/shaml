@@ -11,8 +11,8 @@
    <li>
      <label for="WebSample_Property">Property:</label>
      <div>
-       <%= Html.TextBox("WebSample.Property", (Model.WebSample != null) ? Model.WebSample.Property.ToString() : "" ) %>
-       <%= Html.ValidationMessage("WebSample.Property") %>
+       <%= Html.TextBoxFor(x => x.WebSample.Property ) %>
+       <%= Html.ValidationMessageFor(x => x.WebSample.Property) %>
      </div>
    </li>
 <!-- __END__PROPERTY__ -->

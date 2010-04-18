@@ -9,8 +9,8 @@
     %li
       %label{ for="WebSample_Property" }Property:
       %div
-        = Html.TextBox("WebSample.Property", (Model.WebSample != null) ? Model.WebSample.Property.ToString() : "" )
-        = Html.ValidationMessage("WebSample.Property")
+        = Html.TextBoxFor( x => x.WebSample.Property )
+        = Html.ValidationMessageFor( x => x.WebSample.Property )
     // __END__PROPERTY__
     %li
       %input{ type="submit" name="btnSave" value="Save WebSample"}/

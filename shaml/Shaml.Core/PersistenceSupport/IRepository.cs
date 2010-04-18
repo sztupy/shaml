@@ -101,7 +101,7 @@ namespace Shaml.Core.PersistenceSupport
         /// The key of the collection should be the property name and the value should be
         /// the value of the property to filter by.
         /// </summary>
-        IList<T> FindAllExpression(IExpression expression);
+        IList<T> FindByExpression(IExpression expression);
 
         /// <summary>
         /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
@@ -109,7 +109,7 @@ namespace Shaml.Core.PersistenceSupport
         /// the value of the property to filter by. Paginated.
         /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> FindAllExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering);
+        IList<T> FindByExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
@@ -117,13 +117,13 @@ namespace Shaml.Core.PersistenceSupport
         /// the value of the property to filter by. Paginated with the number of results.
         /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> FindAllExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
+        IList<T> FindByExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Looks for a single instance using the property/values provided.
         /// </summary>
         /// <exception cref="NonUniqueResultException" />
-        T FindOneExpression(IExpression expression);
+        T FindOneByExpression(IExpression expression);
 
         /// <summary>
         /// For entities with automatatically generated Ids, such as identity, SaveOrUpdate may 

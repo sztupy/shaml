@@ -240,6 +240,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="App\Views\WebSamples\Index.haml">
+      <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="App\Views\WebSamples\Show.haml">
       <SubType>ASPXCodeBehind</SubType>

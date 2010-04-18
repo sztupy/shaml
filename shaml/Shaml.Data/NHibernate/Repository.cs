@@ -309,12 +309,12 @@ namespace Shaml.Data.NHibernate
 
         #region IExpression based functions
 
-        public IList<T> FindAllExpression(IExpression expression)
+        public IList<T> FindByExpression(IExpression expression)
         {
-            return FindAllExpression(expression, 0, 0);
+            return FindByExpression(expression, 0, 0);
         }
 
-        public IList<T> FindAllExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering)
+        public IList<T> FindByExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering)
         {
             Check.Require(expression is CriterionExpression, "expression needs to be a CriterionExpression");
 
@@ -329,7 +329,7 @@ namespace Shaml.Data.NHibernate
             return criteria.List<T>();
         }
 
-        public IList<T> FindAllExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering)
+        public IList<T> FindByExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering)
         {
             Check.Require(expression is CriterionExpression, "expression needs to be a CriterionExpression");
 
@@ -350,9 +350,9 @@ namespace Shaml.Data.NHibernate
             return ((IList)results[0]).Cast<T>().ToList<T>();
         }
 
-        public T FindOneExpression(IExpression expression)
+        public T FindOneByExpression(IExpression expression)
         {
-            IList<T> foundList = FindAllExpression(expression);
+            IList<T> foundList = FindByExpression(expression);
 
             if (foundList.Count > 1)
             {

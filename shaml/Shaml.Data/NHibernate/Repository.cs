@@ -30,6 +30,7 @@ namespace Shaml.Data.NHibernate
     /// </summary>
     public class RepositoryWithTypedId<T, IdT> : IRepositoryWithTypedId<T, IdT>
     {
+        
         protected virtual ISession Session {
             get {
                 string factoryKey = SessionFactoryAttribute.GetKeyFrom(this);
@@ -47,43 +48,6 @@ namespace Shaml.Data.NHibernate
                 return dbContext;
             }
         }
-
-        protected void AddOrderingsToCriteria(ICriteria criteria, params IPropertyOrder<T>[] order)
-        {
-            foreach (IPropertyOrder<T> i in order)
-            {
-                if (i.IsValid)
-                {
-                    if (i.Desc)
-                    {
-                        criteria.AddOrder(Order.Desc(i.PropertyName));
-                    }
-                    else
-                    {
-                        criteria.AddOrder(Order.Asc(i.PropertyName));
-                    }
-                }
-            }
-        }
-
-        protected void AddOrderingsToCriteria(DetachedCriteria criteria, params IPropertyOrder<T>[] order)
-        {
-            foreach (IPropertyOrder<T> i in order)
-            {
-                if (i.IsValid)
-                {
-                    if (i.Desc)
-                    {
-                        criteria.AddOrder(Order.Desc(i.PropertyName));
-                    }
-                    else
-                    {
-                        criteria.AddOrder(Order.Asc(i.PropertyName));
-                    }
-                }
-            }
-        }
-
 
         public virtual T Get(IdT id) {
             return Session.Get<T>(id);
@@ -226,11 +190,12 @@ namespace Shaml.Data.NHibernate
                     criteria.Add(Expression.IsNull(key));
                 }
             }
+            ICriteria nores = CriteriaTransformer.Clone(criteria);
             if ((pageSize > 0) && (page >= 0)) {
                 criteria.SetFirstResult(page * pageSize).SetMaxResults(pageSize);
             }
             multicriteria.Add(criteria);
-            multicriteria.Add(Session.CreateCriteria(typeof(T)).SetProjection(Projections.RowCountInt64()));
+            multicriteria.Add(nores.SetProjection(Projections.RowCountInt64()));
                         
             IList results = multicriteria.List();
             numResults = (long)((IList)results[1])[0];
@@ -268,6 +233,8 @@ namespace Shaml.Data.NHibernate
 
         private IDbContext dbContext;
 
+        #region IPropertyOrder based functions
+
         public IPropertyOrder<T> CreateOrder(string propertyName, bool isDesc)
         {
             return new PropertyOrder<T>(Session.SessionFactory, propertyName, isDesc);
@@ -300,5 +267,285 @@ namespace Shaml.Data.NHibernate
                 }
             }
         }
+
+        protected void AddOrderingsToCriteria(ICriteria criteria, params IPropertyOrder<T>[] order)
+        {
+            foreach (IPropertyOrder<T> i in order)
+            {
+                if (i.IsValid)
+                {
+                    if (i.Desc)
+                    {
+                        criteria.AddOrder(Order.Desc(i.PropertyName));
+                    }
+                    else
+                    {
+                        criteria.AddOrder(Order.Asc(i.PropertyName));
+                    }
+                }
+            }
+        }
+
+        protected void AddOrderingsToCriteria(DetachedCriteria criteria, params IPropertyOrder<T>[] order)
+        {
+            foreach (IPropertyOrder<T> i in order)
+            {
+                if (i.IsValid)
+                {
+                    if (i.Desc)
+                    {
+                        criteria.AddOrder(Order.Desc(i.PropertyName));
+                    }
+                    else
+                    {
+                        criteria.AddOrder(Order.Asc(i.PropertyName));
+                    }
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region IExpression based functions
+
+        public IList<T> FindAllExpression(IExpression expression)
+        {
+            return FindAllExpression(expression, 0, 0);
+        }
+
+        public IList<T> FindAllExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering)
+        {
+            Check.Require(expression is CriterionExpression, "expression needs to be a CriterionExpression");
+
+            ICriteria criteria = Session.CreateCriteria(typeof(T));
+            AddOrderingsToCriteria(criteria, ordering);
+            criteria.Add((expression as CriterionExpression).GetExpression() as ICriterion);
+                        
+            if ((pageSize > 0) && (page >= 0))
+            {
+                criteria.SetFirstResult(page * pageSize).SetMaxResults(pageSize);
+            }
+            return criteria.List<T>();
+        }
+
+        public IList<T> FindAllExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering)
+        {
+            Check.Require(expression is CriterionExpression, "expression needs to be a CriterionExpression");
+
+            IMultiCriteria multicriteria = Session.CreateMultiCriteria();
+            ICriteria criteria = Session.CreateCriteria(typeof(T));
+            AddOrderingsToCriteria(criteria, ordering);
+            criteria.Add((expression as CriterionExpression).GetExpression() as ICriterion);
+            ICriteria nores = CriteriaTransformer.Clone(criteria);
+            if ((pageSize > 0) && (page >= 0))
+            {
+                criteria.SetFirstResult(page * pageSize).SetMaxResults(pageSize);
+            }
+            multicriteria.Add(criteria);
+            multicriteria.Add(nores.SetProjection(Projections.RowCountInt64()));
+
+            IList results = multicriteria.List();
+            numResults = (long)((IList)results[1])[0];
+            return ((IList)results[0]).Cast<T>().ToList<T>();
+        }
+
+        public T FindOneExpression(IExpression expression)
+        {
+            IList<T> foundList = FindAllExpression(expression);
+
+            if (foundList.Count > 1)
+            {
+                throw new NonUniqueResultException(foundList.Count);
+            }
+            else if (foundList.Count == 1)
+            {
+                return foundList[0];
+            }
+
+            return default(T);
+        }
+
+        public IExpressionBuilder CreateExpressionBuilder()
+        {
+            return new CriterionExpressionBuilder();
+        }
+
+        private class CriterionExpressionBuilder : IExpressionBuilder
+        {
+            public CriterionExpressionBuilder()
+            {
+            }
+
+            public IExpression Eq(string propertyName, object value)
+            {
+                return new CriterionExpression("Eq", propertyName, value);
+            }
+
+            public IExpression NEq(string propertyName, object value)
+            {
+                return new CriterionExpression("NEq", propertyName, value);
+            }
+
+            public IExpression Ge(string propertyName, object value)
+            {
+                return new CriterionExpression("Ge", propertyName, value);
+            }
+
+            public IExpression Gt(string propertyName, object value)
+            {
+                return new CriterionExpression("Gt", propertyName, value);
+            }
+
+            public IExpression Le(string propertyName, object value)
+            {
+                return new CriterionExpression("Le", propertyName, value);
+            }
+
+            public IExpression Lt(string propertyName, object value)
+            {
+                return new CriterionExpression("Lt", propertyName, value);
+            }
+
+            public IExpression Like(string propertyName, object value)
+            {
+                return new CriterionExpression("Like", propertyName, value, false);
+            }
+
+            public IExpression Like(string propertyName, object value, bool ignoreCase)
+            {
+                return new CriterionExpression("Like", propertyName, value, ignoreCase);
+            }
+
+            public IExpression EqProperty(string leftProperty, string rightProperty)
+            {
+                return new CriterionExpression("EqProperty", leftProperty, rightProperty);
+            }
+
+            public IExpression NEqProperty(string leftProperty, string rightProperty)
+            {
+                return new CriterionExpression("NEqProperty", leftProperty, rightProperty);
+            }
+
+            public IExpression GeProperty(string leftProperty, string rightProperty)
+            {
+                return new CriterionExpression("GeProperty", leftProperty, rightProperty);
+            }
+
+            public IExpression GtProperty(string leftProperty, string rightProperty)
+            {
+                return new CriterionExpression("GtProperty", leftProperty, rightProperty);
+            }
+
+            public IExpression LeProperty(string leftProperty, string rightProperty)
+            {
+                return new CriterionExpression("LeProperty", leftProperty, rightProperty);
+            }
+
+            public IExpression LtProperty(string leftProperty, string rightProperty)
+            {
+                return new CriterionExpression("GeProperty", leftProperty, rightProperty);
+            }
+
+            public IExpression Between(string propertyName, object lo, object hi)
+            {
+                return new CriterionExpression("Between", propertyName, hi, lo);
+            }
+
+            public IExpression In(string propertyName, object[] values)
+            {
+                return new CriterionExpression("In", propertyName, values);
+            }
+
+            public IExpression Null(string propertyName)
+            {
+                return new CriterionExpression("Null", propertyName);
+            }
+
+            public IExpression NotNull(string propertyName)
+            {
+                return new CriterionExpression("NotNull", propertyName);
+            }
+
+            public IExpression Not(IExpression value)
+            {
+                return new CriterionExpression("Not", value);
+            }
+
+            public IExpression And(params IExpression[] values)
+            {
+                return new CriterionExpression("And", values, null);
+            }
+
+            public IExpression Or(params IExpression[] values)
+            {
+                return new CriterionExpression("Or", values, null);
+            }
+        }
+
+        private class CriterionExpression : IExpression
+        {
+            private string t;
+            private object[] p;
+            public object GetExpression()
+            {
+                Check.Ensure(p.Length >= 1, "At least one parameter is expected");
+                switch (t) {
+                    case "Eq": return Expression.Eq(p[0] as string, p[1]);
+                    case "NEq": return Expression.Not(Expression.Eq(p[0] as string, p[1]));
+                    case "Ge": return Expression.Ge(p[0] as string, p[1]);
+                    case "Gt": return Expression.Gt(p[0] as string, p[1]);
+                    case "Le": return Expression.Le(p[0] as string, p[1]);
+                    case "Lt": return Expression.Lt(p[0] as string, p[1]);
+                    case "Like": if ((p[2] as bool?) == false)
+                        {
+                            return Expression.Like(p[0] as string, p[1]);
+                        }
+                        else
+                        {
+                            return Expression.InsensitiveLike(p[0] as string, p[1]);
+                        }
+                    case "EqProperty": return Expression.EqProperty(p[0] as string, p[1] as string);
+                    case "NEqProperty": return Expression.NotEqProperty(p[0] as string, p[1] as string);
+                    case "GeProperty": return Expression.GeProperty(p[0] as string, p[1] as string);
+                    case "GtProperty": return Expression.GtProperty(p[0] as string, p[1] as string);
+                    case "LeProperty": return Expression.LeProperty(p[0] as string, p[1] as string);
+                    case "LtProperty": return Expression.LtProperty(p[0] as string, p[1] as string);
+                    case "Between": return Expression.Between(p[0] as string, p[1], p[2]);
+                    case "In": return Expression.In(p[0] as string, p[1] as object[]);
+                    case "Null": return Expression.IsNull(p[0] as string);
+                    case "NotNull": return Expression.IsNotNull(p[0] as string);
+                    case "Not": return Expression.Not((p[0] as CriterionExpression).GetExpression() as ICriterion);
+                    case "And":
+                        {
+                            var conj = Expression.Conjunction();
+                            foreach (IExpression ce in p[0] as IExpression[])
+                            {
+                                conj.Add(ce.GetExpression() as ICriterion);
+                            }
+                            return conj;
+                        }
+                    case "Or":
+                        {
+                            var conj = Expression.Disjunction();
+                            foreach (IExpression ce in p[0] as IExpression[])
+                            {
+                                conj.Add(ce.GetExpression() as ICriterion);
+                            }
+                            return conj;
+                        }
+                    default:
+                        return null;
+                }
+            }
+
+            public CriterionExpression(string type, params object[] parameters)
+            {
+                t = type;
+                p = parameters;
+            }
+        }
+
+        #endregion
     }
 }

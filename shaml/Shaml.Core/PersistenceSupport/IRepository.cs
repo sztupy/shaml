@@ -6,28 +6,6 @@ using System.Text;
 namespace Shaml.Core.PersistenceSupport
 {
     /// <summary>
-    /// Allows storing propertynames for ordering. Should check propertyname is valid
-    /// before usage
-    /// </summary>
-    public interface IPropertyOrder<T>
-    {
-        /// <summary>
-        /// Should return true if the property exists for the appropriate entity
-        /// </summary>
-        bool IsValid { get; }
-
-        /// <summary>
-        /// Whether the ordering is a descending or an ascending one
-        /// </summary>
-        bool Desc { get; }
-
-        /// <summary>
-        /// The name of the property the ordering is defined
-        /// </summary>
-        string PropertyName { get; }
-    }
-
-    /// <summary>
     /// Provides a standard interface for DAOs which are data-access mechanism agnostic.
     /// 
     /// Since nearly all of the domain objects you create will have a type of int Id, this 
@@ -119,6 +97,35 @@ namespace Shaml.Core.PersistenceSupport
         T FindOne(IDictionary<string, object> propertyValuePairs);
 
         /// <summary>
+        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
+        /// The key of the collection should be the property name and the value should be
+        /// the value of the property to filter by.
+        /// </summary>
+        IList<T> FindAllExpression(IExpression expression);
+
+        /// <summary>
+        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
+        /// The key of the collection should be the property name and the value should be
+        /// the value of the property to filter by. Paginated.
+        /// PageSize and page can be 0, which means no pagination will occur. 
+        /// </summary>
+        IList<T> FindAllExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering);
+
+        /// <summary>
+        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
+        /// The key of the collection should be the property name and the value should be
+        /// the value of the property to filter by. Paginated with the number of results.
+        /// PageSize and page can be 0, which means no pagination will occur. 
+        /// </summary>
+        IList<T> FindAllExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
+
+        /// <summary>
+        /// Looks for a single instance using the property/values provided.
+        /// </summary>
+        /// <exception cref="NonUniqueResultException" />
+        T FindOneExpression(IExpression expression);
+
+        /// <summary>
         /// For entities with automatatically generated Ids, such as identity, SaveOrUpdate may 
         /// be called when saving or updating an entity.
         /// 
@@ -138,7 +145,18 @@ namespace Shaml.Core.PersistenceSupport
         /// </summary>
         IDbContext DbContext { get; }
 
-
+        /// <summary>
+        /// Creates a new IPropertyOrder object, that sotres how the results shold be ordered
+        /// </summary>
+        /// <param name="propertyName">The name of the property to order by</param>
+        /// <param name="isDesc">Whetther to order by ASC or DESC</param>
+        /// <returns>The IPropertyOrder instance</returns>
         IPropertyOrder<T> CreateOrder(string propertyName, bool isDesc);
+
+        /// <summary>
+        /// Creates an Expression Builder to create Expression objects
+        /// </summary>
+        /// <returns>The IExpressionBuilder instance</returns>
+        IExpressionBuilder CreateExpressionBuilder();
     }
 }

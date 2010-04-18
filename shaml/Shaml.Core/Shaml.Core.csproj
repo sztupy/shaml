@@ -59,6 +59,7 @@
     <Compile Include="CommonValidator\IValidatable.cs" />
     <Compile Include="CommonValidator\IValidationResult.cs" />
     <Compile Include="CommonValidator\IValidator.cs" />
+    <Compile Include="PersistenceSupport\IExpressions.cs" />
     <Compile Include="PersistenceSupport\NHibernate\INHibernateQueryRepository.cs" />
     <Compile Include="Utility\DesignByContract.cs" />
     <Compile Include="DomainModel\BaseObject.cs" />

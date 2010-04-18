@@ -106,7 +106,8 @@ namespace Tests.Blog.Web.Controllers
         private INHibernateQueryRepository<WebSample> CreateMockWebSampleRepository() {
 
             INHibernateQueryRepository<WebSample> mockedRepository = MockRepository.GenerateMock<INHibernateQueryRepository<WebSample>>();
-            mockedRepository.Expect(mr => mr.GetAll()).Return(CreateWebSamples());
+            long outres;
+            mockedRepository.Expect(mr => mr.GetAll(0, 0, out outres, null)).IgnoreArguments().Return(CreateWebSamples());
             mockedRepository.Expect(mr => mr.Get(1)).IgnoreArguments().Return(CreateWebSample());
             mockedRepository.Expect(mr => mr.SaveOrUpdate(null)).IgnoreArguments().Return(CreateWebSample());
             mockedRepository.Expect(mr => mr.Delete(null)).IgnoreArguments();

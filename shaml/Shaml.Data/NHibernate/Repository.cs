@@ -11,6 +11,7 @@ using Shaml.Core.PersistenceSupport.NHibernate;
 using Shaml.Core.DomainModel;
 using System.Collections;
 using NHibernate.Metadata;
+using System.ComponentModel;
 
 namespace Shaml.Data.NHibernate
 {
@@ -95,14 +96,30 @@ namespace Shaml.Data.NHibernate
 
         public virtual IList<T> GetAll(int pageSize, int page, params IPropertyOrder<T>[] order)
         {
-            ICriteria criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize*page);
+            ICriteria criteria;
+            if ((pageSize <= 0) || (page < 0))
+            {
+                criteria = Session.CreateCriteria(typeof(T));
+            }
+            else
+            {
+                criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize * page);
+            }
             AddOrderingsToCriteria(criteria, order);
             return criteria.List<T>();
         }
 
         public virtual IList<T> GetAll(int pageSize, int page, out long numResults, params IPropertyOrder<T>[] order)
         {
-            ICriteria criteria = Session.CreateCriteria(typeof(T)).SetFirstResult(page * pageSize).SetMaxResults(pageSize);
+            ICriteria criteria;
+            if ((pageSize <= 0) || (page < 0))
+            {
+                criteria = Session.CreateCriteria(typeof(T));
+            }
+            else
+            {
+                criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize * page);
+            }
             AddOrderingsToCriteria(criteria, order);
             IMultiCriteria multicriteria = Session.CreateMultiCriteria()
                         .Add(criteria)
@@ -111,6 +128,50 @@ namespace Shaml.Data.NHibernate
             IList results = multicriteria.List();
             numResults = (long)((IList)results[1])[0];
             return ((IList)results[0]).Cast<T>().ToList<T>();
+        }
+
+        private IDictionary<string,object> MakeDictionary(object withProperties)
+        {
+            IDictionary<string,object> dic = new Dictionary<string, object>();
+            var properties = System.ComponentModel.TypeDescriptor.GetProperties(withProperties);
+            foreach (PropertyDescriptor property in properties)
+            {
+                dic.Add(property.Name, property.GetValue(withProperties));
+            }
+            return dic;
+        }
+
+        public virtual IList<T> FindAll(object propertyValuePairs)
+        {
+            return FindAll(propertyValuePairs, 0, 0);
+        }
+
+        public virtual IList<T> FindAll(object propertyValuePairs, int pageSize, int page, params IPropertyOrder<T>[] order)
+        {
+            IDictionary<string, object> dic = MakeDictionary(propertyValuePairs);
+            return FindAll(dic, pageSize, page, order);
+        }
+
+        public virtual IList<T> FindAll(object propertyValuePairs, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] order)
+        {
+            IDictionary<string, object> dic = MakeDictionary(propertyValuePairs);
+            return FindAll(dic, pageSize, page, out numResults, order);
+        }
+
+        public virtual T FindOne(object propertyValuePairs)
+        {
+            IList<T> foundList = FindAll(propertyValuePairs);
+
+            if (foundList.Count > 1)
+            {
+                throw new NonUniqueResultException(foundList.Count);
+            }
+            else if (foundList.Count == 1)
+            {
+                return foundList[0];
+            }
+
+            return default(T);
         }
 
         public virtual IList<T> FindAll(IDictionary<string, object> propertyValuePairs) {

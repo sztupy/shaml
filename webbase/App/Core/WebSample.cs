@@ -12,7 +12,9 @@ namespace WebBase.Core
         public WebSample() { }
 
         // __BEGIN__PROPERTY__
+        [NotNull]
         public virtual PropertyType Property { get; set; }
+
         // __END__PROPERTY__
     }
 }

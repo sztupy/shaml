@@ -158,7 +158,7 @@ namespace WebBase.Controllers
             public WebSample WebSample { get; internal set; }
         }
 
-        private readonly IRepository<WebSample> WebSampleRepository;
+        private readonly INHibernateQueryRepository<WebSample> WebSampleRepository;
     }
 }
 

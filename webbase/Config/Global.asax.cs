@@ -18,6 +18,7 @@ using WebBase.Config;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 using Shaml.Web.Areas;
+using Shaml.NHibernateValidator.ValidatorProvider;
 
 namespace WebBase
 {
@@ -75,8 +76,12 @@ namespace WebBase
 
             ComponentRegistrar.InitializeServiceLocator();
 
-      			AreaRegistration.RegisterAllAreas();
+      	    AreaRegistration.RegisterAllAreas();
             RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
+
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+
+            ModelValidatorProviders.Providers.Add(new NHibernateValidatorProvider());
         }
 
         protected void Application_Error(object sender, EventArgs e)

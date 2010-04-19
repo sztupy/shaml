@@ -1,6 +1,7 @@
 @namespace=WebBase.Controllers
 @type=WebSamplesController.WebSampleFormViewModel
 = Html.ValidationSummary()
+- Html.EnableClientValidation();
 - using (Html.BeginForm()) 
   /= Html.AntiForgeryToken()
   = Html.Hidden("WebSample.Id", (Model.WebSample != null) ? Model.WebSample.Id : 0)

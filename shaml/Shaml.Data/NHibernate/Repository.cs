@@ -67,7 +67,7 @@ namespace Shaml.Data.NHibernate
             }
             else
             {
-                criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize * page);
+                criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(pageSize).SetFirstResult(pageSize * page);
             }
             AddOrderingsToCriteria(criteria, order);
             return criteria.List<T>();
@@ -82,7 +82,7 @@ namespace Shaml.Data.NHibernate
             }
             else
             {
-                criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(page).SetFirstResult(pageSize * page);
+                criteria = Session.CreateCriteria(typeof(T)).SetMaxResults(pageSize).SetFirstResult(pageSize * page);
             }
             AddOrderingsToCriteria(criteria, order);
             IMultiCriteria multicriteria = Session.CreateMultiCriteria()

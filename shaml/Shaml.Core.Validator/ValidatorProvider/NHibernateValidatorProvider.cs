@@ -3,6 +3,7 @@ using NHibernate.Validator.Engine;
 using Shaml.Data.NHibernate;
 using Shaml.Core.NHibernateValidator.ValidatorProvider;
 using System.Web.Mvc;
+using System.Reflection;
 
 namespace Shaml.NHibernateValidator.ValidatorProvider
 {
@@ -22,8 +23,19 @@ namespace Shaml.NHibernateValidator.ValidatorProvider
         {
             var classValidator = ValidatorEngine.GetClassValidator(metadata.ModelType);
 
-            if ( classValidator != null )
+            if (classValidator != null)
+            {
                 yield return new NHibernateValidatorModelValidator(metadata, context, classValidator);
+            }
+            else
+            {
+                // For client validation
+                classValidator = ValidatorEngine.GetClassValidator(metadata.ContainerType);
+                if (classValidator != null)
+                {
+                    yield return new NHibernateValidatorClientModelValidator(metadata, context, classValidator, ValidatorEngine);
+                }
+            }
         }
 
         private ValidatorEngine ValidatorEngine

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NHibernate.Validator.Engine;
+using NHibernate.Validator.Constraints;
 using System.Web.Mvc;
+using System;
+using System.Reflection;
 
 namespace Shaml.Core.NHibernateValidator.ValidatorProvider
 {
@@ -28,5 +31,7 @@ namespace Shaml.Core.NHibernateValidator.ValidatorProvider
                                                                         Message = validationResult.Message
                                                                     });
         }
+
+        
     }
 }

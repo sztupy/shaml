@@ -8,6 +8,12 @@
     </script> 
     <script type="text/javascript" src="/Public/Scripts/openid-jquery.js"> 
     </script> 
+    <script type="text/javascript" src="/Public/Scripts/MicrosoftAjax.js"> 
+    </script> 
+    <script type="text/javascript" src="/Public/Scripts/MicrosoftMvcAjax.js"> 
+    </script> 
+    <script type="text/javascript" src="/Public/Scripts/MicrosoftMvcValidation.js"> 
+    </script>    
     <link href="/Public/Content/screen.css" media="screen,projection" rel="stylesheet" type="text/css" /> 
     <link href="/Public/Content/print.css" media="print" rel="stylesheet" type="text/css" /> 
     <!--[if lt IE 7]>

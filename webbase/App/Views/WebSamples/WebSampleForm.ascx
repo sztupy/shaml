@@ -2,6 +2,7 @@
 <%@ Import Namespace="WebBase.Controllers" %>
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="System.Web.Mvc.ViewUserControl<WebBase.Controllers.WebSamplesController.WebSampleFormViewModel>" %>
 
+<% Html.EnableClientValidation(); %>
 <%= Html.ValidationSummary() %>
 <% using (Html.BeginForm()) { %>
   <% // Html.AntiForgeryToken() %>

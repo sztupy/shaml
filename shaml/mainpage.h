@@ -5,7 +5,7 @@
 
 The purpose of Shaml Architecture is to allow creating ASP.NET MVC applications under
 mono using tools that are available on both Windows and Linux machines. The framework
-is based around a ruby command, called shaml, that allows you to easlity execute commands that
+is based around a ruby command, called @c shaml, that allows you to easily execute commands that
 you need to build ASP.NET MVC applications, like creating models, controllers, resources, compiling
 the application or running the tests.
 
@@ -37,25 +37,25 @@ Where command might be:
 @verbatim
 shaml generate app AppName
 @endverbatim
-The app command is used to generate a new application from the base template. The new application generated doesn't
+The @c app command is used to generate a new application from the base template. The new application generated doesn't
 contain any models, which is needed to compile the project. Therefore after creating a new app you should also add a new model
-or a new resource to the application. The command has one parameter: AppName, which will be the name of the application. To
-conform to C# standards you should use CamelCase to name your application.
+or a new resource to the application. The command has one parameter: @c AppName, which will be the name of the application. To
+conform to C# standards you should use @c CamelCase to name your application.
 
 @subsection resource
 @verbatim
 shaml generate resource ResourceName [haml|asp] [resource description]
 @endverbatim
-The resource command will generate a model and a controller in one step with the parameters specified.
+The @c resource command will generate a @c model and a @c controller in one step with the parameters specified.
 Check those commands for more information.
 
 @subsection controller
 @verbatim
 shaml generate resource ControllerName [haml|asp] [accompaning model description]
 @endverbatim
-The controller command creates a new CRUD based controller and accompaning views. By default it creates views based on
-the NHaml template engine, but if you specify "asp" as the engine in the creation script you'll get standard aspx and aspc
-files. The name of the controller should be named using CamelCase. The specification for the the module description is as follows:
+The @c controller command creates a new CRUD based controller and accompaning views. By default it creates views based on
+the @c NHaml template engine, but if you specify @c asp as the engine in the creation script you'll get standard @c aspx and @c aspc
+files. The name of the controller should be named using @c CamelCase. The specification for the the module description is as follows:
 
 @verbatim
    description ::= `"´ desclist `"´
@@ -63,7 +63,7 @@ files. The name of the controller should be named using CamelCase. The specifica
   propertydesc ::= property_name `:´ property_type
 @endverbatim
 
-where property_name and property_type are valid C# variable names, and types. For example:
+where @c property_name and @c property_type are valid C# variable names, and types. For example:
 
 @verbatim
 shaml generate controller User "name:string;email:string;birthdate:DateTime"
@@ -73,16 +73,16 @@ shaml generate controller User "name:string;email:string;birthdate:DateTime"
 @verbatim
 shaml generate model ModelName [model description]
 @endverbatim
-The model command creates a standalone model with the module description provided. For the specification of the
-description check the controller subsecrion
+The @c model command creates a standalone model with the module description provided. For the specification of the
+description check the @c controller subsecrion
 
 @subsection compile
 @verbatim
 shaml compile
 @endverbatim
 
-Compiles the application's solution using xbuild, if shaml could find the mono executables,
-or msbuild, if the mono executables are not found. After C# compilation it runs compass for CSS stylesheet
+Compiles the application's solution using @c xbuild if @c shaml could find the @c mono executables,
+or @c msbuild, if the @c mono executables are not found. After C# compilation it runs @c compass for CSS stylesheet
 compilation too.
 
 @subsection server
@@ -96,8 +96,8 @@ Runs xsp2 with the parameters you specify, like --port
 shaml gconsole
 @endverbatim
 
-Starts a 'gsharp' session with the application's assemblies preloaded. All dinamically loaded modules should reside
-in the gsharp applications directory in order this command to work. (Usually the NHibernate database engine providers
+Starts a @c gsharp session with the application's assemblies preloaded. All dinamically loaded modules should reside
+in the @c gsharp applications directory in order this command to work. (Usually the NHibernate database engine providers
 need to be put there like Npgsql.dll or System.Data.SQLite.dll
 
 @subsection console
@@ -105,8 +105,8 @@ need to be put there like Npgsql.dll or System.Data.SQLite.dll
 shaml console
 @endverbatim
 
-Starts a 'csharp' session with the application's assemblies preloaded. All dinamically loaded modules should reside
-in the 'csharp' applications directory (usually /usr/lib/mono/2.0) in order this command to work. (Usually the NHibernate database engine providers
+Starts a @c csharp session with the application's assemblies preloaded. All dinamically loaded modules should reside
+in the @c csharp applications directory (usually @c /usr/lib/mono/2.0 ) in order this command to work. (Usually the NHibernate database engine providers
 need to be put there like Npgsql.dll or System.Data.SQLite.dll.
 
 @subsection runner
@@ -114,7 +114,7 @@ need to be put there like Npgsql.dll or System.Data.SQLite.dll.
 shaml runner [script name]
 @endverbatim
 
-Starts a 'csharp' session and runs the script that is specified. There are a few pre-defined scripts to run:
+Starts a @c csharp session and runs the script that is specified. There are a few pre-defined scripts to run:
 
 @verbatim
 Scripts/run_create_schema.cs  : (re)creates the database schema from scratch
@@ -128,7 +128,7 @@ Scripts/dump_update_schema.cs : dumps the update SQL scripts to the DB directory
 shaml test
 @endverbatim
 
-Runs the tests using NUnit.
+Runs the tests using @c NUnit.
 
 @section base Base template specification
 
@@ -186,5 +186,13 @@ Contains the configuration files
 @subsubsection Tests ProjectName.Tests
 
 Contains the tests
+
+@section comp Compiling Shaml Architecture
+
+Compilation should be done in this order:
+
+@arg Compile @c ShamlArch.sln using either Visual Studio, MonoDevelop or @c xbuild
+@arg Run @c build_gem.rb
+@arg Install the generated gem using rubygems
 */
 

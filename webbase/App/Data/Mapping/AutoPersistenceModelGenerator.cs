@@ -44,6 +44,7 @@ namespace WebBase.Data.Mapping
             return c =>
             {
                 c.FindIdentity = type => type.Name == "Id";
+                c.IsComponentType = type => type.BaseType == typeof(ValueObject);
             };
         }
 

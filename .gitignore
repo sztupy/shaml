@@ -4,6 +4,7 @@ webbase/**/bin
 webbase/**/Bin
 webbase/bin
 webbase/libraries/Shaml*
+doc
 obj
 TestResults
 TestResult.xml

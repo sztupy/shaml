@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using Iesi.Collections.Generic;
 using System.Collections;
+using Shaml.Core.CommonValidator;
+using Shaml.Web.CommonValidator;
 
 namespace Shaml.Web.ModelBinder
 {
@@ -183,10 +185,45 @@ namespace Shaml.Web.ModelBinder
         }
 
         protected override void OnModelUpdated(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            base.OnModelUpdated(controllerContext, bindingContext);
-        }
-        #endregion
+		{
+			foreach (string key in bindingContext.ModelState.Keys)
+			{
+				for (int i = 0; i < bindingContext.ModelState[key].Errors.Count; i++)
+				{
+					ModelError modelError = bindingContext.ModelState[key].Errors[i];
+
+					// Get rid of all the MVC errors except those associated with parsing info; e.g., parsing DateTime fields
+					if (IsModelErrorAddedByMvc(modelError) && !IsMvcModelBinderFormatException(modelError))
+					{
+						bindingContext.ModelState[key].Errors.RemoveAt(i);
+						// Decrement the counter since we've shortened the list
+						i--;
+					}
+				}
+			}
+
+			// Transfer any errors exposed by IValidator to the ModelState
+			if (bindingContext.Model is IValidatable)
+			{
+				MvcValidationAdapter.TransferValidationMessagesTo(
+					bindingContext.ModelName, bindingContext.ModelState,
+					((IValidatable)bindingContext.Model).ValidationResults());
+			}
+		}
+		#endregion
+
+		private bool IsModelErrorAddedByMvc(ModelError modelError)
+		{
+			return modelError.Exception != null &&
+				modelError.Exception.GetType().Equals(typeof(InvalidOperationException));
+		}
+
+		private bool IsMvcModelBinderFormatException(ModelError modelError)
+		{
+			return modelError.Exception != null &&
+				modelError.Exception.InnerException != null &&
+				modelError.Exception.InnerException.GetType().Equals(typeof(FormatException));
+		}
 
         private const string ID_PROPERTY_NAME = "Id";
     }

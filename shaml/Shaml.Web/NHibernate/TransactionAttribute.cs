@@ -39,6 +39,34 @@ namespace Shaml.Web.NHibernate
             }
         }
 
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            string effectiveFactoryKey = GetEffectiveFactoryKey();
+
+            ITransaction currentTransaction =
+                NHibernateSession.CurrentFor(effectiveFactoryKey).Transaction;
+
+            base.OnResultExecuted(filterContext);
+            try
+            {
+                if (currentTransaction.IsActive)
+                {
+                    if ((filterContext.Exception != null) && (!filterContext.ExceptionHandled))
+                    {
+                        currentTransaction.Rollback();
+                    }
+                    else
+                    {
+                        currentTransaction.Commit();
+                    }
+                }
+            }
+            finally
+            {
+                currentTransaction.Dispose();
+            }
+        }
+
         private string GetEffectiveFactoryKey() {
             return String.IsNullOrEmpty(factoryKey)
                     ? NHibernateSession.DefaultFactoryKey

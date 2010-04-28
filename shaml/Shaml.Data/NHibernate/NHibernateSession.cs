@@ -77,7 +77,7 @@ namespace Shaml.Data.NHibernate
 			IDictionary<string, string> cfgProperties,
 			string validatorCfgFile)
 		{
-			return Init(storage, mappingAssemblies, autoPersistenceModel, cfgFile, null, validatorCfgFile, null);
+            return Init(storage, mappingAssemblies, autoPersistenceModel, cfgFile, cfgProperties, validatorCfgFile, null);
 		}
 
 		[CLSCompliant(false)]
@@ -213,10 +213,14 @@ namespace Shaml.Data.NHibernate
 		/// </summary>
 		public static void Reset()
 		{
-			foreach (ISession session in Storage.GetAllSessions())
-			{
-				session.Dispose();
-			}
+       if (Storage != null)
+        {
+            foreach (ISession session in Storage.GetAllSessions())
+            {
+                session.Dispose();
+            }
+        }
+
 
 			sessionFactories.Clear();
 

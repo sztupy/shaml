@@ -1,5 +1,25 @@
-﻿namespace Shaml.Core
+﻿using System;
+
+namespace Shaml.Core
 {
+    /// <summary>
+    /// Provides an Attribute to set the display name for the items in the enum
+    /// </summary>
+    public class EnumDisplayNameAttribute : Attribute
+    {
+        public virtual string DisplayName { get; set; }
+
+        public EnumDisplayNameAttribute()
+        {
+            DisplayName = "";
+        }
+
+        public EnumDisplayNameAttribute(string DisplayName)
+        {
+            this.DisplayName = DisplayName;
+        }
+    }
+
     public class Enums
     {
         /// <summary>

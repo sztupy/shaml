@@ -94,6 +94,7 @@
     <Compile Include="CommonValidator\ValidatableModelBinder.cs" />
     <Compile Include="GenericLoggerAttribute.cs" />
     <Compile Include="HtmlHelpers\EnumHelper.cs" />
+    <Compile Include="HtmlHelpers\IdHelper.cs" />
     <Compile Include="HtmlHelpers\OrderingHelpers.cs" />
     <Compile Include="HtmlHelpers\PaginationHelpers.cs" />
     <Compile Include="JsonNet\JsonNetResult.cs" />

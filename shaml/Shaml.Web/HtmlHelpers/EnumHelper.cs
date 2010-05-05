@@ -38,7 +38,11 @@ namespace Shaml.Web.HtmlHelpers
                 {
                     if (attrib is EnumDisplayNameAttribute)
                     {
-                        Name = (attrib as EnumDisplayNameAttribute).DisplayName;
+                        string n = (attrib as EnumDisplayNameAttribute).DisplayName;
+                        if (n != null)
+                        {
+                            Name = n;
+                        }
                         hasAttrib = true;
                     }
                 }

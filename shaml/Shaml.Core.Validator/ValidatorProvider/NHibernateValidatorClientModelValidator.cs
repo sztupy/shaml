@@ -37,50 +37,55 @@ namespace Shaml.Core.NHibernateValidator.ValidatorProvider
             IEnumerable<Attribute> validators = _validator.GetMemberConstraints(PropertyName);
             foreach (Attribute attr in validators)
             {
-               /* try
-                {*/
-                    object instance = Activator.CreateInstance(Metadata.ContainerType);
+                try
+                {
+                    //object instance = Activator.CreateInstance(Metadata.ContainerType);
                     if (attr is NotNullAttribute)
                     {
                         var a = attr as NotNullAttribute;
                         var message = a.Message;
                         rules.Add(new ModelClientValidationRequiredRule(message));
                     }
+                    else
                     if (attr is NotNullNotEmptyAttribute)
                     {
                         var a = attr as NotNullNotEmptyAttribute;
                         var message = a.Message;
                         rules.Add(new ModelClientValidationRequiredRule(message));
                     }
+                    else
                     if (attr is NotEmptyAttribute)
                     {
                         var a = attr as NotEmptyAttribute;
                         var message = a.Message;
                         rules.Add(new ModelClientValidationRequiredRule(message));
                     }
+                    else
                     if (attr is RangeAttribute)
                     {
                         var a = attr as RangeAttribute;
                         var message = a.Message;
                         rules.Add(new ModelClientValidationRangeRule(message, a.Min, a.Max));
                     }
+                    else
                     if (attr is LengthAttribute)
                     {
                         var a = attr as LengthAttribute;
                         var message = a.Message;
                         rules.Add(new ModelClientValidationStringLengthRule(message, a.Min, a.Max));
                     }
+                    else
                     if (attr is PatternAttribute)
                     {
                         var a = attr as PatternAttribute;
                         var message = a.Message;
                         rules.Add(new ModelClientValidationRegexRule(message, a.Regex));
                     }
-               /* }
+                }
                 catch (Exception)
                 {
                     // Message extraction failed
-                }*/
+                }
             }
             return rules;
         }

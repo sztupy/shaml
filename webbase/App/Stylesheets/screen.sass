@@ -27,9 +27,6 @@ thead th
 body
   :background-color = !bgcolor
 
-.field-validation-valid
-  :color red
-
 #mainContent
   +container
   :background-color = !maincolor
@@ -79,6 +76,9 @@ body
     :color = !footercolor + 32
     &:hover
       :color = !footercolor
+
+.field-validation-error
+  :color red
 
 +sticky-footer( 75px, "#mainContent", "#endMain", "#footer")
 

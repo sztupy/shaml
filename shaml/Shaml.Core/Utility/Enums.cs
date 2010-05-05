@@ -9,9 +9,12 @@ namespace Shaml.Core
     {
         public virtual string DisplayName { get; set; }
 
+        /// <summary>
+        /// The display name should be the same as the value itself
+        /// </summary>
         public EnumDisplayNameAttribute()
         {
-            DisplayName = "";
+            DisplayName = null;
         }
 
         public EnumDisplayNameAttribute(string DisplayName)

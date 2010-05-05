@@ -15,25 +15,26 @@ namespace Shaml.NHibernateValidator.ValidatorProvider
         }
 
         /// <summary>
-        /// Returns model validators for each class that can be validated.
-        /// When this method is called with a non-class modelType, nothing is added to the yield return
-        /// (this prevents us from validating the same properties several times)
+        /// Returns model validators for each class that can be validated, and client validators for each properties that
+        /// can be validated.
         /// </summary>
         public override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, ControllerContext context)
         {
             var classValidator = ValidatorEngine.GetClassValidator(metadata.ModelType);
 
+            // Server side validation
             if (classValidator != null)
             {
                 yield return new NHibernateValidatorModelValidator(metadata, context, classValidator);
             }
-            else
+
+            // Client side validation
+            if (metadata.ContainerType != null)
             {
-                // For client validation
-                classValidator = ValidatorEngine.GetClassValidator(metadata.ContainerType);
-                if (classValidator != null)
+                var propertyValidator = ValidatorEngine.GetClassValidator(metadata.ContainerType);
+                if (propertyValidator != null)
                 {
-                    yield return new NHibernateValidatorClientModelValidator(metadata, context, classValidator, ValidatorEngine);
+                    yield return new NHibernateValidatorClientModelValidator(metadata, context, propertyValidator, ValidatorEngine);
                 }
             }
         }

@@ -604,7 +604,7 @@ input.span-24, textarea.span-24, select.span-24 { width: 950px !important; }
 .append-bottom { margin-bottom: 1.5em; }
 
 /* line 7, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/blueprint/stylesheets/./blueprint/_debug.sass */
-.showgrid { background: url('/Public/Content/Images/grid.png?1271113486'); }
+.showgrid { background: url('/Public/Content/Images/grid.png?1272126666'); }
 
 /* line 5, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/blueprint/stylesheets/./blueprint/_interaction.sass */
 .error { padding: .8em; margin-bottom: 1em; border: 2px solid #dddddd; background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
@@ -676,47 +676,47 @@ thead th { background: #acedac; }
 body { background-color: #f6d1b3; }
 
 /* line 30, ../../App/Stylesheets/screen.sass */
-.field-validation-valid { color: red; }
-
-/* line 33, ../../App/Stylesheets/screen.sass */
 #mainContent { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; background-color: white; border-left: 1px solid #610202; border-right: 1px solid #610202; }
 /* line 5, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/compass/stylesheets/compass/utilities/general/././_hacks.sass */
 #mainContent { display: block; }
 
-/* line 40, ../../App/Stylesheets/screen.sass */
+/* line 37, ../../App/Stylesheets/screen.sass */
 #topContainer { display: inline; float: left; margin-right: 0; width: 950px; background-color: #823838; border-bottom: 1px solid #610202; padding-bottom: 0; }
 /* line 101, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/blueprint/stylesheets/./blueprint/_grid.sass */
 * html #topContainer { overflow-x: hidden; }
-/* line 45, ../../App/Stylesheets/screen.sass */
+/* line 42, ../../App/Stylesheets/screen.sass */
 #topContainer h1 { font-family: Georgia, serif; font-size: 3em; color: white; text-align: center; padding-top: 0.5em; padding-bottom: 0; }
 
-/* line 54, ../../App/Stylesheets/screen.sass */
+/* line 51, ../../App/Stylesheets/screen.sass */
 #columnsContainer { display: inline; float: left; margin-right: 0; width: 950px; }
 /* line 101, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/blueprint/stylesheets/./blueprint/_grid.sass */
 * html #columnsContainer { overflow-x: hidden; }
 
-/* line 57, ../../App/Stylesheets/screen.sass */
+/* line 54, ../../App/Stylesheets/screen.sass */
 #leftColumn { display: inline; float: left; margin-right: 10px; width: 230px; }
 /* line 101, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/blueprint/stylesheets/./blueprint/_grid.sass */
 * html #leftColumn { overflow-x: hidden; }
-/* line 59, ../../App/Stylesheets/screen.sass */
+/* line 56, ../../App/Stylesheets/screen.sass */
 #leftColumn p { padding-left: 5px; padding-top: 1em; }
-/* line 62, ../../App/Stylesheets/screen.sass */
+/* line 59, ../../App/Stylesheets/screen.sass */
 #leftColumn h2 { border-bottom: 1px solid #FBFBFB; padding-left: 5px; padding-bottom: 0; }
-/* line 66, ../../App/Stylesheets/screen.sass */
+/* line 63, ../../App/Stylesheets/screen.sass */
 #leftColumn ul { padding-left: 5px; }
 
-/* line 69, ../../App/Stylesheets/screen.sass */
+/* line 66, ../../App/Stylesheets/screen.sass */
 #rightColumn { display: inline; float: left; margin-right: 0; width: 710px; }
 /* line 101, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/blueprint/stylesheets/./blueprint/_grid.sass */
 * html #rightColumn { overflow-x: hidden; }
 
-/* line 72, ../../App/Stylesheets/screen.sass */
+/* line 69, ../../App/Stylesheets/screen.sass */
 #footer { background-color: #823838; border-top: 1px solid #612D02; color: #eeeeee; height: 75px; text-align: center; }
-/* line 78, ../../App/Stylesheets/screen.sass */
+/* line 75, ../../App/Stylesheets/screen.sass */
 #footer a { color: white; }
-/* line 80, ../../App/Stylesheets/screen.sass */
+/* line 77, ../../App/Stylesheets/screen.sass */
 #footer a:hover { color: #eeeeee; }
+
+/* line 80, ../../App/Stylesheets/screen.sass */
+.field-validation-error { color: red; }
 
 /* line 7, C:/stuff/Ruby/lib/ruby/gems/1.8/gems/compass-0.10.0.rc1/frameworks/compass/stylesheets/compass/layout/_sticky_footer.sass */
 html, body { height: 100%; }

@@ -33,7 +33,7 @@ namespace Shaml.Web.HtmlHelpers
             {
                 bool hasAttrib = false;
                 string Name = field.Name;
-                string Value = field.Name;
+                string Value = field.GetValue(null).ToString();
                 foreach (Attribute attrib in field.GetCustomAttributes(true))
                 {
                     if (attrib is EnumDisplayNameAttribute)

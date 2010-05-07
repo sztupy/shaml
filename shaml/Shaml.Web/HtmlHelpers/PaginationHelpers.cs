@@ -120,11 +120,16 @@ namespace Shaml.Web.HtmlHelpers
         {
             StringBuilder str = new StringBuilder();
 
+            if (LastPage <= 1)
+            {
+                return "";
+            }
+
             // First block: Previous link
             FillPageData(helper);
             if (Page <= 0)
             {
-                str.Append(PreviousText);
+                //str.Append(PreviousText);
             }
             else
             {
@@ -194,7 +199,7 @@ namespace Shaml.Web.HtmlHelpers
             // Fifth block: Next link
             if (Page >= LastPage-1)
             {
-                str.Append(NextText);
+                //str.Append(NextText);
             }
             else
             {

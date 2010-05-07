@@ -333,7 +333,6 @@ namespace Shaml.Data.NHibernate
         {
             Check.Require(expression is CriterionExpression, "expression needs to be a CriterionExpression");
 
-            IMultiCriteria multicriteria = Session.CreateMultiCriteria();
             ICriteria criteria = Session.CreateCriteria(typeof(T));
             AddOrderingsToCriteria(criteria, ordering);
             criteria.Add((expression as CriterionExpression).GetExpression() as ICriterion);
@@ -342,12 +341,18 @@ namespace Shaml.Data.NHibernate
             {
                 criteria.SetFirstResult(page * pageSize).SetMaxResults(pageSize);
             }
-            multicriteria.Add(criteria);
-            multicriteria.Add(nores.SetProjection(Projections.RowCountInt64()));
-
-            IList results = multicriteria.List();
-            numResults = (long)((IList)results[1])[0];
-            return ((IList)results[0]).Cast<T>().ToList<T>();
+            nores.SetProjection(Projections.RowCountInt64());
+           
+            // TODO: Multicriteria doesn't work well with SQLite. Disabled
+           
+            //IMultiCriteria multicriteria = Session.CreateMultiCriteria();
+            //multicriteria.Add(criteria);
+            //multicriteria.Add(nores);
+            //IList results = multicriteria.List();
+            //numResults = (long)((IList)results[1])[0];
+            //return ((IList)results[0]).Cast<T>().ToList<T>();
+            numResults = nores.UniqueResult<long>();
+            return criteria.List<T>();
         }
 
         public T FindOneByExpression(IExpression expression)

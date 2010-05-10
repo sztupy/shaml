@@ -70,5 +70,18 @@ namespace Shaml.Core.PersistenceSupport
         IExpression Not(IExpression value);
         IExpression And(params IExpression[] values);
         IExpression Or(params IExpression[] values);
+
+        // Experimental
+        /// <summary>
+        /// If using enums as flags this property will check whether the property includes all the values you specified
+        /// </summary>
+        /// <param name="value">The value(s) to check for. Must be an enum with [Flags]</param>
+        IExpression FlagEq(string propertyName, object value);
+
+        /// <summary>
+        /// If using enums as flags this property will check whether the property includes at least one of the values you specified
+        /// </summary>
+        /// <param name="value">The value(s) to check for. Must be an enum with [Flags]</param>
+        IExpression FlagIn(string propertyName, object value);
     }
 }

@@ -12,6 +12,7 @@ using Shaml.Core.DomainModel;
 using System.Collections;
 using NHibernate.Metadata;
 using System.ComponentModel;
+using NHibernate.Type;
 
 namespace Shaml.Data.NHibernate
 {
@@ -422,6 +423,16 @@ namespace Shaml.Data.NHibernate
                 return new CriterionExpression("Like", propertyName, value, ignoreCase);
             }
 
+            public IExpression FlagEq(string propertyName, object value)
+            {
+                return new CriterionExpression("FlagEq", propertyName, value);
+            }
+
+            public IExpression FlagIn(string propertyName, object value)
+            {
+                return new CriterionExpression("FlagIn", propertyName, value);
+            }
+
             public IExpression EqProperty(string leftProperty, string rightProperty)
             {
                 return new CriterionExpression("EqProperty", leftProperty, rightProperty);
@@ -502,6 +513,12 @@ namespace Shaml.Data.NHibernate
                     case "Gt": return Expression.Gt(p[0] as string, p[1]);
                     case "Le": return Expression.Le(p[0] as string, p[1]);
                     case "Lt": return Expression.Lt(p[0] as string, p[1]);
+                    case "FlagEq": return Expression.Eq(
+                            Projections.SqlProjection("({alias}." + (p[0] as string) + " & " + ((int)p[1]).ToString() + ") as " + (p[0] as string) + "Result", new[] { (p[0] as string) + "Result" }, new IType[] { NHibernateUtil.Int32 }),
+                        ((int)p[1]));
+                    case "FlagIn": return Expression.Gt(
+                            Projections.SqlProjection("({alias}."+(p[0] as string)+" & "+ ((int)p[1]).ToString() +") as "+(p[0] as string)+"Result",new[] {(p[0] as string)+"Result"}, new IType[] {NHibernateUtil.Int32}),
+                        0);
                     case "Like": if ((p[2] as bool?) == false)
                         {
                             return Expression.Like(p[0] as string, p[1]);
@@ -540,7 +557,7 @@ namespace Shaml.Data.NHibernate
                             return conj;
                         }
                     default:
-                        return null;
+                        throw new NotImplementedException();
                 }
             }
 

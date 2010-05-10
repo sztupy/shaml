@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Shaml.Core
 {
@@ -20,6 +21,26 @@ namespace Shaml.Core
         public EnumDisplayNameAttribute(string DisplayName)
         {
             this.DisplayName = DisplayName;
+        }
+    }
+
+    public static class EnumDisplayNameHelper
+    {
+        public static string DisplayName(this Enum en)
+        {
+            // Check for the EnumDisplayName attribute
+            Type type = en.GetType();
+            MemberInfo[] memInfo = type.GetMember(en.ToString());
+            if (memInfo != null && memInfo.Length > 0)
+            {
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(EnumDisplayNameAttribute),
+                                                                false);
+                if (attrs != null && attrs.Length > 0)
+                    return ((EnumDisplayNameAttribute)attrs[0]).DisplayName;
+
+            }
+            // Fall back if no DisplayNameAttribute was found
+            return en.ToString();
         }
     }
 

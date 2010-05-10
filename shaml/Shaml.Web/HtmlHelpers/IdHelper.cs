@@ -16,5 +16,10 @@ namespace Shaml.Web.HtmlHelpers
         {
             return MvcHtmlString.Create(htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(ExpressionHelper.GetExpressionText(expression)));
         }
+
+        static public MvcHtmlString NameHelperFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return MvcHtmlString.Create(ExpressionHelper.GetExpressionText(expression));
+        }
     }
 }

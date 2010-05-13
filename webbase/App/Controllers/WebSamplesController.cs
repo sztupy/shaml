@@ -19,6 +19,7 @@ using WebBase.Core;
 namespace WebBase.Controllers
 {
     [HandleError]
+    [GenericLogger]
     public class WebSamplesController : Controller
     {
         public WebSamplesController(INHibernateQueryRepository<WebSample> WebSampleRepository) {
@@ -53,7 +54,7 @@ namespace WebBase.Controllers
             return View(viewModel);
         }
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Transaction]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(WebSample WebSample) {
@@ -77,7 +78,7 @@ namespace WebBase.Controllers
             return View(viewModel);
         }
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Transaction]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(WebSample WebSample) {
@@ -112,7 +113,7 @@ namespace WebBase.Controllers
             return View(websampleToDelete);
         }
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Transaction]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult DeleteConfirmed(int id) {

@@ -5,7 +5,7 @@
 <% Html.EnableClientValidation(); %>
 <%= Html.ValidationSummary() %>
 <% using (Html.BeginForm()) { %>
-  <% // Html.AntiForgeryToken() %>
+  <%= Html.AntiForgeryToken() %>
   <%= Html.Hidden("WebSample.Id", (Model.WebSample != null) ? Model.WebSample.Id : 0) %>
   <ul>
 <!-- __BEGIN__PROPERTY__ -->

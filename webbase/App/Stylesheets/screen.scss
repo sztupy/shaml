@@ -1,0 +1,138 @@
+@import "blueprint";
+@import "blueprint/scaffolding";
+@import "compass/reset";
+@import "compass/layout";
+@import "compass/utilities";
+
+@include blueprint;
+
+// Remove the scaffolding when you're ready to start doing visual design.
+// Or leave it in if you're happy with how blueprint looks out-of-the-box
+
+// scheme ID: 0061TtIgFMPNi
+
+$bgcolor: #f6d1b3;
+$maincolor: white;
+$mainborder: unquote("1px solid #610202");
+$bordercolor: #610202;
+$footerbgcolor: #823838;
+$footercolor: #eeeeee;
+$footerborder: unquote("1px solid #612D02");
+$headercolor: #823838;
+$headerborder: unquote("1px solid #610202");
+$tableheader: #acedac;
+
+thead th {
+  background: $tableheader; }
+
+body {
+  background-color: $bgcolor; }
+
+#mainContent {
+  @include container;
+  background-color: $maincolor;
+  border: {
+    left: $mainborder;
+    right: $mainborder; }; }
+
+#topContainer {
+  @include column(24, true);
+  background-color: $headercolor;
+  border-bottom: $headerborder;
+  padding-bottom: 0;
+  h1 {
+    font: {
+      family: Georgia, serif;
+      size: 3em; };
+    color: $maincolor;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0; } }
+
+#columnsContainer {
+  @include column(24, true); }
+
+#leftColumn {
+  @include column(6);
+  p {
+    padding-left: 5px;
+    padding-top: 1em; }
+  h2 {
+    border-bottom: 1px solid #fbfbfb;
+    padding-left: 5px;
+    padding-bottom: 0; }
+  ul {
+    padding-left: 5px; } }
+
+#rightColumn {
+  @include column(18, true); }
+
+#footer {
+  background-color: $footerbgcolor;
+  border-top: $footerborder;
+  color: $footercolor;
+  height: 75px;
+  text-align: center;
+  a {
+    color: $footercolor + 32;
+    &:hover {
+      color: $footercolor; } } }
+
+.field-validation-error {
+  color: red; }
+
+@include sticky-footer(75px, "#mainContent", "#endMain", "#footer");
+
+li.footer {
+  float: left;
+  width: 250px;
+  height: 75px;
+  list-style-type: none;
+  border: {
+    right: {
+      color: $bordercolor;
+      width: 1px;
+      style: dashed; }; };
+  li {
+    list-style-type: none; } }
+
+// OPENID selecto stylesheets
+
+#openid_form {
+  width: 490px;
+  legend {
+    font-weight: bold; } }
+
+#openid_input_area {
+  clear: both;
+  padding: 10px; }
+
+#openid_btns {
+  clear: both;
+  br {
+    clear: both; } }
+
+#openid_highlight {
+  padding: 3px;
+  background-color: #fffcc9;
+  float: left; }
+
+.openid_large_btn {
+  width: 100px;
+  height: 60px;
+  border: 1px solid #dddddd;
+  margin: 3px;
+  float: left;
+  a:focus {
+    outline: none;
+    -moz-outline-style: none; } }
+
+.openid_small_btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #dddddd;
+  margin: 3px;
+  float: left; }
+
+.openid_selected {
+  border: 4px solid #dddddd; }

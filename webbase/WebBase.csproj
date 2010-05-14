@@ -279,6 +279,6 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>cd "$(ProjectDir)"
-compass --update -c "Config/compass_config.rb" --trace</PostBuildEvent>
+compass compile</PostBuildEvent>
   </PropertyGroup>
 </Project>

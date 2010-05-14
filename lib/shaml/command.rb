@@ -281,7 +281,7 @@ class CommandLoader
           system("msbuild #{appname}.sln")
         end
         puts "Compiling stylesheets"        
-        system("compass -c Config/compass_config.rb")
+        system("compass compile")
       when "server"
         appname = getappname
         puts "Starting xsp2 #{ARGV.join(" ")}"

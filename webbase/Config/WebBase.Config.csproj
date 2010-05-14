@@ -151,14 +151,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="compass_config.rb" />
+    <None Include="compass.rb" />
     <None Include="NHibernate.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\libraries\Mono.Security.dll">
       <Link>Mono.Security</Link>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>    
+    </Content>
     <Content Include="..\libraries\Npgsql.dll">
       <Link>Npgsql.dll</Link>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -174,7 +174,7 @@
     <Content Include="..\libraries\Mono.Data.Sqlite.dll">
       <Link>Mono.Data.Sqlite.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>    
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

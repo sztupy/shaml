@@ -22,14 +22,14 @@ namespace Shaml.Data.NHibernate
     /// with a type other than int, such as string, then use 
     /// <see cref="GenericDaoWithTypedId{T, IdT}" />.
     /// </summary>
-    public class Repository<T> : RepositoryWithTypedId<T, int>, IRepository<T> { }
+    public class Repository<T> : RepositoryWithTypedId<T, int>, IExpressionRepository<T> { }
 
     /// <summary>
     /// Provides a fully loaded DAO which may be created in a few ways including:
     /// * Direct instantiation; e.g., new GenericDao<Customer, string>
     /// * Spring configuration; e.g., <object id="CustomerDao" type="Shaml.Data.NHibernateSupport.GenericDao&lt;CustomerAlias, string>, Shaml.Data" autowire="byName" />
     /// </summary>
-    public class RepositoryWithTypedId<T, IdT> : IRepositoryWithTypedId<T, IdT>
+    public class RepositoryWithTypedId<T, IdT> : IExpressionRepositoryWithTypedId<T, IdT>
     {
         
         protected virtual ISession Session {

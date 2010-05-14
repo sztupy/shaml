@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 
 using NHibernate.Validator.Engine;
 
+using Shaml.Web;
 using Shaml.Web.CommonValidator;
 using Shaml.Web.NHibernate;
 using Shaml.Web.HtmlHelpers;

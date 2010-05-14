@@ -11,9 +11,9 @@ namespace Shaml.Core.PersistenceSupport.NHibernate
     /// assembly.  For looser coupling, the "Core" layers of the Shaml library and of your 
     /// application should not have a reference to the NHibernate assembly.
     /// </summary>
-    public interface INHibernateRepository<T> : INHibernateRepositoryWithTypedId<T, int>, IRepository<T> { }
+    public interface INHibernateRepository<T> : INHibernateRepositoryWithTypedId<T, int>, IExpressionRepository<T> { }
 
-    public interface INHibernateRepositoryWithTypedId<T, IdT> : IRepositoryWithTypedId<T, IdT>
+    public interface INHibernateRepositoryWithTypedId<T, IdT> : IExpressionRepositoryWithTypedId<T, IdT>
     {
         /// <summary>
         /// Returns null if a row is not found matching the provided Id.

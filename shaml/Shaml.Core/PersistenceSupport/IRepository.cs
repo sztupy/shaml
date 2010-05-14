@@ -27,39 +27,11 @@ namespace Shaml.Core.PersistenceSupport
         IList<T> GetAll();
 
         /// <summary>
-        /// Returns all of the items of a given type paginated, with additional ordering.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> GetAll(int pageSize, int page, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
-        /// Returns all of the items of a given type paginated and the number of results.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> GetAll(int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
         /// Looks for zero or more instances using the Anonymous Type provided.
         /// The key of the collection should be the property name and the value should be
         /// the value of the property to filter by.
         /// </summary>
         IList<T> FindAll(object propertyValuePairs);
-
-        /// <summary>
-        /// Looks for zero or more instances using the Anonymous Type provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by. Paginated.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> FindAll(object propertyValuePairs, int pageSize, int page, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
-        /// Looks for zero or more instances using the Anonymous Type provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by. Paginated with the number of results.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> FindAll(object propertyValuePairs, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
 
         /// <summary>
         /// Looks for a single instance using the property/values provided.
@@ -75,55 +47,10 @@ namespace Shaml.Core.PersistenceSupport
         IList<T> FindAll(IDictionary<string, object> propertyValuePairs);
 
         /// <summary>
-        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by. Paginated.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
-        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by. Paginated with the number of results.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> FindAll(IDictionary<string, object> propertyValuePairs, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
         /// Looks for a single instance using the property/values provided.
         /// </summary>
         /// <exception cref="NonUniqueResultException" />
         T FindOne(IDictionary<string, object> propertyValuePairs);
-
-        /// <summary>
-        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by.
-        /// </summary>
-        IList<T> FindByExpression(IExpression expression);
-
-        /// <summary>
-        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by. Paginated.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> FindByExpression(IExpression expression, int pageSize, int page, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
-        /// Looks for zero or more instances using the <see cref="IDictionary{string, object}"/> provided.
-        /// The key of the collection should be the property name and the value should be
-        /// the value of the property to filter by. Paginated with the number of results.
-        /// PageSize and page can be 0, which means no pagination will occur. 
-        /// </summary>
-        IList<T> FindByExpression(IExpression expression, int pageSize, int page, out long numResults, params IPropertyOrder<T>[] ordering);
-
-        /// <summary>
-        /// Looks for a single instance using the property/values provided.
-        /// </summary>
-        /// <exception cref="NonUniqueResultException" />
-        T FindOneByExpression(IExpression expression);
 
         /// <summary>
         /// For entities with automatatically generated Ids, such as identity, SaveOrUpdate may 
@@ -144,19 +71,5 @@ namespace Shaml.Core.PersistenceSupport
         /// beginning a transaction, rolling back a transaction, etc.
         /// </summary>
         IDbContext DbContext { get; }
-
-        /// <summary>
-        /// Creates a new IPropertyOrder object, that sotres how the results shold be ordered
-        /// </summary>
-        /// <param name="propertyName">The name of the property to order by</param>
-        /// <param name="isDesc">Whetther to order by ASC or DESC</param>
-        /// <returns>The IPropertyOrder instance</returns>
-        IPropertyOrder<T> CreateOrder(string propertyName, bool isDesc);
-
-        /// <summary>
-        /// Creates an Expression Builder to create Expression objects
-        /// </summary>
-        /// <returns>The IExpressionBuilder instance</returns>
-        IExpressionBuilder CreateExpressionBuilder();
     }
 }

@@ -75,8 +75,11 @@ body {
   text-align: center;
   a {
     color: $footercolor + 32;
-    &:hover {
-      color: $footercolor; } } }
+  }
+  a:hover {
+      color: $footercolor;
+  }
+}
 
 .field-validation-error {
   color: red; }

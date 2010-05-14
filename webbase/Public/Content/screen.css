@@ -1344,12 +1344,12 @@ body {
 #footer a {
   color: white;
 }
-/* line 78, ../../App/Stylesheets/screen.scss */
+/* line 79, ../../App/Stylesheets/screen.scss */
 #footer a:hover {
   color: #eeeeee;
 }
 
-/* line 81, ../../App/Stylesheets/screen.scss */
+/* line 84, ../../App/Stylesheets/screen.scss */
 .field-validation-error {
   color: red;
 }
@@ -1379,7 +1379,7 @@ html, body {
   height: 75px;
 }
 
-/* line 86, ../../App/Stylesheets/screen.scss */
+/* line 89, ../../App/Stylesheets/screen.scss */
 li.footer {
   float: left;
   width: 250px;
@@ -1389,43 +1389,43 @@ li.footer {
   border-right-width: 1px;
   border-right-style: dashed;
 }
-/* line 96, ../../App/Stylesheets/screen.scss */
+/* line 99, ../../App/Stylesheets/screen.scss */
 li.footer li {
   list-style-type: none;
 }
 
-/* line 101, ../../App/Stylesheets/screen.scss */
+/* line 104, ../../App/Stylesheets/screen.scss */
 #openid_form {
   width: 490px;
 }
-/* line 103, ../../App/Stylesheets/screen.scss */
+/* line 106, ../../App/Stylesheets/screen.scss */
 #openid_form legend {
   font-weight: bold;
 }
 
-/* line 106, ../../App/Stylesheets/screen.scss */
+/* line 109, ../../App/Stylesheets/screen.scss */
 #openid_input_area {
   clear: both;
   padding: 10px;
 }
 
-/* line 110, ../../App/Stylesheets/screen.scss */
+/* line 113, ../../App/Stylesheets/screen.scss */
 #openid_btns {
   clear: both;
 }
-/* line 112, ../../App/Stylesheets/screen.scss */
+/* line 115, ../../App/Stylesheets/screen.scss */
 #openid_btns br {
   clear: both;
 }
 
-/* line 115, ../../App/Stylesheets/screen.scss */
+/* line 118, ../../App/Stylesheets/screen.scss */
 #openid_highlight {
   padding: 3px;
   background-color: #fffcc9;
   float: left;
 }
 
-/* line 120, ../../App/Stylesheets/screen.scss */
+/* line 123, ../../App/Stylesheets/screen.scss */
 .openid_large_btn {
   width: 100px;
   height: 60px;
@@ -1433,13 +1433,13 @@ li.footer li {
   margin: 3px;
   float: left;
 }
-/* line 126, ../../App/Stylesheets/screen.scss */
+/* line 129, ../../App/Stylesheets/screen.scss */
 .openid_large_btn a:focus {
   outline: none;
   -moz-outline-style: none;
 }
 
-/* line 130, ../../App/Stylesheets/screen.scss */
+/* line 133, ../../App/Stylesheets/screen.scss */
 .openid_small_btn {
   width: 24px;
   height: 24px;
@@ -1448,7 +1448,7 @@ li.footer li {
   float: left;
 }
 
-/* line 137, ../../App/Stylesheets/screen.scss */
+/* line 140, ../../App/Stylesheets/screen.scss */
 .openid_selected {
   border: 4px solid #dddddd;
 }

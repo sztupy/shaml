@@ -64,7 +64,10 @@ namespace WebBase
                 "~/App/Views/{1}/{0}.haml",
                 "~/App/Views/Shared/{0}.haml"
             };
-            nhaml.PartialViewLocationFormats = nhaml.ViewLocationFormats;
+            nhaml.PartialViewLocationFormats = new[] {
+                "~/App/Views/{1}/_{0}.haml",
+                "~/App/Views/Shared/_{0}.haml"
+            };
 
             var area = new AreaViewEngine();
 

@@ -1,19 +1,19 @@
 !!! XML
-!!! Strict
-%html{ xmlns="http://www.w3.org/1999/xhtml" }
+!!! strict
+%html( xmlns="http://www.w3.org/1999/xhtml" )
   %head
-    %meta{ content="text/html; charset=iso-8859-1" http-equiv="Content-Type" }
-    %script { type="text/javascript" src="/Public/Scripts/jquery-1.4.2.min.js" }
-    %script { type="text/javascript" src="/Public/Scripts/openid-jquery.js" }
-    %script { type="text/javascript" src="/Public/Scripts/MicrosoftAjax.js" }
-    %script { type="text/javascript" src="/Public/Scripts/MicrosoftMvcAjax.js" }
-    %script { type="text/javascript" src="/Public/Scripts/MicrosoftMvcValidation.js" }
-    %link{ href="/Public/Content/screen.css" media="screen,projection" rel="stylesheet" type="text/css" }
-    %link{ href="/Public/Content/print.css" media="print" rel="stylesheet" type="text/css" }
+    %meta( content="text/html; charset=iso-8859-1" http-equiv="Content-Type" )
+    %script( type="text/javascript" src="/Public/Scripts/jquery-1.4.2.min.js" )
+    %script( type="text/javascript" src="/Public/Scripts/openid-jquery.js" )
+    %script( type="text/javascript" src="/Public/Scripts/MicrosoftAjax.js" )
+    %script( type="text/javascript" src="/Public/Scripts/MicrosoftMvcAjax.js" )
+    %script( type="text/javascript" src="/Public/Scripts/MicrosoftMvcValidation.js" )
+    %link( href="/Public/Content/screen.css" media="screen,projection" rel="stylesheet" type="text/css" )
+    %link( href="/Public/Content/print.css" media="print" rel="stylesheet" type="text/css" )
     /[if lt IE 7]
-      %link{ href="/Public/Content/ie.css" media="screen,projection" rel="stylesheet" type="text/css" }
-    %title
-      S#aml Architecture
+      %link( href="/Public/Content/ie.css" media="screen,projection" rel="stylesheet" type="text/css" )
+    @contentplaceholder=Title
+      %title S#aml Architecture
   %body
     #mainContent
       #topContainer
@@ -22,7 +22,7 @@
       #columnsContainer
         #leftColumn
           %p
-            %img{ src="/Public/Content/Images/shaml_large.jpg" alt="S#aml architecture logo" }
+            %img( src="/Public/Content/Images/shaml_large.jpg" alt="S#aml architecture logo" )
           %p
             _ LogOnUserControl
           %h2
@@ -30,6 +30,6 @@
           _ MainMenu
         #rightColumn
           _
-            #endMain
+          #endMain
     #footer
       _ Footer

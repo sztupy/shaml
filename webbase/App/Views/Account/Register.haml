@@ -11,24 +11,24 @@
       %legend
         Account Information
       %p
-        %label{ for="username" }
+        %label( for="username" )
           Username:
         = Html.TextBox("username")
         = Html.ValidationMessage("username")
       %p
-        %label{ for="email" }
+        %label( for="email" )
           Email:
         = Html.TextBox("email")
         = Html.ValidationMessage("email")
       %p
-        %label{ for="password" }
+        %label( for="password" )
           Password:
         = Html.Password("password")
         = Html.ValidationMessage("password")
       %p
-        %label{ for="confirmPassword" }
+        %label( for="confirmPassword" )
           Confirm password:
         = Html.Password("confirmPassword")
         = Html.ValidationMessage("confirmPassword")
       %p
-        %input{ type="submit" value="Register" }
+        %input( type="submit" value="Register" )

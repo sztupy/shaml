@@ -8,33 +8,33 @@
       - if( TempData["MembershipCreateStatus"] != null )
         .errorMessage= TempData["MembershipCreateStatus"].ToString()
     %div
-      %label{ for="MembershipUser.UserName" }
+      %label( for="MembershipUser.UserName" )
         User Name
       = Html.TextBox( "MembershipUser.UserName", (string)TempData["MembershipUser.UserName"] ?? "" )
     %div
-      %label{ for="MembershipUser.Password" }
+      %label( for="MembershipUser.Password" )
         Password
       = Html.Password( "MembershipUser.Password" )
     %div
-      %label{ for="MembershipUser.ConfirmPassword" }
+      %label( for="MembershipUser.ConfirmPassword" )
         Confirm Password
       = Html.Password( "MembershipUser.ConfirmPassword" )
     %div
-      %label{ for="MembershipUser.EmailAddress" }
+      %label( for="MembershipUser.EmailAddress" )
         Email Address
       = Html.TextBox("MembershipUser.EmailAddress", (string)TempData["MembershipUser.EmailAddress"] ?? "")
     - if (ViewData["RequiresQuestionAndAnswer"] != null && (bool)ViewData["RequiresQuestionAndAnswer"] )
       %div
-        %label{ for="MembershipUser.PasswordQuestion" }
+        %label( for="MembershipUser.PasswordQuestion" )
           Password Question
         = Html.TextBox("MembershipUser.PasswordQuestion", (string)TempData["MembershipUser.PasswordQuestion"] ?? "")
       %div
-        %label{ for="MembershipUser.PasswordAnswer" }
+        %label( for="MembershipUser.PasswordAnswer" )
           Password Answer
         = Html.TextBox("MembershipUser.PasswordAnswer", (string)TempData["MembershipUser.PasswordAnswer"] ?? "")
     %div
-      %label{ for="MembershipUser.IsApproved" }
+      %label( for="MembershipUser.IsApproved" )
         Is Approved
       = Html.CheckBox("MembershipUser.IsApproved", bool.Parse( ( TempData["MembershipUser.IsApproved"] ?? true.ToString() ).ToString() ) )
     %div
-      %input{ type="submit" name="submitCreateUser" value="Create User" }
+      %input( type="submit" name="submitCreateUser" value="Create User" )

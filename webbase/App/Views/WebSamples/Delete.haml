@@ -5,6 +5,6 @@
   %h2 Delete WebSample
   %p Are you sure?
   - using (Html.BeginForm("DeleteConfirmed","WebSamples",new { Id = ViewData.Model.Id }))
-    =Html.AntiForgeryToken()
-    %input{ type="submit" value="Yes" }
-    %input{ type="button" name="No" value="No" onclick="javascript:history.go(-1);"}
+    = Html.AntiForgeryToken()
+    %input( type="submit" value="Yes" )
+    %input( type="button" name="No" value="No" onclick="javascript:history.go(-1);")

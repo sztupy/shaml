@@ -22,15 +22,15 @@
       %div
         = user.User.ProviderUserKey
     %div
-      %label{ for="Email" }
+      %label( for="Email" )
         Email Address
       = Html.TextBox( "Email", user.User.Email )
     %div
-      %label{ for="Comment" }
+      %label( for="Comment" )
         Comment
       = Html.TextBox( "Comment", user.User.Comment )
     %div
-      %label{ for="IsApproved" }
+      %label( for="IsApproved" )
         Is Approved
       %div
         = Html.CheckBox("IsApproved", user.User.IsApproved)
@@ -60,7 +60,7 @@
         %div
         = Html.ActionLink("(Unlock User)", "UnlockUser", "MembershipAdministration", new { id = int.Parse(user.User.ProviderUserKey.ToString()) }, new { } )
     %div
-      %input{ type="submit" name="submitUpdateUserDetails" value="Update User Details" }
+      %input( type="submit" name="submitUpdateUserDetails" value="Update User Details" )
 - if (user.RolesEnabled)
   %fieldset.MvcMembership
     %legend
@@ -101,11 +101,11 @@
           %em
             No password question set.
     %div
-      %label{ for="PasswordAnswer" }
+      %label( for="PasswordAnswer" )
         Password Answer
       = Html.TextBox("PasswordAnswer")
     %div
-      %input{ type="submit" name="submitResetPassword" value="Reset Password" }
+      %input( type="submit" name="submitResetPassword" value="Reset Password" )
 - using( Html.BeginForm( "ChangePassword", "MembershipAdministration" ) )
   %fieldset.MvcMembership
     %legend
@@ -117,19 +117,19 @@
       %div
         = user.User.CreationDate != user.User.LastPasswordChangedDate ? user.User.LastPasswordChangedDate.ToString( "M/d/yyyy h:mm:ss tt" ) : "Never Changed Password"
     %div
-      %label{ for="OldPassword" }
+      %label( for="OldPassword" )
         Old Password
       = Html.Password( "OldPassword" )
     %div
-      %label{ for="NewPassword" }
+      %label( for="NewPassword" )
         New Password
       = Html.Password( "NewPassword" )
     %div
-      %label{ for="NewPasswordConfirm" }
+      %label( for="NewPasswordConfirm" )
         Confirm New Password
       = Html.Password( "NewPasswordConfirm" )
     %div
-      %input{ type="submit" name="submitChangePassword" value="Change Password" }
+      %input( type="submit" name="submitChangePassword" value="Change Password" )
 %fieldset.MvcMembership
   %legend
     Permanently Delete User

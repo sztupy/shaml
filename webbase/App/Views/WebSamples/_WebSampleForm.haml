@@ -8,12 +8,12 @@
   %ul
     // __BEGIN__PROPERTY__
     %li
-      %label{ for="WebSample_Property" }Property:
+      = Html.LabelFor( x => x.WebSample.Property )
       %div
         = Html.TextBoxFor( x => x.WebSample.Property )
         = Html.ValidationMessageFor( x => x.WebSample.Property )
     // __END__PROPERTY__
     %li
-      %input{ type="submit" name="btnSave" value="Save WebSample"}/
-      %button{ name="btnCancel" onClick="window.location.href = '/WebSamples';"} Cancel
+      %input( type="submit" name="btnSave" value="Save WebSample")/
+      %button( name="btnCancel" onClick="window.location.href = '/WebSamples';") Cancel
 

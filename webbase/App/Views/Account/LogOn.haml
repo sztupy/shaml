@@ -13,18 +13,18 @@
       %legend
         Account Information
       %p
-        %label{ for="username" }
+        %label( for="username" )
           Username:
         = Html.TextBox("username") 
         = Html.ValidationMessage("username")
       %p
-        %label{ for="password" }
+        %label( for="password" )
           Password:
         = Html.Password("password")
         = Html.ValidationMessage("password")
       %p
         = Html.CheckBox("rememberMe")
-        %label.inline{ for="rememberMe" }
+        %label.inline( for="rememberMe" )
           Remember me?
       %p
-        %input{ type="submit" value="Log On" }
+        %input( type="submit" value="Log On" )

@@ -6,7 +6,7 @@ LoadAssembly("bin/log4net.dll");
 LoadAssembly("bin/Microsoft.Practices.ServiceLocation.dll");
 LoadAssembly("bin/Mono.Security.dll");
 LoadAssembly("bin/Newtonsoft.Json.dll");
-LoadAssembly("bin/NHaml.dll");
+LoadAssembly("bin/NHaml.Core.dll");
 LoadAssembly("bin/NHaml.Web.Mvc.dll");
 LoadAssembly("bin/NHibernate.dll");
 LoadAssembly("bin/NHibernate.ByteCode.LinFu.dll");

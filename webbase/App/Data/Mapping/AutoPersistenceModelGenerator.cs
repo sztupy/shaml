@@ -59,6 +59,7 @@ namespace WebBase.Data.Mapping
                 c.Add<WebBase.Data.Mapping.Conventions.PrimaryKeyConvention>();
                 c.Add<WebBase.Data.Mapping.Conventions.ReferenceConvention>();
                 c.Add<WebBase.Data.Mapping.Conventions.TableNameConvention>();
+                c.Add<WebBase.Data.Mapping.Conventions.EnumConvention>();                
             };
         }
 

@@ -13,6 +13,7 @@ namespace Shaml.Core.PersistenceSupport
     public interface IDbContext
     {
         void CommitChanges();
+        void CommitChanges(bool clearChanges);
         IDisposable BeginTransaction();
         void CommitTransaction();
         void RollbackTransaction();

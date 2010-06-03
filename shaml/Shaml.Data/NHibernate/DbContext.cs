@@ -41,5 +41,14 @@ namespace Shaml.Data.NHibernate
         }
 
         public string FactoryKey { get; set; }
+
+        public void CommitChanges(bool clearChanges)
+        {
+            Session.Flush();
+            if (clearChanges)
+            {
+                Session.Clear();
+            }
+        }
     }
 }

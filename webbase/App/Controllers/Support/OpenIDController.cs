@@ -13,12 +13,12 @@ using Shaml.Web;
 namespace WebBase.Controllers
 {
     [GenericLogger]
-	public class OpenIDController : OpenIDController_Base
+	public class OpenIdController : OpenIDController_Base
 	{
-		public OpenIDController()
+		public OpenIdController()
 			: this( null, null ) {}
 
-		public OpenIDController( IFormsAuthentication formsAuth, MembershipProvider provider )
+		public OpenIdController( IFormsAuthentication formsAuth, MembershipProvider provider )
 			: base( formsAuth, provider ) {}
 
 		protected override string GetUserNameFromOpenIdIdentity( string openIdIdentity )

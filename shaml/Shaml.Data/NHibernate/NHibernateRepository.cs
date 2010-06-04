@@ -87,7 +87,7 @@ namespace Shaml.Data.NHibernate
         }
 
         public virtual T FindOne(T exampleInstance, params string[] propertiesToExclude) {
-            IList<T> foundList = FindAll(exampleInstance, propertiesToExclude);
+            IList<T> foundList = FindAll(exampleInstance, 1,0, propertiesToExclude);
 
             if (foundList.Count > 1) {
                 throw new NonUniqueResultException(foundList.Count);

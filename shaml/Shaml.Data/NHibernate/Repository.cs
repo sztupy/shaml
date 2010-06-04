@@ -125,7 +125,7 @@ namespace Shaml.Data.NHibernate
 
         public virtual T FindOne(object propertyValuePairs)
         {
-            IList<T> foundList = FindAll(propertyValuePairs);
+            IList<T> foundList = FindAll(propertyValuePairs,1,0);
 
             if (foundList.Count > 1)
             {
@@ -204,7 +204,7 @@ namespace Shaml.Data.NHibernate
         }
 
         public virtual T FindOne(IDictionary<string, object> propertyValuePairs) {
-            IList<T> foundList = FindAll(propertyValuePairs);
+            IList<T> foundList = FindAll(propertyValuePairs,1,0);
 
             if (foundList.Count > 1) {
                 throw new NonUniqueResultException(foundList.Count);
@@ -358,7 +358,7 @@ namespace Shaml.Data.NHibernate
 
         public T FindOneByExpression(IExpression expression)
         {
-            IList<T> foundList = FindByExpression(expression);
+            IList<T> foundList = FindByExpression(expression,1,0);
 
             if (foundList.Count > 1)
             {

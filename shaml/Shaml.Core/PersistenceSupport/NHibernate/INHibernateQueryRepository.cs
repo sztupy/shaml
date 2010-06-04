@@ -18,24 +18,24 @@ namespace Shaml.Core.PersistenceSupport.NHibernate
         /// Looks for a single instance using the query string provided.
         /// </summary>
         /// <exception cref="NonUniqueResultException" />
-        T FindOneByQuery(string query);
+        T FindOneByQuery(string query, params object[] parameters);
 
         /// <summary>
         /// Looks for zero or more instances using the query string provided.
         /// </summary>
-        IList<T> FindByQuery(string query);
+        IList<T> FindByQuery(string query, params object[] parameters);
 
         /// <summary>
         /// Looks for zero or more instances using the query string provided. Paginated.
         /// PageSize and page can be 0, which means no pagination will occur.
         /// </summary>
-        IList<T> FindByQuery(string query, int pageSize, int page);
+        IList<T> FindByQuery(string query, int pageSize, int page, params object[] parameters);
 
         /// <summary>
         /// Looks for zero or more instances using the query string provided. Paginated with the number of results.
         /// PageSize and page can be 0, which means no pagination will occur. 
         /// </summary>
-        IList<T> FindByQuery(string query, int pageSize, int page, out long numResults);
+        IList<T> FindByQuery(string query, int pageSize, int page, out long numResults, params object[] parameters);
 
         /// <summary>
         /// Looks for a single instance using the DetachedCriteria provided.

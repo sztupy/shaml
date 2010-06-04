@@ -29,9 +29,9 @@ namespace Shaml.Data.NHibernate
     public class NHibernateQueryRepositoryWithTypedId<T, IdT> : NHibernateRepositoryWithTypedId<T, IdT>, INHibernateQueryRepositoryWithTypedId<T, IdT>
     {
 
-        public T FindOneByQuery(string query)
+        public T FindOneByQuery(string query, params object[] parameters)
         {
-            IList<T> foundList = FindByQuery(query);
+            IList<T> foundList = FindByQuery(query,1,0,parameters);
 
             if (foundList.Count > 1)
             {
@@ -45,12 +45,12 @@ namespace Shaml.Data.NHibernate
             return default(T);
         }
 
-        public IList<T> FindByQuery(string query)
+        public IList<T> FindByQuery(string query, params object[] parameters)
         {
-            return FindByQuery(query, 0, 0);
+            return FindByQuery(query, 0, 0,parameters);
         }
 
-        public IList<T> FindByQuery(string query, int pageSize, int page)
+        public IList<T> FindByQuery(string query, int pageSize, int page, params object[] parameters)
         {
             IQuery q = Session.CreateQuery(query);
             if ((pageSize > 0) && (page >= 0))
@@ -58,10 +58,14 @@ namespace Shaml.Data.NHibernate
                 q.SetFirstResult(page * pageSize);
                 q.SetMaxResults(pageSize);
             }
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                q.SetEntity(i, parameters[i]);
+            }
             return q.List<T>();
         }
 
-        public IList<T> FindByQuery(string query, int pageSize, int page, out long numResults)
+        public IList<T> FindByQuery(string query, int pageSize, int page, out long numResults, params object[] parameters)
         {
             IMultiQuery mq = Session.CreateMultiQuery();
             IQuery q = Session.CreateQuery(query);
@@ -70,13 +74,22 @@ namespace Shaml.Data.NHibernate
                 q.SetFirstResult(page * pageSize);
                 q.SetMaxResults(pageSize);
             }
+            for (int i=0; i < parameters.Length; i++)
+            {
+                q.SetEntity(i, parameters[i]);
+            }
             mq.Add(q);
 
             // Change select part of the original query
 
             string newquery = "select count(*) " + Regex.Replace(query, "select .*? from", "from");
 
-            mq.Add(Session.CreateQuery("select count(*) " + query));
+            IQuery q2 = Session.CreateQuery("select count(*) " + query);
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                q2.SetEntity(i, parameters[i]);
+            }
+            mq.Add(q2);
             IList results = mq.List();
             numResults = (long)((IList)results[1])[0];
             return ((IList)results[0]).Cast<T>().ToList<T>();
@@ -84,7 +97,7 @@ namespace Shaml.Data.NHibernate
 
         public T FindOneByCriteria(object criteria)
         {
-            IList<T> foundList = FindByCriteria(criteria);
+            IList<T> foundList = FindByCriteria(criteria,1,0);
 
             if (foundList.Count > 1)
             {
